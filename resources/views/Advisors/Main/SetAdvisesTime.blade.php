@@ -1,7 +1,5 @@
 @extends('layout.Advisors.template')
 @section('title','پروفایل')
-
-
 @section('style')
     <style>
         .none {
@@ -29,26 +27,13 @@
     <link rel="stylesheet" href="{{ asset('vendor/vendors/clockpicker/bootstrap-clockpicker.min.css') }}" type="text/css">
     <!-- end::clockpicker -->
 @endsection
-
 @section('content')
-@php
-
-@endphp
-
-
-
 <div class="container-fluid">
     <!-- begin::page header -->
     <div class="page-header">
         <div>
             <h3>زمان های شما برای مشاوره</h3>
-            {{-- <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">داشبورد</a></li>
-                    <li class="breadcrumb-item"><a href="#">صفحات</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">پروفایل</li>
-                </ol>
-            </nav> --}}
+
         </div>
     </div>
     <!-- end::page header -->
@@ -116,7 +101,7 @@
                     @forelse ($ConsultationsTimes as $Date => $item)
                         <h6 class="bg-primary text-center p-2 cardd-header d-flex align-items-center justify-content-center">
                             <form action="{{ route('Advisors.SetAdvisesTime.delete') }}" method="post">
-                                @csrf 
+                                @csrf
                             {{-- @method('delete') --}}
                                 <input type="hidden" name="Date" value="{{ $Date }}">
                                 <button type="submit" class="btn btn-danger justify-content-self-start " href="">حذف</button>
@@ -148,12 +133,7 @@
     </div>
 </div>
 @endsection
-
-
-
 @section('js')
-
-<!-- begin::datepicker -->
 <script src="{{ asset('assets/Web/lib/kamadatepicker/kamadatepicker.min.js') }}"></script>
 <script>
     const HOLIDAYS = [
@@ -207,8 +187,7 @@
     kamaDatepicker('date3', {
           nextButtonIcon: "fas fa-arrow-circle-left"
         , previousButtonIcon: "fas fa-arrow-circle-right"
-        , position: 'auto' // top, bottom or auto
-        // , forceFarsiDigits: true
+        , position: 'auto'
         , markToday: true
         , markHolidays: true
         , highlightSelectedDay: true
@@ -216,23 +195,12 @@
         , pastYearsCount: 0
         , futureYearsCount: 1
         , swapNextPrev: true
-        , holidays: HOLIDAYS // from kamadatepicker.holidays.js
+        , holidays: HOLIDAYS
         , disableHolidays: true
         , gotoToday: true
         , closeAfterSelect: true
     });
 </script>
-<!-- end::datepicker -->
-
-<!-- begin::clockpicker -->
 <script src="{{ asset('vendor/vendors/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
 <script src="{{ asset('vendor/js/examples/clockpicker.js') }}"></script>
-<!-- end::clockpicker -->
-<!-- begin::CKEditor -->
-{{-- <script src="{{ asset('vendor/vendors/ckeditor/ckeditor.js') }}">
-</script>
-<script src="{{ asset('vendor/js/examples/ckeditor.js') }}"></script> --}}
-<!-- end::CKEditor -->
-
-
 @endsection

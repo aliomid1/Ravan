@@ -407,68 +407,6 @@
 
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <form class="bio-form" action="{{ route('Advisors.ProfileBio.update') }}" method="post">
-                            @csrf
-                            @method('put')
-                            <div class="form-group d-flex justify-content-between">
-                                <h5 class="card-title m-b-15">تعیین و افزودن زمان جهت مشاوره</h5>
-                            </div>
-                            <div class="form-group mx-3">
-                                <h6 class="mb-2">انتخاب تاریخ</h6>
-                                <input class="form-control" type="text" id="date3" style="width: 280px; height:42px;"
-                                    placeholder="جهت انتخاب تاریخ مشاوره، کلیک نمایید.">
-                            </div>
-                            <div class="d-flex form-group">
-                                <div class="mx-3" style="max-width:240px;">
-                                    <h6 class="mb-2">شروع</h6>
-                                    <div class="input-group clockpicker-autoclose-demo">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-clock-o"></i>
-                                            </span>
-                                        </div>
-                                        <input class="form-control" value="18:30" type="text">
-                                    </div>
-                                </div>
-                                <div class="mx-3" style="max-width:240px;">
-                                    <h6 class="mb-2">پایان</h6>
-                                    <div class="input-group clockpicker-autoclose-demo">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-clock-o"></i>
-                                            </span>
-                                        </div>
-                                        <input class="form-control" value="18:30" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-success  mt-3">افزودن</button>
-                        </form>
-                        <div class="form-group">
-                            <h5 class="card-title m-b-15 mt-4">زمان های ثبت شده ی شما</h5>
-                            <div class="table">
-                                <h6 class="bg-primary text-center p-2">لیست زمانی شما برای تاریخ 99.10.25</h6>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        f
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        f
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        f
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        f
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>

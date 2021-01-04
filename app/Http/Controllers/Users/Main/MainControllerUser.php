@@ -3,9 +3,12 @@
 namespace app\Http\Controllers\Users\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Settings;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Melipayamak\MelipayamakApi;
 
 class MainControllerUser extends Controller
 {
@@ -50,8 +53,27 @@ class MainControllerUser extends Controller
     {
         $CallerId = Auth::user()->id;
         $UserMobileNumber = $request->mobile;
-        $FinalURL = url('Login?CallerId='.$CallerId);
+        $FinalURL = url('Login?CallerId=' . $CallerId);
         dd($FinalURL);
+        $settings = Settings::first();
+        try {
+            $username = env('MELIPAYAMAKUSERNAME');
+            $password = env('MELIPAYAMAKPASSWORD');
+            $api = new MelipayamakApi($username, $password);
+            $sms = $api->sms();
+            $to = $UserMobileNumber;
+            $from = env('NUMBERSMS');
+            $text = $settings->textmessage . '\n' . $FinalURL;
+            $response = $sms->send($to, $from, $text);
+            $json = json_decode($response);
+            if ($json->Value > 12 || $json->Value == 1) {
+                return true;
+            } else {
+                return 'کد برای شما ارسال نشد لطفا مجددا تلاش کنید';
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
         // کد یو آر ال رو به شماره ی وارد شده پیامک کن
         return redirect(back());
     }
@@ -103,8 +125,4 @@ class MainControllerUser extends Controller
     {
         return view('Users.Main.List');
     }
-
-
-
-
 }

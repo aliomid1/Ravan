@@ -156,14 +156,12 @@
                                 <figure
                                     class="avatar avatar-sm {{ Auth::guard('advisor')->user()->status == '1' ? 'avatar-state-success' : '' }}">
                                     <img class="rounded-circle advisor_profile"
-                                        src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('vendor/media/image/doctor.jpg') }}"
+                                        src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('assets/avatar.jpg') }}"
                                         alt="...">
                                 </figure>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="{{ route('Advisors.Profile') }}" class="dropdown-item">پروفایل</a>
-                                {{-- <a href="#" data-sidebar-target="#settings"
-                                    class="sidebar-open dropdown-item">تنظیمات</a> --}}
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('Logout') }}" class="text-danger dropdown-item">خروج</a>
                             </div>

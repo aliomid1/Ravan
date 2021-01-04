@@ -8,11 +8,12 @@ use App\lib\File\BaseUploader;
 use App\lib\File\ImageUploader;
 use App\lib\Messages\FlashMessage;
 use App\Models\Blog;
+use App\Models\BlogsCategory;
 use App\Models\Image;
 
 class BlogsController extends Controller
 {
- 
+
     public function index()
     {
         return view('Admins.Blogs.index');
@@ -62,9 +63,9 @@ class BlogsController extends Controller
 
     public function edit(Request $request , $id)
     {
-        $Category = \App\Models\Category::get();
+        $Category = BlogsCategory::get();
         $blog =  Blog::find($id);
-        $SelectedCat = explode(',' , $blog->categories); 
+        $SelectedCat = explode(',' , $blog->categories);
         $image = \App\Models\Image::where(['type'=>'blogs','item_id'=>$blog->id])->first();
         return view('Admins.Blogs.edit' , compact(['blog' , 'image' , 'Category' , 'SelectedCat']));
     }
@@ -80,7 +81,7 @@ class BlogsController extends Controller
                 if ($request->category) {
                     $category = implode(',', $request->category);
                     $blog->update(['categories' => $category]);
-                } 
+                }
                 if ($request->image) {
                     $image = Image::where('item_id', $id)->where('type', 'blogs')->first();
                     if ($image) {

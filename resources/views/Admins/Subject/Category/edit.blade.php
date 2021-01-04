@@ -8,7 +8,7 @@
         <div class="col-md-12 card">
             <div class="card-body">
                 <h5 class="card-title">افزودن دسته بندی</h5>
-                <form class="" action="{{route('Admins.Category.update','update')}}" novalidate="" method="POST"
+                <form class="" action="{{route('Admins.SubjectCategories.update','update')}}" novalidate="" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

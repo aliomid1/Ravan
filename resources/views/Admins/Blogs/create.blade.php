@@ -1,13 +1,16 @@
 @extends('layout.Admins.template')
+@section('title')
+ایجاد مقاله
+@endsection
 @section('content')
 @php
-    $Category = \App\Models\Category::get();
+    $Category = \App\Models\BlogsCategory::get();
 @endphp
 <div class="container-fluid">
 
     <div class="page-header">
         <div>
-            <h3>ثبت مطالب</h3>
+            <h3>ثبت مقاله</h3>
         </div>
     </div>
     <div class="row">
@@ -36,23 +39,6 @@
                         <div class="form-group">
                             <label>عنوان </label>
                             <input class="form-control" required type="text" name="title">
-                        </div>
-                        <div class="form-group  ">
-                            <label>عکس</label>
-                            <div class="custom-file">
-                                <input type="file" class="image custom-file-input" name="image" id="customFile">
-                                <label class="custom-file-label" for="customFile">انتخاب
-                                    عکس</label>
-                            </div>
-                            <div class="row justify-content-center mt-3">
-                                <img id="image"
-                                    class=" justify-content col-xl-3 col-lg-4 col-md-7 col-sm-11 mx-auto text-center"
-                                    src="" alt="عکسی انتخاب نشده است">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>توضیحات مختصر</label>
-                            <textarea name="short_desc" required class="form-control" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label>توضیحات</label>
@@ -94,33 +80,6 @@
         });
     }
 
-    if ($('#customFile').length) {
-        $(function () {
-            btn = $('#customFile');
-            img = $('#image');
-
-            btn.on('click', function () {
-                img.animate({
-                    opacity: 0
-                }, 300);
-            });
-
-            btn.on('change', function (e) {
-                var i = 0;
-                for (i; i < e.originalEvent.srcElement.files.length; i++) {
-                    var file = e.originalEvent.srcElement.files[i],
-                        reader = new FileReader();
-                    reader.onloadend = function () {
-                        img.attr('src', reader.result).animate({
-                            opacity: 1
-                        }, 700);
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-    }
-    // Guided by Elisabeth Hamel (https://codepen.io/elisabeth_hamel/pen/QjRgRr)
 
 </script>
 @endsection

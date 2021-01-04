@@ -63,25 +63,22 @@ class MainController extends Controller
 
 
 
-    public function Category()
+    public function SubjectCategory()
     {
-        return view('Admins.Category.index');
+        return view('Admins.Subject.Category.index');
     }
 
+
+    public function BlogsCategory()
+    {
+        return view('Admins.Blogs.Category.index');
+    }
 
 
     public function Support()
     {
         return view('Admins.Support.index');
     }
-
-
-
-    public function BlogsManagement()
-    {
-        return view('Admins.Main.BlogsManagement');
-    }
-
 
 
     public function Subjects()

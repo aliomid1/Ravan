@@ -84,13 +84,18 @@ class MainController extends Controller
         return back();
     }
 
-    public function Blogs()
+    public function Blogs($title = null)
     {
         $RandomBlogs = [];
         if (Blog::count() >= 3) {
             $RandomBlogs = Blog::all()->random(3);
         }
-        $Blogs = Blog::get();
+        $Blogs = null;
+        if ($title) {
+            $Blogs = Blog::where('categories', 'like', "%$title%")->get();
+        } else {
+            $Blogs = Blog::get();
+        }
         return view('Web.Main.Blogs', compact(['Blogs', 'RandomBlogs']));
     }
 
@@ -100,6 +105,7 @@ class MainController extends Controller
         $Blogs = Blog::where('title', 'like', "%$value%")->get();
         return view('Web.Main.Partial.BlogCard', compact('Blogs'))->render();
     }
+
 
     public function Blog($id)
     {
@@ -182,11 +188,8 @@ class MainController extends Controller
     {
         $MainCat = Category::find($CatId);
         $CurrentSubject = Subject::find($id);
-        $Tags = json_decode($CurrentSubject->tags);
-        if (!is_array($Tags) && !is_object($Tags)) {
-            $Tags = [];
-        }
-        return view('Web.Main.SubjectOfCategory', compact(['CurrentSubject', 'Tags', 'MainCat']));
+        $advisor = Advisors::get();
+        return view('Web.Main.SubjectOfCategory', compact(['CurrentSubject', 'MainCat','advisor']));
     }
 
 
@@ -231,7 +234,7 @@ class MainController extends Controller
             }
             $ConsultationsTimes = $ConsultationsTimes['Sliced'];
             ksort($ConsultationsTimes);
-          
+
             return view('Web.Main.ProfileMoshaver', compact(['advisor', 'education', 'ConsultationsTimes', 'TimeOfOneCosultation']));
         } else {
             return back();

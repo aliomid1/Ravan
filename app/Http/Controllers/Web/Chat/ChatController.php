@@ -93,17 +93,23 @@ class ChatController extends Controller
         $user = Auth::guard('web')->user();
         $advisor = Auth::guard('advisor')->user();
         $USerR = [];
+        $typesender = '';
+
         if (!$user) {
             if ($advisor) {
                 $USerR = $advisor;
+                $typesender = 'advisor';
+            } else {
+                return redirect(route('Web.index'));
             }
         } else {
             $USerR = $user;
+            $typesender = 'user';
         }
-
+       
         if ($chat && $USerR) {
             if ($USerR->id == $chat->user_id || $USerR->id == $chat->expert_id) {
-                return redirect('http://192.168.1.105/:81/chat/start/' . $chat->id . '/' . $chat->encrypt);
+                return redirect('http://192.168.1.105:81/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
             }
             return redirect(route('Web.index'));
         } else {
@@ -111,31 +117,28 @@ class ChatController extends Controller
         }
     }
 
-    public function CheckChatData($id)
+    public function CheckChatData($id, $sender)
     {
 
         $chat = Chat::find($id);
         if ($chat) {
-            echo json_encode(
-                [
-                    'status' => $chat->status,
-                    'user_id' => $chat->user_id,
-                    'expiretime' => $chat->expiretime,
-                    'expert_id' => $chat->expert_id,
-                    'user_name' => $chat->user_name,
-                    'expert_name' =>  $chat->expert_name,
-                    'user_profile' => $chat->user_profile,
-                    'advisor_profile' => $chat->advisor_profile,
-                    'HasVoiceCall' => $chat->HasVoiceCall,
-                    'HasVideoCall' => $chat->HasVideoCall
-                ]
-            );
+            return response([
+                'status' => $chat->status,
+                'user_id' => $chat->user_id,
+                'sender' => $sender,
+                'expiretime' => $chat->expiretime,
+                'expert_id' => $chat->expert_id,
+                'user_name' => $chat->user_name,
+                'expert_name' =>  $chat->expert_name,
+                'user_profile' => asset($chat->user_profile),
+                'advisor_profile' => asset($chat->advisor_profile),
+                'HasVoiceCall' => $chat->HasVoiceCall,
+                'HasVideoCall' => $chat->HasVideoCall
+            ]);
         } else {
-            echo json_encode(
-                [
-                    'status' => false,
-                ]
-            );
+            return response([
+                'status' => false,
+            ]);
         }
     }
 

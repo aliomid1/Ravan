@@ -39,7 +39,7 @@ class PaymentController extends Controller
                     $Jalalian = str_replace('-', '/', $request->date) . ' ' . $ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Time'];
                     $date = \Morilog\Jalali\CalendarUtils::createCarbonFromFormat('Y/m/d H:i', $Jalalian);
                     Session::put('convvtt', ['id' => $advisor->id, 'data' => json_encode($ConsultationsTimes)]);
-                    $ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] ="0";
+                    $ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] = "0";
                     $advisor->update(['consultations_times' => json_encode($ConsultationsTimes)]);
                 }
             }
@@ -62,7 +62,15 @@ class PaymentController extends Controller
             }
             switch ($request->type) {
                 case 'online':
-                    return redirect(route('Web.CreateChat', ['id' => $request->id, 'typepay' => $request->typepayment, 'payment' => $payment]));
+                    return redirect(route(
+                        'Web.CreateChat',
+                        [
+                            'id' => $request->id,
+                            'typepay' => $request->typepayment,
+                            'payment' => $payment,
+                            'subject' => $request->subject
+                        ]
+                    ));
                     break;
                 case 'in':
                     return redirect(route(

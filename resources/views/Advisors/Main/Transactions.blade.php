@@ -30,7 +30,7 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
             <div class="card-body p-50">
                 <div class="invoice">
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="row mb-3">
                                 <div class=" col-sm-6">
                                     <p>
@@ -43,21 +43,21 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="row mb-3">
-                                <div class=" col-sm-6">
+                                <div class=" col-sm-7">
                                     <p>
                                         <b>مجموع مبلغ برداشت شده از حساب شما</b>
                                     </p>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <p>{{ number_format($AdvisorPayment->sum('amount')) }} تومان
                                     </p>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="row mb-3">
                                 <div class=" col-sm-6">
                                     <p>
@@ -70,19 +70,7 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="row mb-3">
-                                <div class=" col-sm-6">
-                                    <p>
-                                        <b>مجموع درآمد شما با احتساب کارمزد سایت</b>
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <p>{{ number_format($trxs->sum('price')) }} تومان
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="table-responsive" tabindex="1" style=" outline: none;">
                         <h4 class="mt-5">ریز اطلاعات درآمد</h4>

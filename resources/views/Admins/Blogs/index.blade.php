@@ -1,4 +1,7 @@
 @extends('layout.Admins.template')
+@section('title')
+لیست مقالات ثبت شده
+@endsection
 @section('content')
 @php
     $list=\App\Models\Blog::paginate(12);

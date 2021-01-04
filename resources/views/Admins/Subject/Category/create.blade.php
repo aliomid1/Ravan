@@ -8,7 +8,7 @@
         <div class="col-md-12 card">
             <div class="card-body">
                 <h5 class="card-title">افزودن دسته بندی</h5>
-                <form class="" action="{{ route('Admins.Category.store') }}" novalidate=""
+                <form class="" action="{{ route('Admins.SubjectCategories.store') }}" novalidate=""
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">

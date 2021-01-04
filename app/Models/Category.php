@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
- 
+
     protected $guarded = [];
 
     public function GetSubjects($title)
@@ -23,8 +23,8 @@ class Category extends Model
             return $result;
         // return $this->hasMany(Subject::class, 'category_id', 'id');
     }
-    
-    
+
+
 
     public function Blogs($title)
     {
@@ -43,7 +43,7 @@ class Category extends Model
     public function Image()
     {
         $All = $this->hasOne(Image::class, 'item_id' , 'id' );
-        return $All->where('type' , 'categories');
+        return $All->where('type' , 'category');
     }
 
 }

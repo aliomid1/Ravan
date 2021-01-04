@@ -1,4 +1,7 @@
 @extends('layout.Admins.template')
+@section('title')
+ویرایش مقاله
+@endsection
 @section('content')
 
 <div class="container-fluid">
@@ -93,7 +96,7 @@
         $(function () {
             btn = $('#customFile');
             img = $('#image');
-            
+
             btn.on('click', function () {
                 img.animate({
                     opacity: 0

@@ -56,16 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group subject-tags-form">
-                        <label>تگ موضوع</label>
-                        <div class="body row">
-                            <input class="form-control col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3" type="text" name="tags[0]">
-                        </div>
-                        <a href="javascript:void()" class="add-row btn btn-primary mx-1">افزودن
-                            ردیف جدید</a>
-                        <a href="javascript:void()" class="remove-row btn btn-danger mx-1">حذف
-                            آخرین ردیف</a>
-                    </div>
+
                     <div class="form-row ">
                         <div class="col-md-12 mb-3">
                             <label> توضیحات</label>

@@ -31,7 +31,7 @@ Route::namespace('Web')->name('Web.')->group(function () {
     Route::get('/page/{slug}', 'Main\MainController@Pages')->name('Page');
 
     // Blogs
-    Route::get('/Blogs', 'Main\MainController@Blogs')->name('Blogs');
+    Route::get('/Blogs/{title?}', 'Main\MainController@Blogs')->name('Blogs');
     Route::get('/Blogs/Category/{slog}', 'Main\MainController@CategoryBlogs')->name('Category.Blogs');
     Route::get('/Blog/{slog}', 'Main\MainController@Blog')->name('Blog');
     Route::post('/Blog', 'Main\MainController@BlogSearch')->name('BlogSearch');
@@ -84,9 +84,9 @@ Route::namespace('Web')->name('Web.')->group(function () {
 
 
     //Chat
-    Route::get('CreateChat/{id}/{typepay}/{payment}', 'Chat\ChatController@CreateChat')->name('CreateChat');
+    Route::get('CreateChat/{id}/{typepay}/{payment}/{subject}', 'Chat\ChatController@CreateChat')->name('CreateChat');
     Route::get('StartChat/{id}', 'Chat\ChatController@StartChat')->name('STARTChat');
-    Route::get('CheckChatData/{id}', 'Chat\ChatController@CheckChatData')->name('CheckChatData');
+    Route::get('CheckChatData/{id}/{sender}', 'Chat\ChatController@CheckChatData')->name('CheckChatData');
     Route::get('CheckPaymentChat/{id}/{typepay}', 'Chat\ChatController@CheckPaymentChat')->name('CheckPaymentChat');
 });
 
@@ -110,9 +110,9 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::resource('User', 'Users\UserController');
 
 
-        // Category
-        Route::get('Categories', 'Main\MainController@Category')->name('Category');
-        Route::resource('Category', 'Main\CategoryController');
+        // SubjectCategory
+        Route::get('SubjectCategory', 'Main\MainController@SubjectCategory')->name('SubjectCategory');
+        Route::resource('SubjectCategories', 'Main\CategoryController');
 
 
         // Advisors
@@ -133,6 +133,8 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
 
         // Blogs
         Route::resource('Blogs', 'Main\BlogsController');
+        Route::get('BlogsCategory', 'Main\MainController@BlogsCategory')->name('BlogsCategory');
+        Route::resource('BlogsCategories', 'Main\BlogsCategoryController');
 
 
         // Financial pages

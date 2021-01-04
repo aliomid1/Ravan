@@ -1,28 +1,16 @@
 @extends('layout.web.template')
-@section('title','صفحه تكي دسته بندي هاي پزشكي')
-
-
-
-@section('style')
-
-@endsection
-
-
-asdfasdf
-
+@section('title', $CurrentCategory->title )
 @section('content')
-<div class="container">
-    <div>
-        <div id="top-site-menu-two">
+<div class="container pt-5">
+    <div class="mt-5">
+        <div class="mt-5 pt-5" id="top-site-menu-two">
             <div>
                 <a href="{{ route('Web.index') }}">صفحه اصلی</a>
             </div>
-    
             <div>
                 <i class="far fa-chevron-left"></i>
                 <a class="" href="{{ route('Web.Category') }}">دسته بندی</a>
             </div>
-    
             <div>
                 <i class="far fa-chevron-left"></i>
                 <a class="btn py-0 disabled d-inline" href="#">{{ $CurrentCategory->title }}</a>
@@ -40,25 +28,17 @@ asdfasdf
                                 <a href="{{ route('Web.SubjectOfCategory' , [$CurrentCategory->id , $item->id]) }}" class="text-content">{{ $item->title }}</a>
                                 <p class="date-content">{{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('Y/m/d') }}</p>
                             </div>
-                        </div> 
+                        </div>
                     @empty
-                        
-                    @endforelse    
+
+                    @endforelse
                 </div>
-    
+
             </div>
         </div>
-    
-    
-    
+
         <div class="col-xl-4 col-sm-12 col-xs-12 mt-0 " id="left-site">
-    
-            {{-- <div id="search">
-                <p id="search-label">جستوجو</p>
-                <input type="text" placeholder="جستجو..." />
-            </div> --}}
-    
-    
+
             <div id="last-news">
                 <p id="last-label">اخرین مطالب </p>
                 <ul id="last-items">
@@ -76,14 +56,7 @@ asdfasdf
                 </ul>
             </div>
         </div>
-    
+
     </div>
 </div>
-@endsection
-
-
-
-
-@section('js')
-
 @endsection

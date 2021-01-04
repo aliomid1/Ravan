@@ -105,9 +105,8 @@ $settings = \App\Models\Settings::first();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="text-center"> {{ env('SiteBrand') }} را به هر یک از دوستان خود معرفی کنید، با اولین
-                        پرداخت هر
-                        یک از دوستان تان، از 15000 تومان اعتبار رایگان استفاده کنید.
+                    <h5 class="text-center"> {{ env('SiteBrand') }} را به هر یک از دوستان خود معرفی کنید، با ورود هر
+                        یک از دوستان تان، از {{$settings->gift_default}} تومان اعتبار رایگان استفاده کنید.
                     </h5>
                 </div>
                 <form class="col" action="{{ route('Users.Share') }}" method="POST">
@@ -363,8 +362,8 @@ $settings = \App\Models\Settings::first();
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown">
                             <figure class="avatar avatar-sm avatar-state-success">
-                                <img class="rounded-circle" src="{{ asset('vendor/media/image/avatar.jpg') }}"
-                                    alt="...">
+                                <img class="rounded-circle" src="{{ asset(Auth::guard('web')->user()->Image?Auth::guard('web')->user()->Image->url:'assets/avatar.jpg') }}" alt="...">
+
                             </figure>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">

@@ -35,7 +35,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/613421_1603283597.gif" style="height:220px; width:176px" /></p>',
                 'keywords' => 'خوش , روانپزشک , پزشک',
                 'description_seo' => 'رتبه ی اول گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
             [
                 'title' => 'چطور بهترین دارو را برای روان خود تهیه کنیم؟',
@@ -65,7 +65,7 @@ class CreateBlogsTable extends Migration
                 <p>&nbsp;</p>',
                 'keywords' => 'کلید',
                 'description_seo' => 'گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
             [
                 'title' => 'چطور بهترین پزشک را برای خود بیابیم',
@@ -105,7 +105,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/275223_1603283765.jpg" style="height:332px; width:500px" /></p>',
                 'keywords' => 'خواب',
                 'description_seo' => 'بهترین سایت گوگل',
-                'categories' => 'پزشكي',
+                'categories' => 'الزایمر',
             ],
             [
                 'title' => 'مقاله ی کاربردی',
@@ -151,7 +151,7 @@ class CreateBlogsTable extends Migration
                 <p>توضیحات</p>',
                 'keywords' => 'کلید',
                 'description_seo' => 'سئو',
-                'categories' => 'روانپزشكي',
+                'categories' => 'روانالزایمر',
             ],
             [
                 'title' => 'روانپزشکیِ کال منوچهری',
@@ -163,7 +163,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/613421_1603283597.gif" style="height:220px; width:176px" /></p>',
                 'keywords' => 'خوش , روانپزشک , پزشک',
                 'description_seo' => 'رتبه ی اول گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
             [
                 'title' => 'روانپزشکیِ کال منوچهری',
@@ -175,7 +175,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/613421_1603283597.gif" style="height:220px; width:176px" /></p>',
                 'keywords' => 'خوش , روانپزشک , پزشک',
                 'description_seo' => 'رتبه ی اول گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
             [
                 'title' => 'روانپزشکیِ کال منوچهری',
@@ -187,7 +187,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/613421_1603283597.gif" style="height:220px; width:176px" /></p>',
                 'keywords' => 'خوش , روانپزشک , پزشک',
                 'description_seo' => 'رتبه ی اول گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
             [
                 'title' => 'روانپزشکیِ کال منوچهری',
@@ -199,7 +199,7 @@ class CreateBlogsTable extends Migration
                 <p><img alt="" src="http://localhost/projects/under%20the%20work/Back-end/omid_team/moshaverman/public/uploads/ckeditor/613421_1603283597.gif" style="height:220px; width:176px" /></p>',
                 'keywords' => 'خوش , روانپزشک , پزشک',
                 'description_seo' => 'رتبه ی اول گوگل',
-                'categories' => 'پزشكي,روانپزشكي',
+                'categories' => 'بی خوابی',
             ],
         ]);
     }
