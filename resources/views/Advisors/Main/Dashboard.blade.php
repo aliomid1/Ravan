@@ -83,14 +83,14 @@
                             </figure>
                             <h4>{{$Advisor->name}}</h4>
                             @if ($Timem>0)
-                            <div id="circle-1" class="circle m-b-10"></div>
+                            <div id="circle-1"  class="circle m-b-10"></div>
                             <div class="m-b-10 text-muted">روز های باقی ماده از پلن شما</div>
                             <h3 class="font-weight-bold primary-font">{{ $Timem }}</h3>
                             @else
                             <div>
                                 <h5>شما هنوز پلن فعال ندارید</h5>
                                 <p>پلن های vip را میتوانید هم اکنون تهیه کنید</p>
-                                <a href="{{ route('Advisors.BuyPlan') }}" class="btn btn-primary">پلن های vpi</a>
+                                <a href="{{ route('Advisors.BuyPlan') }}" class="btn btn-primary">پلن های vip</a>
                             </div>
                             @endif
                         </div>
@@ -227,8 +227,8 @@
             if ($('#circle-1').length) {
                 $('#circle-1').circleProgress({
                     startAngle: 1.55,
-                    value: {{$Timem / 100}},
-                    size: {{$Timeplan}},
+                    value: {{$Timem>0?$Timeplan>0?($Timem /$Timeplan):0:0}},
+                    size: 100,
                     fill: {
                         color: "{{ $Timem < $Timeplan / 3 ? ($Timem < 3 ? '#f2125e' : '#ff8300') : '#0acf97' }}"
                     }

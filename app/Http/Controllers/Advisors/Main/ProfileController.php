@@ -11,14 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\lib\File\ImageUploader;
 use App\lib\Messages\FlashMessage;
-use App\Mail\VerifyEmail;
 use App\Models\Advisors;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Session;
 
-use function GuzzleHttp\Promise\all;
 
 class ProfileController extends Controller
 {

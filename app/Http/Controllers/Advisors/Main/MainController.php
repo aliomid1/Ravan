@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Advisors\Main;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Advisor\Main\SetAdvisesTime\DateAndTimesRequest;
 use App\lib\Messages\FlashMessage;
-use App\Models\Advisors;
+use App\Models\Conversation;
 use App\Models\Image;
 use App\Models\Plan;
 use App\Models\PlansAdvisor;
 use App\Models\Settings;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,20 +27,20 @@ class MainController extends Controller
 
     public function Dashboard()
     {
-        $Setting = \App\Models\Settings::first();
+        $Setting = Settings::first();
         $Advisor = Auth::guard('advisor')->User();
         $Advisor_id = Auth::guard('advisor')->User()->id;
-        $Conversation = \App\Models\Conversation::where('status', 'done');
-        $Transections = \App\Models\Transaction::where('advisor_id', $Advisor->id)->get();
+        $Conversation = Conversation::where('status', 'done');
+        $Transections = Transaction::where('advisor_id', $Advisor->id)->get();
 
         $days2 = [];
         for ($i = 1; $i <= 10; $i++) {
-            $days2 += [$i => \Carbon\Carbon::now()->subdays($i)];
+            $days2 += [$i => Carbon::now()->subdays($i)];
         }
         $Income = '';
         foreach ($days2 as $key => $value) {
             if ($key == 1) {
-                $Income .= $Transections->where('created_at', '<', \Carbon\Carbon::now())->where('created_at', '>', $value)->sum('price') . ',';
+                $Income .= $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value)->sum('price') . ',';
             } else {
                 $Income .= $Transections->where('created_at', '<', $value)->where('created_at', '>', $days2[$key - 1])->sum('price') . ',';
             }
@@ -47,33 +48,38 @@ class MainController extends Controller
 
         $days30 = [];
         for ($i = 1; $i <= 30; $i++) {
-            $days30 += [$i => \Carbon\Carbon::now()->subdays($i)];
+            $days30 += [$i => Carbon::now()->subdays($i)];
         }
         $Income30days = '';
         $Income30 = 0;
         foreach ($days30 as $key2 => $value2) {
             if ($key2 == 1) {
-                $Income30days .= $Transections->where('created_at', '<', \Carbon\Carbon::now())->where('created_at', '>', $value2)->sum('price') . ',';
-                $Income30 += $Transections->where('created_at', '<', \Carbon\Carbon::now())->where('created_at', '>', $value2)->sum('price');
+                $Income30days .= $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price') . ',';
+                $Income30 += $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price');
             } else {
                 $Income30days .= $Transections->where('created_at', '<', $value)->where('created_at', '>', $days30[$key2 - 1])->sum('price') . ',';
                 $Income30 += $Transections->where('created_at', '<', $value)->where('created_at', '>', $days30[$key2 - 1])->sum('price');
             }
         }
-        $Timem = PlansAdvisor::where('user_id', $Advisor->id)->first();
-        if ($Timem) {
+        
+        $Timem2 = PlansAdvisor::where('user_id', $Advisor->id)->first();
+        if ($Timem2) {
             $now = Carbon::now();
-            $Timem = Carbon::parse($Timem->time);
-            $Timem = $Timem->diffInDays($now);
-        }else{
+            $Timem = Carbon::parse($Timem2->time);
+            if ($now >= $Timem) {
+                $Advisor->update(['vip' => '0']);
+                $Timem2->delete();
+                $Timem = 0;
+            } else {
+                $Timem = $Timem->diffInDays($now);
+            }
+        } else {
             $Timem = 0;
         }
         $Timeplan = PlansAdvisor::where('user_id', $Advisor->id)->first();
         if ($Timeplan) {
-            $create = Carbon::parse($Timeplan->created_at);
-            $Timeplan = Carbon::parse($Timeplan->time);
-            $Timeplan = $Timeplan->diffInDays($create);
-        }else{
+            $Timeplan = $Timeplan->Plan->time;
+        } else {
             $Timeplan = 0;
         }
         $Advisor_Image = Image::where('item_id', $Advisor_id)->where('type', 'profile_advisor')->first();

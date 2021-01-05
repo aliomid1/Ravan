@@ -3,6 +3,7 @@
 namespace app\Http\Controllers\Users\Main;
 
 use App\Http\Controllers\Controller;
+use App\lib\Messages\FlashMessage;
 use App\Models\Settings;
 use App\User;
 use Exception;
@@ -54,7 +55,6 @@ class MainControllerUser extends Controller
         $CallerId = Auth::user()->id;
         $UserMobileNumber = $request->mobile;
         $FinalURL = url('Login?CallerId=' . $CallerId);
-        dd($FinalURL);
         $settings = Settings::first();
         try {
             $username = env('MELIPAYAMAKUSERNAME');
@@ -65,17 +65,20 @@ class MainControllerUser extends Controller
             $from = env('NUMBERSMS');
             $text = $settings->textmessage . '\n' . $FinalURL;
             $response = $sms->send($to, $from, $text);
-            $json = json_decode($response);
+            $json = json_decode($response,true);
+            
             if ($json->Value > 12 || $json->Value == 1) {
-                return true;
+                FlashMessage::set('success', 'پیام برای دوست شما ارسال شد');
+                return back();
             } else {
-                return 'کد برای شما ارسال نشد لطفا مجددا تلاش کنید';
+                FlashMessage::set('error', 'پیام برای دوست شما ارسال نشد');
+                return back();
             }
         } catch (Exception $e) {
-            return $e->getMessage();
+
+            FlashMessage::set('error', $e->getMessage());
+            return back();
         }
-        // کد یو آر ال رو به شماره ی وارد شده پیامک کن
-        return redirect(back());
     }
 
 

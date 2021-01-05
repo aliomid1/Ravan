@@ -2,35 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4a6b44-a342-42f6-bf50-a68af801bb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/BlogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/BlogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Payment/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_075748_create_blogs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_075748_create_blogs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_05_065110_create_subjects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_05_065110_create_subjects_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Blogs/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Blogs/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Blogs/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Blogs/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Blogs/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Blogs/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Category/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Category/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Category/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Subject/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Subject/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Profile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/Blogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/Blogs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/Category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/Category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/CategoryList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/CategoryList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/ConsultantList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/ConsultantList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/SubjectOfCategory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/SubjectOfCategory.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/Admins/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/Admins/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/Advisors/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/Advisors/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/Users/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/Users/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/web/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/web/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Plans/PlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Plans/PlanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Plan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PlansAdvisor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PlansAdvisor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_15_170533_create_plans_advisors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_15_170533_create_plans_advisors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +159,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2090535" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -202,6 +181,10 @@
       <workItem from="1608890262765" duration="105000" />
       <workItem from="1608903639966" duration="853000" />
       <workItem from="1609140493006" duration="846000" />
+      <workItem from="1609758668195" duration="2077000" />
+      <workItem from="1609775186878" duration="478000" />
+      <workItem from="1609775689196" duration="101000" />
+      <workItem from="1609775819661" duration="115000" />
     </task>
     <servers />
   </component>

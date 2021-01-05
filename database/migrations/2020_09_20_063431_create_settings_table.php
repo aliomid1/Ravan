@@ -29,6 +29,7 @@ class CreateSettingsTable extends Migration
             $table->text('type_signUp_advisors');
             $table->text('type_signUp_users');
             $table->text('verify_email');
+            $table->text('textmessage');
             $table->timestamps();
         });
         DB::table('settings')->insert([
@@ -46,6 +47,8 @@ class CreateSettingsTable extends Migration
                 'type_signUp_advisors' => 'advisors',
                 'type_signUp_users' => 'on',
                 'verify_email' => 'on',
+                'textmessage' => '',
+
 
             ],
         ]);

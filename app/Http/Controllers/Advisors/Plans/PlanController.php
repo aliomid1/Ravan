@@ -24,9 +24,13 @@ class PlanController extends Controller
 
             try {
                 $gateway = Gateway::make('payir');
+
                 $gateway->setCallback(route('VrifyPlanBuy'));
+
                 $price = (int)$plan->price;
+
                 $gateway->price($price)->ready();
+
                 $refId =  $gateway->refId();
                 $transID = $gateway->transactionId();
                 Transaction::create([
@@ -57,7 +61,7 @@ class PlanController extends Controller
             $refId = $gateway->refId();
             $cardNumber = $gateway->cardNumber();
             $transaction = Transaction::where(['refid' => $refId, 'type' => 'plan'])->first();
-     
+
             $transaction->update([
                 'status' => 'true',
                 'cardnumber' => $cardNumber,
@@ -68,6 +72,7 @@ class PlanController extends Controller
                 'user_id' => Auth::guard('advisor')->user()->id,
                 'time' => Carbon::now()->addDays($plan->time)
             ]);
+            Auth::guard('advisor')->user()->update(['vip'=>'1']);
             FlashMessage::set('success', 'پلن برای شما فعال شد');
             return redirect(route('Advisors.Dashboard'));
         } catch (RetryException $e) {

@@ -16,6 +16,7 @@ class CreatePlansAdvisorsTable extends Migration
         Schema::create('plans_advisors', function (Blueprint $table) {
             $table->id();
             $table->text('user_id');
+            $table->text('plan_id');
             $table->text('time');
             $table->timestamps();
         });
