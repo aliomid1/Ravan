@@ -70,6 +70,7 @@ class PlanController extends Controller
             $plan = Plan::find($transaction->plan_id);
             PlansAdvisor::create([
                 'user_id' => Auth::guard('advisor')->user()->id,
+                'plan_id'=>$plan->id,
                 'time' => Carbon::now()->addDays($plan->time)
             ]);
             Auth::guard('advisor')->user()->update(['vip'=>'1']);
