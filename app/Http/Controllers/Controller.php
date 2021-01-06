@@ -43,10 +43,8 @@ class Controller extends BaseController
             @header('Content-type: text/html; charset=utf-8');
             return $response;
         }
-
-
     }
-    function put_permanent_env($key, $value)
+    public function put_permanent_env($key, $value)
     {
         $path = app()->environmentFilePath();
 
@@ -57,5 +55,24 @@ class Controller extends BaseController
             "{$key}={$value}",
             file_get_contents($path)
         ));
+    }
+
+    public function CkeckTimeSet($OldConsultationsTimes, $request)
+    {
+        if ($OldConsultationsTimes) {
+            foreach ($OldConsultationsTimes as $v) {
+                if (isset($v['NotSliced'][$request->Date])) {
+                    foreach ($v['NotSliced'][$request['Date']] as $key => $value) {
+                        if ((($value['EndTime'] >= $request['StartTime']) && ($value['StartTime'] <= $request['StartTime'])) ||
+                            (($value['EndTime'] >= $request['EndTime']) && ($value['StartTime'] <= $request['EndTime'])) ||
+                            (($value['StartTime'] > $request['StartTime']) && ($value['EndTime'] < $request['EndTime']))
+                        ) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

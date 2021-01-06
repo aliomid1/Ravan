@@ -28,19 +28,27 @@ class PaymentController extends Controller
                 $education = [];
             }
 
-            if ($request->type != 'online') {
+            if ($request->type != 'chat') {
                 $ConsultationsTimes = json_decode($advisor->consultations_times, true);
-
-                $date = '';
-                if ($ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] != '1') {
+                if ($advisor->vip == '0') {
+                    $ConsultationsTimes = ['online'=>$ConsultationsTimes['online']];
+                }
+                if($ConsultationsTimes[$request->type]){
+                    $date = '';
+                    if ($ConsultationsTimes[$request->type]['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] != '1') {
+                        FlashMessage::set('warning', 'زمان انتخاب شده صحیح نیست');
+                        return back();
+                    } else {
+                        $Jalalian = str_replace('-', '/', $request->date) . ' ' . $ConsultationsTimes[$request->type]['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Time'];
+                        $date = \Morilog\Jalali\CalendarUtils::createCarbonFromFormat('Y/m/d H:i', $Jalalian);
+                        $ConsultationsTimes = json_decode($advisor->consultations_times, true);
+                        Session::put('convvtt', ['id' => $advisor->id, 'data' => json_encode($ConsultationsTimes)]);
+                        $ConsultationsTimes[$request->type]['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] = "0";
+                        $advisor->update(['consultations_times' => json_encode($ConsultationsTimes)]);
+                    }
+                }else{
                     FlashMessage::set('warning', 'زمان انتخاب شده صحیح نیست');
                     return back();
-                } else {
-                    $Jalalian = str_replace('-', '/', $request->date) . ' ' . $ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Time'];
-                    $date = \Morilog\Jalali\CalendarUtils::createCarbonFromFormat('Y/m/d H:i', $Jalalian);
-                    Session::put('convvtt', ['id' => $advisor->id, 'data' => json_encode($ConsultationsTimes)]);
-                    $ConsultationsTimes['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] = "0";
-                    $advisor->update(['consultations_times' => json_encode($ConsultationsTimes)]);
                 }
             }
             if ($request->typepayment == 'wallet') {
@@ -61,7 +69,7 @@ class PaymentController extends Controller
                 }
             }
             switch ($request->type) {
-                case 'online':
+                case 'chat':
                     return redirect(route(
                         'Web.CreateChat',
                         [
@@ -72,6 +80,19 @@ class PaymentController extends Controller
                         ]
                     ));
                     break;
+                    case 'online':
+                        return redirect(route(
+                            'Web.Reservation',
+                            [
+                                'id' => $request->id,
+                                'typepay' => $request->typepayment,
+                                'subject' => $request->subject,
+                                'date' => $date,
+                                'type' => $request->type,
+                                'payment' => $payment
+                            ]
+                        ));
+                        break;
                 case 'in':
                     return redirect(route(
                         'Web.Reservation',

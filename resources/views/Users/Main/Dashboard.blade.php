@@ -105,10 +105,10 @@
                                     @endphp
                                     <tr>
                                         <td>{{ $item->Advisor->name }}</td>
-                                        <td>Movzoe</td>
+                                        <td>{{$item->subject}}</td>
                                         <td>{{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('d M Y') }}</td>
                                         <td>{{ $item->time }} دقیقه</td>
-                                        <td>price</td>
+                                        <td>{{number_format($item->price)}} تومان</td>
                                         <td>{{$status}}</td>
                                     </tr>
                                 @empty

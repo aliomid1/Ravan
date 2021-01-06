@@ -33,20 +33,7 @@
 
                     <div class="d-flex justify-content-between">
                         <div class="input-group mb-3">
-                            {{-- <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck"></label>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">اقدامات
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">حذف </a>
-                                        <a class="dropdown-item" href="#">علامت خوانده شده</a>
-                                    </div>
-                                </div> --}}
+
                         </div>
                     </div>
 

@@ -78,7 +78,7 @@
 
                             <figure class="avatar avatar-xl m-b-20">
                                 <img class="card-img-top advisor_profile rounded-circle"
-                                    src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('vendor/media/image/doctor.jpg') }}"
+                                    src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('assets/avatar.jpg') }}"
                                     alt="...">
                             </figure>
                             <h4>{{$Advisor->name}}</h4>

@@ -35,7 +35,7 @@ class CreateSettingsTable extends Migration
         DB::table('settings')->insert([
             [
                 'title' => 'مشاور من',
-                'logo' => '',
+                'logo' => 'uploads/Logo//16086201401961524.png',
                 'keywords' => 'moshaver',
                 'description' => '09156145545',
                 'colorPrimary' => '#ff7300',

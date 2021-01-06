@@ -32,7 +32,7 @@ class MainController extends Controller
                 $Income .= $trx2->where('created_at', '<', Carbon::now())->where('created_at', '>=', $value)->sum('price') . ',';
             } else {
                 $Income .= $trx2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key == 30 ? 30 : $key + 1])->sum('price') . ',';
-            
+
             }
         }
         $settings = Settings::find(1);

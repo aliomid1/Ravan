@@ -189,7 +189,7 @@ class MainController extends Controller
         $MainCat = Category::find($CatId);
         $CurrentSubject = Subject::find($id);
         $advisor = Advisors::get();
-        return view('Web.Main.SubjectOfCategory', compact(['CurrentSubject', 'MainCat','advisor']));
+        return view('Web.Main.SubjectOfCategory', compact(['CurrentSubject', 'MainCat', 'advisor']));
     }
 
 
@@ -228,13 +228,29 @@ class MainController extends Controller
             if (($advisor->time_of_one_consultation)) {
                 $TimeOfOneCosultatio =  $advisor->time_of_one_consultation;
             }
-            $ConsultationsTimes = json_decode($advisor->consultations_times, true);
-            if (!isset($ConsultationsTimes['Sliced'])) {
-                $ConsultationsTimes['Sliced'] = [];
+            $Consultations = json_decode($advisor->consultations_times, true);
+            $ConsultationsTimes = [];
+            if ($Consultations) {
+                foreach ($Consultations as $key => $v) {
+                    if (!isset($v['Sliced'])) {
+                        $v['Sliced'] = [];
+                    }
+                    $ConsultationsTimes[$key] = $v['Sliced'];
+                    ksort($v);
+                }
             }
-            $ConsultationsTimes = $ConsultationsTimes['Sliced'];
-            ksort($ConsultationsTimes);
+            if ($advisor->vip == '0') {
+                $ConsultationsTimes = ['online'=>$ConsultationsTimes['online']];
+            }
 
+            $ConsultationsTimes = view(
+                'components.ListTimeReserve.List',
+                [
+                    'advisor' => $advisor,
+                    'ConsultationsTimes' => $ConsultationsTimes,
+                    'TimeOfOneCosultation' => $TimeOfOneCosultation
+                ]
+            )->render();
             return view('Web.Main.ProfileMoshaver', compact(['advisor', 'education', 'ConsultationsTimes', 'TimeOfOneCosultation']));
         } else {
             return back();

@@ -64,12 +64,12 @@ class CreateImagesTable extends Migration
             ],
             [
                 'url' => 'assets/Web/images/login-bg.jpg',
-                'type' => 'categories',
+                'type' => 'category',
                 'item_id' => '1',
             ],
             [
                 'url' => 'assets/Web/images/depression_consulting.jpg',
-                'type' => 'categories',
+                'type' => 'category',
                 'item_id' => '2',
             ],
             [

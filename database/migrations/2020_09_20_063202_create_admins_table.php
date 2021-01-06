@@ -25,8 +25,8 @@ class CreateAdminsTable extends Migration
         DB::table('admins')->insert(
             [
                 'username'=>'09150726835',
-                'profile'=>'public/vendor/media/image/avatar.jpg',
-                'password'=>'$2y$10$OpeSidSAYJvjbVWLPpdIKOVqgeKN86nRbLZpmcTf3ZRAYONHfuHNq',
+                'profile'=>'uploads/Admin//1609865703beiheng-guo-IAVVv6z3D6g-unsplash.jpg',
+                'password'=>'$2y$10$$2y$10$eytUKB6NtwcuvsFpUVRjXup80YuOk9X1JWs9fp8HUbYxjBZ5itry2',
             ]
         );
     }

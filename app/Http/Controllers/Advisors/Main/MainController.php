@@ -43,7 +43,7 @@ class MainController extends Controller
             if ($key == 1) {
                 $Income .= $Transections2->where('created_at', '<', Carbon::now())->where('created_at', '>', $value)->sum('price') . ',';
             } else {
-                $Income .= $Transections2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key==10?10:$key+1])->sum('price') . ',';
+                $Income .= $Transections2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key == 10 ? 10 : $key + 1])->sum('price') . ',';
             }
         }
 
@@ -120,43 +120,43 @@ class MainController extends Controller
         if (!($Advisor->time_of_one_consultation)) {
             $TimeOfOneCosultatio = Auth::guard('advisor')->user()->time_of_one_consultation;
         }
-        $ConsultationsTimes = json_decode($Advisor->consultations_times, true);
-        if (!isset($ConsultationsTimes['Sliced'])) {
-            $ConsultationsTimes['Sliced'] = [];
+        $Consultations = json_decode($Advisor->consultations_times, true);
+        $ConsultationsTimes = [];
+        if ($Consultations) {
+            foreach ($Consultations as $key => $v) {
+                if (!isset($v['Sliced'])) {
+                    $v['Sliced'] = [];
+                }
+                $ConsultationsTimes[$key] = $v['Sliced'];
+                ksort($v);
+            }
         }
-        $ConsultationsTimes = $ConsultationsTimes['Sliced'];
-        ksort($ConsultationsTimes);
+
+        $ConsultationsTimes = view('components.Advisor.ListTimes', ['ConsultationsTimes' => $ConsultationsTimes, 'TimeOfOneCosultation' => $TimeOfOneCosultation])->render();
         return view('Advisors.Main.SetAdvisesTime', compact(['ConsultationsTimes', 'TimeOfOneCosultation']));
     }
 
     public function SetAdvisesTime_create(DateAndTimesRequest $request)
     {
+
         $Advisor = Auth::guard('advisor')->user();
         $OldConsultationsTimes = json_decode($Advisor->consultations_times, true);
-
-
-
         if ($request->Date) {
             if ($request->EndTime && $request->StartTime && $request->EndTime > $request->StartTime) {
-
-                if (isset($OldConsultationsTimes['NotSliced'][$request->Date])) {
-                    foreach ($OldConsultationsTimes['NotSliced'][$request->Date] as $key => $value) {
-                        if ((($value['EndTime'] >= $request->StartTime) && ($value['StartTime'] <= $request->StartTime)) ||
-                            (($value['EndTime'] >= $request->EndTime) && ($value['StartTime'] <= $request->EndTime)) ||
-                            (($value['StartTime'] > $request->StartTime) && ($value['EndTime'] < $request->EndTime))
-                        ) {
-                            FlashMessage::set('warning', 'لطفا مطمئن شوید که این بازه زمانی از تاریخ، پیش از این انتخاب نشده است.');
-                            return back();
-                        }
-                    }
-                    $LastKey = array_key_last($OldConsultationsTimes['NotSliced'][$request->Date]);
+                $ck = $this->CkeckTimeSet($OldConsultationsTimes, $request);
+                if (!$ck) {
+                    FlashMessage::set('warning', 'لطفا مطمئن شوید که این بازه زمانی از تاریخ، پیش از این انتخاب نشده است.');
+                    return back();
+                }
+                if (isset($OldConsultationsTimes[$request->type]['NotSliced'][$request->Date])) {
+                    $LastKey = array_key_last($OldConsultationsTimes[$request->type]['NotSliced'][$request->Date]);
                     $LastKey++;
-                    $OldConsultationsTimes['NotSliced'][$request->Date][$LastKey] = [
+                    $OldConsultationsTimes[$request->type]['NotSliced'][$request->Date][$LastKey] = [
                         'StartTime' => $request->StartTime,
                         'EndTime' => $request->EndTime,
                     ];
                 } else {
-                    $OldConsultationsTimes['NotSliced'][$request->Date][0] = [
+                    $OldConsultationsTimes[$request->type]['NotSliced'][$request->Date][0] = [
                         'StartTime' => $request->StartTime,
                         'EndTime' => $request->EndTime,
                     ];
@@ -166,23 +166,23 @@ class MainController extends Controller
                 if (!($Advisor->time_of_one_consultation)) {
                     $TimeOfOneCosultatio = Auth::guard('advisor')->user()->time_of_one_consultation;
                 }
-                if (!is_array($OldConsultationsTimes['NotSliced']) && !is_Object($OldConsultationsTimes['NotSliced'])) {
-                    $OldConsultationsTimes['NotSliced'] = [];
+                if (!is_array($OldConsultationsTimes[$request->type]['NotSliced']) && !is_Object($OldConsultationsTimes[$request->type]['NotSliced'])) {
+                    $OldConsultationsTimes[$request->type]['NotSliced'] = [];
                 }
-                foreach ($OldConsultationsTimes['NotSliced'] as $NumberOfDate => $DateItems) {
+                foreach ($OldConsultationsTimes[$request->type]['NotSliced'] as $NumberOfDate => $DateItems) {
                     if (isset($DateItems)) {
                         $Kyes = 0;
                         foreach ($DateItems as $Key => $Values) {
                             if (isset($Values['StartTime']) && isset($Values['EndTime'])) {
                                 $TimeStep = $Values['StartTime'];
-                                $OldConsultationsTimes['Sliced'][$NumberOfDate][$Kyes]['Time'] = $TimeStep;
-                                $OldConsultationsTimes['Sliced'][$NumberOfDate][$Kyes]['Status'] = '1';
+                                $OldConsultationsTimes[$request->type]['Sliced'][$NumberOfDate][$Kyes]['Time'] = $TimeStep;
+                                $OldConsultationsTimes[$request->type]['Sliced'][$NumberOfDate][$Kyes]['Status'] = '1';
                                 $Kyes++;
                                 $TimeStep = Carbon::parse($TimeStep)->addMinutes(3)->format('H:i');
                                 while ($TimeStep <= Carbon::parse($Values['EndTime'])->subMinutes($TimeOfOneCosultation)->format('H:i')) {
                                     $TimeStep = Carbon::parse($TimeStep)->addMinutes($TimeOfOneCosultation)->format('H:i');
-                                    $OldConsultationsTimes['Sliced'][$NumberOfDate][$Kyes]['Time'] = $TimeStep;
-                                    $OldConsultationsTimes['Sliced'][$NumberOfDate][$Kyes]['Status'] = '1';
+                                    $OldConsultationsTimes[$request->type]['Sliced'][$NumberOfDate][$Kyes]['Time'] = $TimeStep;
+                                    $OldConsultationsTimes[$request->type]['Sliced'][$NumberOfDate][$Kyes]['Status'] = '1';
                                     $Kyes++;
                                     $TimeStep = Carbon::parse($TimeStep)->addMinutes(3)->format('H:i');
                                 }
@@ -190,7 +190,9 @@ class MainController extends Controller
                         }
                     }
                 }
+
                 $Advisor->update(['consultations_times' => json_encode($OldConsultationsTimes, true)]);
+
                 FlashMessage::set('success', 'زمان وارد شده با موفقیت ثبت شد.');
                 return back();
             } else {
@@ -205,25 +207,24 @@ class MainController extends Controller
 
     public function SetAdvisesTime_delete(Request $request)
     {
-        $Advisor = Auth::guard('advisor')->user();
-        $Date = $request->Date;
-        $OldConsultationsTimes = json_decode($Advisor->consultations_times, true);
 
-        $Reserved = array_filter($OldConsultationsTimes['Sliced'][$request->Date], function ($item) {
+        $Advisor = Auth::guard('advisor')->user();
+        $OldConsultationsTimes = json_decode($Advisor->consultations_times, true);
+        $Reserved = array_filter($OldConsultationsTimes[$request->Key]['Sliced'][$request->Date], function ($item) {
             return $item['Status'] == '0';
         });
-        // dd($OldConsultationsTimes);
-        if (isset($OldConsultationsTimes['Sliced'][$request->Date]) && empty($Reserved)) {
-            unset($OldConsultationsTimes['NotSliced'][$request->Date]);
-            unset($OldConsultationsTimes['Sliced'][$request->Date]);
+
+        if (isset($OldConsultationsTimes[$request->Key]['Sliced'][$request->Date]) && empty($Reserved)) {
+            unset($OldConsultationsTimes[$request->Key]['NotSliced'][$request->Date]);
+            unset($OldConsultationsTimes[$request->Key]['Sliced'][$request->Date]);
+            $Advisor->update(['consultations_times' => json_encode($OldConsultationsTimes, true)]);
             FlashMessage::set('success', 'حذف با موفقیت انجام شد.');
             return back();
         } else {
             FlashMessage::set('warning', 'لطفا پیش از حذف کردن مطمئن شوید تایمی در این تاریخ رزرو نشده است.');
             return back();
         }
-        $Advisor->update(['consultations_times' => json_encode($OldConsultationsTimes, true)]);
-        return back();
+
     }
 
 

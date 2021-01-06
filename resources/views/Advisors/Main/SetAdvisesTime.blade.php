@@ -22,12 +22,19 @@
             display: none;
         }
 
+        .nav-tabs .nav-link.active {
+            color: #ffffff;
+            background-color: #f8764b;
+            border: none !important;
+        }
+
     </style>
     <!-- begin::datepicker -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('assets/Web/lib/kamadatepicker/kamadatepicker.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/Web/lib/kamadatepicker/kamadatepicker.min.css') }}"/>
     <!-- end::datepicker -->
     <!-- begin::clockpicker -->
-    <link rel="stylesheet" href="{{ asset('vendor/vendors/clockpicker/bootstrap-clockpicker.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('vendor/vendors/clockpicker/bootstrap-clockpicker.min.css') }}"
+          type="text/css">
     <!-- end::clockpicker -->
 @endsection
 @section('content')
@@ -44,9 +51,11 @@
             <div class="card-body">
                 <div class="alert alert-info alert-with-border alert-dismissible" role="alert">
                     <i class="ti-alert m-l-10"></i> زمان های مشاوره ی شما به صورت پیش فرض به صورت
-                    {{ $TimeOfOneCosultation }} دقیقه ای تنظیم میشود، و متقاضیانِ مشاوره در صورت تمایل میتوانند، چندین زمان
+                    {{ $TimeOfOneCosultation }} دقیقه ای تنظیم میشود، و متقاضیانِ مشاوره در صورت تمایل میتوانند، چندین
+                    زمان
                     را برای مشاوره انتخاب کنند، در صورتی که جزو <a href="#" class="font-weight-bold">مشاوران VIP</a> می
-                    باشید میتوانید از طریق منوی <a href="#" class="font-weight-bold"> تنظیمات </a> این کار را انجام بدهید.
+                    باشید میتوانید از طریق منوی <a href="#" class="font-weight-bold"> تنظیمات </a> این کار را انجام
+                    بدهید.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -61,21 +70,21 @@
 
                         <div class="form-group  col-md-3">
                             <h6 class="mb-2">نوع مشاور</h6>
-                            <select name="type"  class="form-control">
+                            <select name="type" class="form-control">
                                 <option value="online">انلاین</option>
-                                @if (Auth::guard('advisor')->user()->vip=='1')
-                                <option value="out">حضوری</option>
-                                <option value="in">تلفنی</option>
+                                @if (Auth::guard('advisor')->user()->vip == '1')
+                                    <option value="out">حضوری</option>
+                                    <option value="in">تلفنی</option>
                                 @endif
                             </select>
                         </div>
                         <div class="form-group  col-md-3">
                             <h6 class="mb-2">انتخاب تاریخ</h6>
                             <input name="Date" class="form-control" type="text" id="date3"
-                                style="width: 256px; height:42px;" value="{{ old('Date') }}"
-                                placeholder="جهت انتخاب تاریخ مشاوره، کلیک نمایید." autocomplete="off">
+                                   style="width: 256px; height:42px;" value="{{ old('Date') }}"
+                                   placeholder="جهت انتخاب تاریخ مشاوره، کلیک نمایید." autocomplete="off">
                             @error('Date')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-3">
@@ -88,11 +97,12 @@
                                                 <i class="fa fa-clock-o"></i>
                                             </span>
                                         </div>
-                                        <input name="StartTime" class="form-control" value="{{ old('StartTime', '08:30') }}"
-                                            type="text" placeholder="8:30" autocomplete="off">
+                                        <input name="StartTime" class="form-control"
+                                               value="{{ old('StartTime', '08:30') }}"
+                                               type="text" placeholder="8:30" autocomplete="off">
                                     </div>
                                     @error('StartTime')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -108,10 +118,10 @@
                                         </span>
                                     </div>
                                     <input name="EndTime" class="form-control" value="{{ old('EndTime', '14:30') }}"
-                                        type="text" placeholder="14:30" autocomplete="off">
+                                           type="text" placeholder="14:30" autocomplete="off">
                                 </div>
                                 @error('EndTime')
-                                    <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -125,44 +135,14 @@
                 </h5>
                 <div class="table">
                     <div class="alert alert-info alert-with-border alert-dismissible" role="alert">
-                        <i class="ti-alert m-l-10"></i> در بین زمان های هر تاریخ، رنگ سبز به معنای رزرو نشده، و رنگ قرمز
+                        <i class="ti-alert m-l-10"></i> در بین زمان های هر تاریخ، رنگ مشکی به معنای رزرو نشده، و رنگ
+                        قرمز
                         به معنای رزرو شده توسط متقاضیانِ مشاوره می باشد.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    @forelse ($ConsultationsTimes as $Date => $item)
-                        <h6 class="bg-primary text-center p-2 cardd-header d-flex align-items-center justify-content-center">
-                            <form action="{{ route('Advisors.SetAdvisesTime.delete') }}" method="post">
-                                @csrf
-                                {{-- @method('delete') --}}
-                                <input type="hidden" name="Date" value="{{ $Date }}">
-                                <button type="submit" class="btn btn-danger justify-content-self-start " href="">حذف</button>
-                            </form>
-                            <p class="mx-auto mb-0"> لیست زمانی شما برای تاریخ {{ $Date }} <span
-                                    class="fa fa-plus mr-2 text-white"></span></p>
-                        </h6>
-                        <div class="cardd-body none">
-                            <div class="row">
-                                @php
-                                // dd($item);
-                                sort($item);
-                                @endphp
-                                @forelse ($item as $values)
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 ">
-                                        {!! $values['Status'] == '1' ? '' : '<del class="text-danger">' !!} {{ $values['Time'] .
-                 ' - ' .
-                 Carbon\Carbon::parse($values['Time'])->addMinutes($TimeOfOneCosultation)->format('H:i') }} {!! $values['Status']
-                                            == '1' ? '' : '</del>' !!}
-                                    </div>
-                                @empty
-                                    <h6 class=" text-center p-2">موردی یافت نشد.</h6>
-                                @endforelse
-                            </div>
-                        </div>
-                    @empty
-                        <h6 class=" text-center p-2">موردی یافت نشد.</h6>
-                    @endforelse
+                    {!! $ConsultationsTimes !!}
                 </div>
             </div>
 
@@ -174,9 +154,9 @@
     <script src="{{ asset('assets/Web/lib/kamadatepicker/kamadatepicker.min.js') }}"></script>
     <script>
         const HOLIDAYS = [{
-                month: 1,
-                day: 1
-            },
+            month: 1,
+            day: 1
+        },
             {
                 month: 1,
                 day: 2

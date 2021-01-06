@@ -130,7 +130,6 @@ class ReservationController extends Controller
             $cardNumber = $gateway->cardNumber();
             $transaction = Session::get('paytransid');
             $paytypee = Session::get('paytypee');
-
             $transaction = Transaction::find($transaction);
             if (!$transaction) {
                 $transaction = Transaction::where(['refid' => $refId])->first();

@@ -3,11 +3,14 @@
     @php
     $typefa ='';
     switch ($type) {
+    case 'chat':
+    $typefa ='انلاین';
+    break;
     case 'online':
     $typefa ='انلاین';
     break;
     case 'in':
-    $typefa ='غیر حضوری';
+    $typefa ='تلفنی';
     break;
     case 'out':
     $typefa ='حضوری';
