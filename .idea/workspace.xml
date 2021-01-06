@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4a6b44-a342-42f6-bf50-a68af801bb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Payment/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063356_create_advisors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063356_create_advisors_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_075805_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_075805_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/SetAdvisesTime.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/SetAdvisesTime.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Users/Main/Dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Users/Main/Dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Conversation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Users/Main/FuturistAdvice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Users/Main/FuturistAdvice.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/Checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/Checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Web/Main/ProfileMoshaver.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Web/Main/ProfileMoshaver.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Users/Main/NowAdviced.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Users/Main/NowAdviced.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +181,7 @@
       <workItem from="1609775689196" duration="101000" />
       <workItem from="1609775819661" duration="115000" />
       <workItem from="1609911416016" duration="365000" />
-      <workItem from="1609923695586" duration="9431000" />
+      <workItem from="1609923695586" duration="10214000" />
     </task>
     <task id="LOCAL-00001" summary="check">
       <created>1609911447336</created>
@@ -204,7 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609911447336</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="reserve">
+      <created>1609939955594</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609939955594</updated>
+    </task>
+    <task id="LOCAL-00003" summary="reserve2">
+      <created>1609939986183</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609939986183</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +212,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="check" />
-    <option name="LAST_COMMIT_MESSAGE" value="check" />
+    <MESSAGE value="reserve" />
+    <MESSAGE value="reserve2" />
+    <option name="LAST_COMMIT_MESSAGE" value="reserve2" />
   </component>
 </project>
