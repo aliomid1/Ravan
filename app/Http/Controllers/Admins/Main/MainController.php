@@ -27,17 +27,17 @@ class MainController extends Controller
         $Income = '';
 
         foreach ($days2 as $key => $value) {
+            $trx2 = $trx;
             if ($key == 1) {
-                $Income .= $trx->where('created_at', '<', Carbon::now())->where('created_at', '>=', $value)->sum('price') . ',';
-
+                $Income .= $trx2->where('created_at', '<', Carbon::now())->where('created_at', '>=', $value)->sum('price') . ',';
             } else {
-                $Income .= $trx->where('created_at', '>=', $value)->where('created_at', '<=', $days2[$key - 1])->sum('price') . ',';
-
+                $Income .= $trx2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key == 30 ? 30 : $key + 1])->sum('price') . ',';
+            
             }
         }
-        $settings= Settings::find(1);
-        $trxg = GetWayTRX::where('status','SUCCEED')->get();
-        return view('Admins.Main.Dashboard' , compact(['Advisors' , 'Users','Income','trxg','settings']));
+        $settings = Settings::find(1);
+        $trxg = GetWayTRX::where('status', 'SUCCEED')->get();
+        return view('Admins.Main.Dashboard', compact(['Advisors', 'Users', 'Income', 'trxg', 'settings']));
     }
 
 
@@ -102,13 +102,10 @@ class MainController extends Controller
 
     public function PagesManager()
     {
-       return view('Admins.Pages.index');
+        return view('Admins.Pages.index');
     }
     public function PlansManager()
     {
-       return view('Admins.Plans.index');
+        return view('Admins.Plans.index');
     }
-
-
-
 }

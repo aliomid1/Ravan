@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4a6b44-a342-42f6-bf50-a68af801bb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Plans/PlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Plans/PlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Plan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PlansAdvisor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PlansAdvisor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_15_170533_create_plans_advisors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_15_170533_create_plans_advisors_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Dashboard.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

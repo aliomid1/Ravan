@@ -31,7 +31,7 @@ class MainController extends Controller
         $Advisor = Auth::guard('advisor')->User();
         $Advisor_id = Auth::guard('advisor')->User()->id;
         $Conversation = Conversation::where('status', 'done');
-        $Transections = Transaction::where('advisor_id', $Advisor->id)->get();
+        $Transections = Transaction::where('advisor_id', $Advisor->id)->where('type', '!=', 'plan')->get();
 
         $days2 = [];
         for ($i = 1; $i <= 10; $i++) {
@@ -39,10 +39,11 @@ class MainController extends Controller
         }
         $Income = '';
         foreach ($days2 as $key => $value) {
+            $Transections2 = $Transections;
             if ($key == 1) {
-                $Income .= $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value)->sum('price') . ',';
+                $Income .= $Transections2->where('created_at', '<', Carbon::now())->where('created_at', '>', $value)->sum('price') . ',';
             } else {
-                $Income .= $Transections->where('created_at', '<', $value)->where('created_at', '>', $days2[$key - 1])->sum('price') . ',';
+                $Income .= $Transections2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key==10?10:$key+1])->sum('price') . ',';
             }
         }
 
@@ -53,15 +54,17 @@ class MainController extends Controller
         $Income30days = '';
         $Income30 = 0;
         foreach ($days30 as $key2 => $value2) {
+            $Transections2 = $Transections;
             if ($key2 == 1) {
-                $Income30days .= $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price') . ',';
-                $Income30 += $Transections->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price');
+                $Income30days .= $Transections2->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price') . ',';
+                $Income30 += $Transections2->where('created_at', '<', Carbon::now())->where('created_at', '>', $value2)->sum('price');
             } else {
-                $Income30days .= $Transections->where('created_at', '<', $value)->where('created_at', '>', $days30[$key2 - 1])->sum('price') . ',';
-                $Income30 += $Transections->where('created_at', '<', $value)->where('created_at', '>', $days30[$key2 - 1])->sum('price');
+
+                $Income30days .= $Transections2->where('created_at', '<', $value2)->where('created_at', '>', $days30[$key2 == 30 ? 30 : $key2 + 1])->sum('price') . ',';
+                $Income30 += $Transections2->where('created_at', '<', $value2)->where('created_at', '>', $days30[$key2 == 30 ? 30 : $key2 + 1])->sum('price');
             }
         }
-        
+
         $Timem2 = PlansAdvisor::where('user_id', $Advisor->id)->first();
         if ($Timem2) {
             $now = Carbon::now();

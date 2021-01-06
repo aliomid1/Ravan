@@ -171,21 +171,21 @@
                     var ctx = document.getElementById("chart_demo_4").getContext("2d");
                     var densityData = {
                         backgroundColor: chartColors.primary.light,
-                        data: [{{$Income}}]
+                        data: [{{$Income}}].reverse()
                     };
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: [
-                                "روز اول",
-                                "روز دوم",
-                                "روز سوم",
-                                "روز چهارم",
-                                "روز پنجم",
-                                "روز ششم",
-                                "روز هفتم",
-                                "روز هشتم",
-                                "روز نهم",
+                                "نه روز قبل",
+                                "هشت روز قبل",
+                                "هفت روز قبل",
+                                "شش روز قبل",
+                                "پنج روز قبل",
+                                "چهار روز قبل",
+                                "سه روز قبل",
+                                "دو روز قبل",
+                                "دیروز",
                                 "امروز",
                             ],
                             datasets: [densityData]

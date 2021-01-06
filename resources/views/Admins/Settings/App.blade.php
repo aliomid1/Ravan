@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <h4 class="mb-5">ویرایش اطلاعات </h4>
 
-                <form action="{{ route('Admins.Settings.App.post') }}" method="post">
+                <form action="{{ route('Admins.Settings.App.post') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -25,6 +25,11 @@
                         <div class="form-group col-md-4">
                             <label for="my-input">کلمه عبور ورود</label>
                             <input id="my-input" class="form-control" type="text"  name="password">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="my-input">پرفایل مدیریت</label>
+                            <input id="my-input" class="form-control" type="file"
+                                name="profile">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="my-input">نام کاربری ملی پیامک</label>

@@ -29,7 +29,7 @@ class PlanController extends Controller
 
                 $price = (int)$plan->price;
 
-                $gateway->price($price)->ready();
+                $gateway->price($price*100)->ready();
 
                 $refId =  $gateway->refId();
                 $transID = $gateway->transactionId();

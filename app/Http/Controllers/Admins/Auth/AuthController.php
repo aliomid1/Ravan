@@ -17,6 +17,7 @@ class AuthController extends Controller
     }
     public function CheckUser(Request $request)
     {
+       
         $Admin = Admin::where('username', $request->username)->first();
         if ($Admin) {
             if (Hash::check($request->password, $Admin->password)) {
