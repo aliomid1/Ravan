@@ -17,17 +17,30 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('title');
+            $table->text('type')->nullable();
             $table->text('description');
             $table->timestamps();
         });
-        
+
         DB::table('questions')->insert([
             [
                 'title' => 'چطور میتوانم با مشاور من کار کنم؟',
+                'type' => 'how',
                 'description' => 'سلام و عرض ادب، به این صورت که...',
             ],
             [
                 'title' => 'کار با روانشناسی',
+                'type' => 'why',
+                'description' => 'سلام، وقت بخیر',
+            ],
+            [
+                'title' => 'چطور میتوانم با مشاور من کار کنم؟',
+                'type' => 'how',
+                'description' => 'سلام و عرض ادب، به این صورت که...',
+            ],
+            [
+                'title' => 'کار با روانشناسی',
+                'type' => 'why',
                 'description' => 'سلام، وقت بخیر',
             ],
         ]);

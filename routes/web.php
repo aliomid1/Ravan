@@ -38,12 +38,10 @@ Route::namespace('Web')->name('Web.')->group(function () {
 
     // Category
     Route::get('/Category', 'Main\MainController@Category')->name('Category');
-    // Route::get('/Category/{slog}', 'HomeController@index')->name('Category.slog');
     Route::get('/CategoryList/{id}', 'Main\MainController@CategoryList')->name('CategoryList');
     Route::get('/CategoryList/{CatId}/SubjectOfCategory/{id}', 'Main\MainController@SubjectOfCategory')->name('SubjectOfCategory');
     Route::post('/SubjectOfCategory/{id}', 'Main\MainController@AddSubjectOfCategoryComment')->name('AddSubjectOfCategoryComment');
-    // Route::get('PsychologyCategoryList', 'Main\MainController@PsychologyCategoryList')->name('PsychologyCategoryList');
-    // Route::get('SingleDoctor', 'Main\MainController@SingleDoctor')->name('SingleDoctor');
+
 
     //Consultant
     Route::get('/ConsultantList', 'Main\MainController@ConsultantList')->name('ConsultantList');
@@ -200,6 +198,8 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
 
 /*========== Advisor ROUTES ==========*/
 Route::prefix('Advisors')->name('Advisors.')->group(function () {
+    Route::post('EndReserve', '\App\Http\Controllers\Advisors\Main\MainController@EndReserve')->name('EndReserve');
+
     Route::namespace('Advisors')->group(function () {
         Route::namespace('Auth')->name('auth.')->group(function () {
             Route::get('Login', 'LoginController@Login')->name('Login');

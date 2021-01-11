@@ -3,6 +3,7 @@
 @section('content')
     @php
     $admin = Auth::guard('admin')->user();
+    $settings = \App\Models\Settings::find(1);
     @endphp
     <div class="container-fluid">
         <div class="col-12 card p-4">
@@ -30,6 +31,11 @@
                             <label for="my-input">پرفایل مدیریت</label>
                             <input id="my-input" class="form-control" type="file"
                                 name="profile">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="my-input">دامنه سیستم چت</label>
+                            <input id="my-input" class="form-control" type="text" value="{{$settings->url_chat}}" required
+                                name="url_chat">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="my-input">نام کاربری ملی پیامک</label>

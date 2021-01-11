@@ -170,6 +170,19 @@ class MainController extends Controller
     {
         $value = $request->value;
         $advisor = Advisors::where('name', 'like', "%$value%")->get();
+        $Category = Category::where('title', 'like', $value)->get();
+
+        if ($Category) {
+            foreach ($Category as $v) {
+               $advs = Advisors::where('category', $v->id)->get();
+               if($advs){
+                   foreach($advs as $vv){
+                    $advisor[]=$vv;
+                    }
+                }
+            }
+        }
+      
         return view('Web.Main.Partial.ConsultantListCard', compact('advisor'))->render();
     }
 
@@ -188,7 +201,7 @@ class MainController extends Controller
     {
         $MainCat = Category::find($CatId);
         $CurrentSubject = Subject::find($id);
-        $advisor = Advisors::get();
+        $advisor = Advisors::where('category', $MainCat->id)->get();
         return view('Web.Main.SubjectOfCategory', compact(['CurrentSubject', 'MainCat', 'advisor']));
     }
 
@@ -240,7 +253,7 @@ class MainController extends Controller
                 }
             }
             if ($advisor->vip == '0') {
-                $ConsultationsTimes = ['online'=>$ConsultationsTimes['online']];
+                $ConsultationsTimes = ['online' => $ConsultationsTimes['online']];
             }
 
             $ConsultationsTimes = view(

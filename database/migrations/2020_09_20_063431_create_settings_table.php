@@ -30,6 +30,7 @@ class CreateSettingsTable extends Migration
             $table->text('type_signUp_users');
             $table->text('verify_email');
             $table->text('textmessage');
+            $table->text('url_chat');
             $table->timestamps();
         });
         DB::table('settings')->insert([
@@ -48,8 +49,7 @@ class CreateSettingsTable extends Migration
                 'type_signUp_users' => 'on',
                 'verify_email' => 'on',
                 'textmessage' => '',
-
-
+                'url_chat' => '192.168.1.100',
             ],
         ]);
     }

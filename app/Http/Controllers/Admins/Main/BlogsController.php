@@ -106,13 +106,14 @@ class BlogsController extends Controller
 
     public function destroy(Request $request , $id)
     {
-        if ($id) {
-            $blog = Blog::where('id', $id)->delete();
+
+        if ($request->id) {
+            $blog = Blog::where('id', $request->id)->delete();
             if ($blog) {
-                $image = Image::where('item_id', $id)->where('type', 'blogs')->first();
+                $image = Image::where('item_id', $request->id)->where('type', 'blogs')->first();
                 // BaseUploader::delete($image->image);
                 $image->delete();
-                return 'true';
+                return true;
             } else {
                 return 'درخواست کامل نیست';
             }

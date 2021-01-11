@@ -140,152 +140,20 @@ $settings = \App\Models\Settings::first();
                     <div class="card">
                         <div class="card-body">
                             <div class="accordion accordion-success custom-accordion">
-
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>مقدمه</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
+                                @forelse (App\Models\Question::where('type' , 'how')->get() as $item)
+                                    <div class="accordion-row">
+                                        <a href="#" class="accordion-header">
+                                            <span>{{ $item->title }}</span>
+                                            <i class="accordion-status-icon close fa fa-plus"></i>
+                                            <i class="accordion-status-icon open fa fa-close"></i>
+                                        </a>
+                                        <div class="accordion-body">
+                                            <p>{{ $item->description }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>امکانات سایت {{ env('SiteBrand') }} </span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>راهنمای شروع جلسه مشاوره</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>شروع مشاوره</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>راهنمای پایان جلسه مشاوره</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط
-                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                                            باشد. کتابهای
-                                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می
-                                            طلبد تا با
-                                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و
-                                            فرهنگ پیشرو
-                                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری
-                                            موجود در ارائه
-                                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                                            دستاوردهای</p>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>راهنمای ادامه جلسات</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط
-                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                                            باشد. کتابهای
-                                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می
-                                            طلبد تا با
-                                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و
-                                            فرهنگ پیشرو
-                                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری
-                                            موجود در ارائه
-                                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                                            دستاوردهای</p>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>ارسال پیام به مشاور</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط
-                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                                            باشد. کتابهای
-                                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می
-                                            طلبد تا با
-                                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و
-                                            فرهنگ پیشرو
-                                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری
-                                            موجود در ارائه
-                                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                                            دستاوردهای</p>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-row">
-                                    <a href="#" class="accordion-header">
-                                        <span>حذف پیام در هنگام مشاوره</span>
-                                        <i class="accordion-status-icon close fa fa-plus"></i>
-                                        <i class="accordion-status-icon open fa fa-close"></i>
-                                    </a>
-                                    <div class="accordion-body">
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک
-                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                            برای شرایط
-                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
-                                            باشد. کتابهای
-                                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می
-                                            طلبد تا با
-                                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و
-                                            فرهنگ پیشرو
-                                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری
-                                            موجود در ارائه
-                                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                                            دستاوردهای</p>
-                                    </div>
-                                </div>
-
+                                @empty
+                                    <p class="text-center"></p>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -308,35 +176,23 @@ $settings = \App\Models\Settings::first();
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="card-body">
-                        <div class="form-group">
-                            <h6 class="text-success">آغاز فعالیت {{ env('SiteBrand') }} با همکاری...</h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                        </div>
-                        <div class="form-group">
-                            <h6 class="text-success">درگاه پرداخت ما مطمئن است</h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                        </div>
-                        <div class="form-group">
-                            <h6 class="text-success">ما...</h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که</p>
-                        </div>
-
+                        @forelse (App\Models\Question::where('type' , 'why')->get() as $item)
+                            <div class="form-group">
+                                <h6 class="text-success">{{ $item->title }}</h6>
+                                <p>{{ $item->description }}</p>
+                            </div>
+                        @empty
+                            <p class="text-center"></p>
+                        @endforelse
                     </div>
                     <div class="d-flex flex-wrap">
-                        <img src="{{ asset('assets/Web/images/logo (1).png') }}" alt=""
-                            style="width: 70px; height: 70px; margin:5px 10px;">
-                        <img src="{{ asset('assets/Web/images/logo (1).png') }}" alt=""
-                            style="width: 70px; height: 70px; margin:5px 10px;">
-                        <img src="{{ asset('assets/Web/images/logo (1).png') }}" alt=""
-                            style="width: 70px; height: 70px; margin:5px 10px;">
+                        @forelse (App\Models\Image::where('type' , 'certification_image')->get() as $item)
+                            <img src="{{ asset($item->url) }}" alt=""
+                                style="width: 70px; height: 70px; margin:5px 10px;">
+                        @empty
+                            <p class="text-center"></p>
+                        @endforelse
                     </div>
                 </div>
                 <div class="modal-footer">

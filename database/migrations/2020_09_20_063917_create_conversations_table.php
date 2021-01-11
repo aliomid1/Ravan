@@ -23,6 +23,7 @@ class CreateConversationsTable extends Migration
             $table->text('price');
             $table->text('status');
             $table->text('time');
+            $table->text('code');
             $table->text('start_at');
             $table->timestamps();
         });

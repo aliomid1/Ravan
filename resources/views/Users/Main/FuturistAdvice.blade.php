@@ -45,8 +45,7 @@
                                             <th>نام مشاور</th>
                                             <th>موضوع</th>
                                             <th>زمان شروع</th>
-                                            {{-- <th>بررسی</th>
-                                            --}}
+                                            <th>کد رزرو</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,6 +61,9 @@
                                                     {{ \Morilog\Jalali\Jalalian::forge($item->start_at)->format('H:i:s - Y/m/d') }}
                                                     <div data-countdown="{{ $item->start_at }}" class="mt-2 text-danger"></div>
                                                 </td>
+                                                <td>
+                                                    {{ $item->code }}
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -76,17 +78,7 @@
                         </div>
 
                         <nav class="m-t-30 d-flex justify-content-center">
-                            {{-- <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">بعدی</a>
-                                </li>
-                            </ul> --}}
+
                             {{ $Conversations->links() }}
                         </nav>
                     </div>
@@ -113,8 +105,7 @@
                                             <th>نام مشاور</th>
                                             <th>موضوع</th>
                                             <th>زمان شروع</th>
-                                            {{-- <th>بررسی</th>
-                                            --}}
+                                            <th>کد رزرو</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,6 +120,9 @@
                                                 <td>
                                                     {{ \Morilog\Jalali\Jalalian::forge($item->start_at)->format('H:i:s - Y/m/d') }}
                                                     <div data-countdown="{{ $item->start_at }}" class="mt-2 text-danger"></div>
+                                                </td>
+                                                <td>
+                                                    {{ $item->code }}
                                                 </td>
                                             </tr>
                                         @empty
@@ -181,8 +175,7 @@
                                             <th>نام مشاور</th>
                                             <th>موضوع</th>
                                             <th>زمان شروع</th>
-                                            {{-- <th>بررسی</th>
-                                            --}}
+                                            <th>کد رزرو</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -197,6 +190,9 @@
                                                 <td>
                                                     {{ \Morilog\Jalali\Jalalian::forge($item->start_at)->format('H:i:s - Y/m/d') }}
                                                     <div data-countdown="{{ $item->start_at }}" class="mt-2 text-danger"></div>
+                                                </td>
+                                                <td>
+                                                    {{ $item->code }}
                                                 </td>
                                             </tr>
                                         @empty
@@ -236,15 +232,15 @@
 
 
 @section('js')
-<script src="{{ asset('assets/lib/jquery.countdown.js') }}"></script>
-<script>
-    $('[data-countdown]').each(function() {
-        var $this = $(this),
-            finalDate = $(this).data('countdown');
-        $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime(' مانده: %D روز و %H:%M:%S'));
+    <script src="{{ asset('assets/lib/jquery.countdown.js') }}"></script>
+    <script>
+        $('[data-countdown]').each(function() {
+            var $this = $(this),
+                finalDate = $(this).data('countdown');
+            $this.countdown(finalDate, function(event) {
+                $this.html(event.strftime(' مانده: %D روز و %H:%M:%S'));
+            });
         });
-    });
 
-</script>
+    </script>
 @endsection

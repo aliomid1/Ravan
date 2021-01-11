@@ -28,7 +28,7 @@ class ReservationController extends Controller
             $price = $advisor->price ? $advisor->price : $settings->price_default;
             $price = ($time * $price);
             $price = $price + (($price * $settings->percent) / 100);
-
+            $code = rand(00000, 99999);
             $trx =  Transaction::create([
                 'user_id' => $user->id,
                 'advisor_id' => $advisor->id,
@@ -43,6 +43,7 @@ class ReservationController extends Controller
                 'time' => $time,
                 'price' => $price,
                 'status' => 'off',
+                'code' => $code,
                 'subject' => $request->subject,
                 'start_at' => $request->date
             ]);

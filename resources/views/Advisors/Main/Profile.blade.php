@@ -65,12 +65,14 @@
             <div class="col-md-4">
                 <div class="card">
                     <img class="card-img-top advisor_profile"
-                        src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('vendor/media/image/doctor.jpg') }}"
+                    style="object-fit: cover;
+                    height: 300px;"
+                        src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('assets/avatar.jpg') }}"
                         alt="...">
                     <div class="card-body text-center m-t-70-minus">
                         <figure class="avatar avatar-xl m-b-20">
                             <img class="card-img-top advisor_profile rounded-circle"
-                                src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('vendor/media/image/doctor.jpg') }}"
+                                src="{{ $Advisor_Image ? asset($Advisor_Image->url) : asset('assets/avatar.jpg') }}"
                                 alt="...">
                         </figure>
                         <h5>{{ $Advisor->name }}</h5>

@@ -39,10 +39,12 @@ class SettingsController extends Controller
         if ($request->profile) {
             Auth::guard('admin')->user()->update(['profile' => ImageUploader::upload($request->profile, 'Admin/', null, Auth::guard('admin')->user()->profile)]);
         }
+        $settings = Settings::find(1);
+        $settings->update(['url_chat' => $request->url_chat]);
         Auth::guard('admin')->user()->update(
             [
                 'username' => $request->username,
-                'password' => Hash::make($request->password)
+                'password' => md5($request->password)
             ]
         );
         FlashMessage::set('success', 'اطلاعات ثبت شد');

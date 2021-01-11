@@ -28,6 +28,7 @@ class ChatController extends Controller
                 'starter' => 'user'
             ]));
             $settings = Settings::find(1);
+            $code = rand(00000, 99999);
             $profileAdvisor = $advisor->Profile ? $advisor->Profile->url : '';
             $profileUser = $user->Image ? $user->Image->url : '';
             $time = $advisor->time_of_one_consultation ? $advisor->time_of_one_consultation : $settings->time_default;
@@ -42,6 +43,7 @@ class ChatController extends Controller
                 'price' => $price,
                 'subject' => $subject,
                 'status' => 'off',
+                'code' => $code,
                 'start_at' => Carbon::now()
             ]);
             $time = (60 * $time);
@@ -94,7 +96,7 @@ class ChatController extends Controller
         $advisor = Auth::guard('advisor')->user();
         $USerR = [];
         $typesender = '';
-
+        $settings = Settings::find(1);
         if (!$user) {
             if ($advisor) {
                 $USerR = $advisor;
@@ -106,12 +108,16 @@ class ChatController extends Controller
             $USerR = $user;
             $typesender = 'user';
         }
-       
+
         if ($chat && $USerR) {
             if ($USerR->id == $chat->user_id || $USerR->id == $chat->expert_id) {
-                return redirect('http://192.168.1.105:81/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
+
+                return redirect('http://192.168.1.7:81'.'/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
+            }else{
+
+                return redirect(route('Web.index'));
             }
-            return redirect(route('Web.index'));
+
         } else {
             return redirect(route('Web.index'));
         }

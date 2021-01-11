@@ -22,6 +22,7 @@ class CreateAdvisorsTable extends Migration
             $table->text('email')->nullable();
             $table->text('username');
             $table->text('password')->nullable();
+            $table->text('category');
             $table->text('bio')->nullable();
             $table->text('education')->nullable();
             $table->text('resume')->nullable();
@@ -44,6 +45,7 @@ class CreateAdvisorsTable extends Migration
                 'email' => 'a@gmail.com',
                 'username' => 'moshaver1',
                 'password' => '123456',
+                'category' => '1',
                 'bio' => 'سلام، مشاورم',
                 'resume' => 'کارآفرین اجتماعی',
                 'education' => 'لیسانس',
@@ -61,6 +63,7 @@ class CreateAdvisorsTable extends Migration
                 'email' => 'a@gmail.com',
                 'username' => 'moshaver2',
                 'password' => '123456',
+                'category' => '1',
                 'bio' => 'سلام به همه',
                 'resume' => 'کارآفرین اجتماعی',
                 'education' => 'لیسانس',
@@ -78,6 +81,7 @@ class CreateAdvisorsTable extends Migration
                 'email' => 'a@gmail.com',
                 'username' => 'moshaver',
                 'password' => '123456',
+                'category' => '2',
                 'bio' => 'سلام، مشاورم',
                 'resume' => 'کارآفرین اجتماعی',
                 'education' => ' لیسانس',

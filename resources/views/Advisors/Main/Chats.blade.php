@@ -45,7 +45,7 @@ $Conversation = \App\Models\Chat::where('expert_id',Auth::guard('advisor')->user
                                    <a class=" mr-auto btn btn-success" href="{{route('Web.STARTChat',$item->id)}}">رفتن به گفتگو</a>
                                 </div>
                             @empty
-                                <p class="text-muted text-center">هنوز گفتگويي ايجاد نشده است.</p>
+                                <p class="text-muted text-center my-4">هنوز گفتگويي ايجاد نشده است.</p>
                             @endforelse
                         </div>
                     </div>

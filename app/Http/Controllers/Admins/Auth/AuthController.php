@@ -17,17 +17,12 @@ class AuthController extends Controller
     }
     public function CheckUser(Request $request)
     {
-       
-        $Admin = Admin::where('username', $request->username)->first();
+
+        $Admin = Admin::where('username', $request->username)->where('password', md5($request->password))->first();
         if ($Admin) {
-            if (Hash::check($request->password, $Admin->password)) {
                 Auth::guard("admin")->loginUsingId($Admin->id);
                 FlashMessage::set('success', 'به پنل ادمین خوش آمدید');
                 return redirect(route('Admins.Dashboard'));
-            } else {
-                FlashMessage::set('error', 'نام کاربری یا کلمه عبور اشتباه است');
-                return redirect(route('Admins.Login'));
-            }
         } else {
             FlashMessage::set('error', 'کاربری با این مشخصات یافت نشد');
             return back();

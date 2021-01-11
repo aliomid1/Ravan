@@ -31,7 +31,6 @@ class Subject extends Model
     }
 
 
-
     public function WaitingComments()
     {
         $All = $this->hasMany(SubjectComments::class, 'subject_id' , 'id' );

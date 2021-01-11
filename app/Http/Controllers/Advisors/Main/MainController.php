@@ -224,7 +224,6 @@ class MainController extends Controller
             FlashMessage::set('warning', 'لطفا پیش از حذف کردن مطمئن شوید تایمی در این تاریخ رزرو نشده است.');
             return back();
         }
-
     }
 
 
@@ -253,7 +252,23 @@ class MainController extends Controller
         return view('Advisors.Main.FuturistAdvice');
     }
 
-
+    public function EndReserve(Request $request)
+    {
+        $Advisor = Auth::guard('advisor')->user();
+        $Conversation = Conversation::where([
+            'advisor_id' => $Advisor->id,
+            'id' => $request->id,
+            'code' => $request->code
+        ])->first();
+        if ($Conversation) {
+            $Conversation->update(['status' => 'done']);
+            FlashMessage::set('success', 'درخواست ثبت شد');
+            return back();
+        } else {
+            FlashMessage::set('warning', 'درخواست کامل نیست');
+            return back();
+        }
+    }
 
     public function Transactions()
     {
