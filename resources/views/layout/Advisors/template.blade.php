@@ -67,6 +67,13 @@
         z-index: 1;
     }
 
+
+    nav.navbar {
+        height: unset;
+        min-height: 77px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
 </style>
 
 
@@ -120,7 +127,7 @@
 
 
     <!-- begin::navbar -->
-    <nav class="navbar">
+    <nav class="navbar w-100">
         <div class="container-fluid">
             <div class="header-logo">
                 <a href="{{ route('Web.index') }}">
@@ -132,19 +139,22 @@
 
                 <form method="post">
                     @csrf
-                    <ul class="navbar-nav">
-
-                        <li class="nav-item ">
-                            <p data-url="{{ route('Advisors.UnsetOnline') }}"
-                                class="ml-3 mb-0 rounded-lg btn Online {{ Auth::guard('advisor')->user()->status == '0' ? 'btn-success' : 'btn-warning' }} ">
-                                در حال استراحت هستم
-                            </p>
-                        </li>
-                        <li class="nav-item ">
-                            <p data-url="{{ route('Advisors.SetOnline') }}"
-                                class="ml-3 mb-0 rounded-lg btn Online {{ Auth::guard('advisor')->user()->status == '0' ? 'btn-warning' : 'btn-success' }} ">
-                                آنلاین هستم
-                            </p>
+                    <ul class="navbar-nav align-items-center">
+                        <li>
+                            <ul class="d-flex flex-column flex-sm-row ">
+                                <li class="nav-item ">
+                                    <p data-url="{{ route('Advisors.UnsetOnline') }}"
+                                        class="ml-3 mb-0 rounded-lg btn Online {{ Auth::guard('advisor')->user()->status == '0' ? 'btn-success' : 'btn-warning' }} ">
+                                        در حال استراحت هستم
+                                    </p>
+                                </li>
+                                <li class="nav-item text-center">
+                                    <p data-url="{{ route('Advisors.SetOnline') }}"
+                                        class="ml-3 mb-0 rounded-lg btn Online {{ Auth::guard('advisor')->user()->status == '0' ? 'btn-warning' : 'btn-success' }} ">
+                                        آنلاین هستم
+                                    </p>
+                                </li>
+                            </ul>
                         </li>
                         @php
                         $Advisor_id = Auth::guard('advisor')->User()->id;

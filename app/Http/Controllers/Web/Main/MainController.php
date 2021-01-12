@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Web\Main;
 
 use App\Http\Controllers\Controller;
+use App\lib\File\ImageUploader;
 use App\lib\Messages\FlashMessage;
 use App\Models\AboutUs;
 use App\Models\Advisors;
+use App\Models\AdvisorsRequest;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Chat;
@@ -22,6 +24,7 @@ use App\User;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
@@ -309,6 +312,68 @@ class MainController extends Controller
     public function AdvisorRequest()
     {
         return view('Web.Main.AdvisorRequest');
+    }
+
+
+
+
+    public function AdvisorRequestPost(Request $request)
+    {
+        $result = AdvisorsRequest::create((['advisor_form'=> null]));
+        $data = $request->all();
+        // ImageUploader::upload($request->image, 'Blogs/');
+        /**
+         * @var Symfony\Component\HttpFoundation\File\UploadedFile
+         */
+        // dd($request->file('resume'))
+        if ($data['resume']) {
+            if(is_array($data['resume'])){
+                foreach ($data['resume'] as $key => $image) {
+                    $data['resume'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                }
+            } else{
+                ImageUploader::upload($data['resume'], 'AdvisorsRequest/' . $result->id);
+            }
+        }
+        if ($data['madrak_tahsili']) {
+            if (is_array($data['madrak_tahsili'])) {
+                foreach ($data['madrak_tahsili'] as $key => $image) {
+                    $data['madrak_tahsili'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                }
+            } else{
+                ImageUploader::upload($data['madrak_tahsili'], 'AdvisorsRequest/' . $result->id);
+            }
+        }
+        if ($data['parvane_eshteghal']) {
+            if (is_array($data['parvane_eshteghal'])) {
+                foreach ($data['parvane_eshteghal'] as $key => $image) {
+                    $data['parvane_eshteghal'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                }
+            } else{
+                ImageUploader::upload($data['parvane_eshteghal'], 'AdvisorsRequest/' . $result->id);
+            }
+        }
+        if ($data['aks']) {
+            if (is_array($data['aks'])) {
+                foreach ($data['aks'] as $key => $image) {
+                    $data['aks'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/' . $result->id);
+                }
+            } else{
+                ImageUploader::upload($data['aks'], 'AdvisorsRequest/' . $result->id);
+            }
+        }
+
+        $data = json_encode($data , true);
+        $result1 = $result->update(['advisor_form' => $data]);
+       
+        if ($result1) {
+            FlashMessage::set('success', 'درخواست با موفقیت ثبت شد.');
+        } else{
+            File::deleteDirectory(public_path('uploads/AdvisorsRequest'));
+            AdvisorsRequest::find($result->id)->delete();
+            FlashMessage::set('error', 'مشکلی پیش آمده است.');
+        }
+        return redirect()->back();
     }
 
 

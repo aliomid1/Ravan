@@ -27,6 +27,7 @@
                 })
                 .then(function(willDelete) {
                     if (willDelete) {
+                        alert('hi')
                         $.ajax({
                             type: typesend,
                             url: url,

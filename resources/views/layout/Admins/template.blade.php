@@ -74,6 +74,7 @@
                 <ul>
                     <li><a href="{{ route('Admins.AdvisorsList') }}">لیست</a></li>
                     <li><a href="{{ route('Admins.AddAdvisor') }}">ایجاد</a></li>
+                    <li><a href="{{ route('Admins.AdvisorsRequestList') }}">فرم های همکاری</a></li>
 
                 </ul>
             </li>

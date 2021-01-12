@@ -40,6 +40,10 @@ class ProfileController extends Controller
             $user->update(['email'=>$request->email]);
         }
 
+
+
+        
+
         FlashMessage::set('success', 'اطلاعات با موفقيت ويرايش شد');
         return back();
     }
