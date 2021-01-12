@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admins\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advisors;
+use App\Models\AdvisorsRequest;
 use App\Models\Category;
 use App\Models\GetWayTRX;
 use App\Models\Settings;
@@ -11,6 +12,7 @@ use App\Models\Transaction;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MainController extends Controller
 {
@@ -59,6 +61,30 @@ class MainController extends Controller
     public function AddAdvisor()
     {
         return view('Admins.Advisors.AddAdvisor');
+    }
+
+
+
+    public function AdvisorsRequestList()
+    {
+        return view('Admins.Advisors.AdvisorRequestList');
+    }
+
+
+
+    public function AdvisorRequest($id)
+    {
+        $form = json_decode(AdvisorsRequest::find($id)->advisor_form, true);
+        return view('Admins.Advisors.AdvisorRequest', compact('form'));
+    }
+
+
+
+    public function AdvisorRequestDelete(Request $request)
+    {
+        File::deleteDirectory(public_path('uploads/AdvisorsRequest/'. $request->id));
+        AdvisorsRequest::find($request->id)->delete();
+        return true;
     }
 
 

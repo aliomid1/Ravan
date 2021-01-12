@@ -17,7 +17,6 @@ class AuthController extends Controller
     }
     public function CheckUser(Request $request)
     {
-
         $Admin = Admin::where('username', $request->username)->where('password', md5($request->password))->first();
         if ($Admin) {
                 Auth::guard("admin")->loginUsingId($Admin->id);

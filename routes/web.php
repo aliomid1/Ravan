@@ -60,6 +60,7 @@ Route::namespace('Web')->name('Web.')->group(function () {
 
     //Advisor Request
     Route::get('Assist', 'Main\MainController@AdvisorRequest')->name('AdvisorRequest');
+    Route::post('Assist', 'Main\MainController@AdvisorRequestPost')->name('AdvisorRequestPost');
 
     // Login Area
     Route::namespace('Auth')->name('auth.')->group(function () {
@@ -117,6 +118,10 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::get('AdvisorsList', 'Main\MainController@AdvisorsList')->name('AdvisorsList');
         Route::get('AddAdvisor', 'Main\MainController@AddAdvisor')->name('AddAdvisor');
         Route::resource('Advisors', 'Advisors\AdvisorsController');
+        // Advisors Request
+        Route::get('AdvisorsRequestList', 'Main\MainController@AdvisorsRequestList')->name('AdvisorsRequestList');
+        Route::get('AdvisorRequest/{id}', 'Main\MainController@AdvisorRequest')->name('AdvisorRequest');
+        Route::delete('AdvisorRequestDelete/{id}', 'Main\MainController@AdvisorRequestDelete')->name('AdvisorRequestDelete');
 
 
         // Subjects
