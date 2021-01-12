@@ -26,9 +26,9 @@
                         @forelse (\App\Models\Advisors::get() as $item)
                         <tr>
                             <td>{{$item->name}}</td>
-                            <td>تبریز</td>
-                            <td>2011/12/06</td>
-                            <td>145,600 تومان</td>
+                            <td>{{\Morilog\Jalali\Jalalian::forge($item->created_at)->format('Y/m/d')}}</td>
+                            <td>{{$item->Conversation->sum('time')}} دقیقه</td>
+                            <td>{{number_format($item->Conversation->sum('price'))}} تومان</td>
                             <td>
                             <a href="{{route('Admins.Advisors.edit',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                             <a href="#"

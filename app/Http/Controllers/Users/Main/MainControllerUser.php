@@ -4,6 +4,7 @@ namespace app\Http\Controllers\Users\Main;
 
 use App\Http\Controllers\Controller;
 use App\lib\Messages\FlashMessage;
+use App\Models\Conversation;
 use App\Models\Settings;
 use App\User;
 use Exception;
@@ -52,7 +53,7 @@ class MainControllerUser extends Controller
 
     public function Share(Request $request)
     {
-        $CallerId = Auth::user()->id;
+        $CallerId = Auth::guard('web')->user()->id;
         $UserMobileNumber = $request->mobile;
         $FinalURL = url('Login?CallerId=' . $CallerId);
         $settings = Settings::first();
@@ -66,7 +67,7 @@ class MainControllerUser extends Controller
             $text = $settings->textmessage . '\n' . $FinalURL;
             $response = $sms->send($to, $from, $text);
             $json = json_decode($response,true);
-            
+
             if ($json->Value > 12 || $json->Value == 1) {
                 FlashMessage::set('success', 'پیام برای دوست شما ارسال شد');
                 return back();
@@ -119,7 +120,9 @@ class MainControllerUser extends Controller
 
     public function Chat()
     {
-        return view('Users.Main.Chat');
+        $User = Auth::guard('web')->user();
+        $Conversation = Conversation::where('user_id',$User->id)->paginate(10);
+        return view('Users.Main.Conversations',['Conversation'=>$Conversation]);
     }
 
 

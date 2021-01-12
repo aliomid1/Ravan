@@ -38,11 +38,11 @@ class ChatController extends Controller
             Conversation::create([
                 'user_id' => $user->id,
                 'advisor_id' => $advisor->id,
-                'type' => 'online',
+                'type' => 'chat',
                 'time' => $time,
                 'price' => $price,
                 'subject' => $subject,
-                'status' => 'off',
+                'status' => 'doing',
                 'code' => $code,
                 'start_at' => Carbon::now()
             ]);

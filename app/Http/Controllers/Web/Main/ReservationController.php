@@ -42,7 +42,7 @@ class ReservationController extends Controller
                 'type' => $request->type,
                 'time' => $time,
                 'price' => $price,
-                'status' => 'off',
+                'status' => 'to_do',
                 'code' => $code,
                 'subject' => $request->subject,
                 'start_at' => $request->date

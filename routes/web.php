@@ -258,8 +258,7 @@ Route::prefix('Users')->name('Users.')->middleware('MustBeUser')->group(function
         Route::get('Support', 'Main\MainControllerUser@Support')->name('Support');
         Route::get('Assist', 'Main\MainControllerUser@Assist')->name('Assist');
         Route::get('ListAdvisors', 'Main\MainControllerUser@ListAdvisors')->name('ListAdvisors');
-        Route::get('Chat', 'Messages\MessagesController@Chat')->name('Chat');
-        Route::get('List', 'Messages\MessagesController@List')->name('List');
+        Route::get('Chats', 'Main\MainControllerUser@Chat')->name('Chats');
         Route::post('AddWallet', 'Transections\TransectionsController@AddWallet')->name('AddWalletP');
 
 

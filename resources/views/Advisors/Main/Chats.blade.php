@@ -32,7 +32,7 @@ $Conversation = \App\Models\Chat::where('expert_id',Auth::guard('advisor')->user
                                 <div class="list-group-item list-group-item-action d-flex">
                                     <div>
                                         <figure class="avatar avatar-sm">
-                                            <img src="{{ $item->UserImage ? asset($item->UserImage->url) : asset('vendor/media/image/avatar.jpg') }}"
+                                            <img src="{{ $item->User ? asset($item->User->Image->url ) : asset('assets/avatar.jpg') }}"
                                                 class="rounded-circle">
                                         </figure>
                                     </div>

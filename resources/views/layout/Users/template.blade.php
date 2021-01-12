@@ -80,14 +80,15 @@ $settings = \App\Models\Settings::first();
                             ها</span> </a></li>
                 <li><a href="{{ route('Users.FuturistAdvice') }}"><i class="icon ti-clipboard"></i> <span>نوبت های رزرو
                             شده</span> </a></li>
-
+                <li><a href="{{ route('Users.Chats') }}"><i class="icon ti-comment"></i> <span>گفتگو های انلاین</span>
+                    </a></li>
                 <li><a href="{{ route('Users.Transactions') }}"><i class="icon ti-wallet"></i> <span>اطلاعات مالی</span>
                     </a></li>
-                <li><a href="{{ route('Users.Support') }}"><i class="icon ti-comment"></i> <span>تماس با پشتیبانی</span>
+                <li><a href="{{ route('Users.Support') }}"><i class="icon ti-support"></i> <span>تماس با پشتیبانی</span>
                     </a></li>
                 <li><a href="#" data-toggle="modal" data-target="#QuestionModal"><i class="icon ti-help"></i>
                         <span>چطور از {{ env('SiteBrand') }} استفاده کنم؟</span> </a></li>
-                <li><a href="#" data-toggle="modal" data-target="#Question1Modal"><i class="icon ti-help"></i>
+                <li><a href="#" data-toggle="modal" data-target="#Question1Modal"><i class="icon ti-info"></i>
                         <span>چرا به {{ env('SiteBrand') }} اعتماد کنم؟</span> </a></li>
                 <li><a href="{{ route('Web.ConsultantList') }}"><i class="icon ti-clipboard"></i> <span>ليست
                             مشاوران</span> </a></li>
@@ -106,7 +107,7 @@ $settings = \App\Models\Settings::first();
                 </div>
                 <div class="modal-body">
                     <h5 class="text-center"> {{ env('SiteBrand') }} را به هر یک از دوستان خود معرفی کنید، با ورود هر
-                        یک از دوستان تان، از {{$settings->gift_default}} تومان اعتبار رایگان استفاده کنید.
+                        یک از دوستان تان، از {{ $settings->gift_default }} تومان اعتبار رایگان استفاده کنید.
                     </h5>
                 </div>
                 <form class="col" action="{{ route('Users.Share') }}" method="POST">
@@ -188,8 +189,7 @@ $settings = \App\Models\Settings::first();
                     </div>
                     <div class="d-flex flex-wrap">
                         @forelse (App\Models\Image::where('type' , 'certification_image')->get() as $item)
-                            <img src="{{ asset($item->url) }}" alt=""
-                                style="width: 70px; height: 70px; margin:5px 10px;">
+                            <img src="{{ asset($item->url) }}" alt="" style="width: 70px; height: 70px; margin:5px 10px;">
                         @empty
                             <p class="text-center"></p>
                         @endforelse
@@ -218,7 +218,9 @@ $settings = \App\Models\Settings::first();
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown">
                             <figure class="avatar avatar-sm avatar-state-success">
-                                <img class="rounded-circle" src="{{ asset(Auth::guard('web')->user()->Image?Auth::guard('web')->user()->Image->url:'assets/avatar.jpg') }}" alt="...">
+                                <img class="rounded-circle"
+                                    src="{{ asset(Auth::guard('web')->user()->Image ? Auth::guard('web')->user()->Image->url : 'assets/avatar.jpg') }}"
+                                    alt="...">
 
                             </figure>
                         </a>

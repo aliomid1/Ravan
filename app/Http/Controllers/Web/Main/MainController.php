@@ -174,15 +174,15 @@ class MainController extends Controller
 
         if ($Category) {
             foreach ($Category as $v) {
-               $advs = Advisors::where('category', $v->id)->get();
-               if($advs){
-                   foreach($advs as $vv){
-                    $advisor[]=$vv;
+                $advs = Advisors::where('category', $v->id)->get();
+                if ($advs) {
+                    foreach ($advs as $vv) {
+                        $advisor[] = $vv;
                     }
                 }
             }
         }
-      
+
         return view('Web.Main.Partial.ConsultantListCard', compact('advisor'))->render();
     }
 
@@ -253,7 +253,9 @@ class MainController extends Controller
                 }
             }
             if ($advisor->vip == '0') {
-                $ConsultationsTimes = ['online' => $ConsultationsTimes['online']];
+                if ($ConsultationsTimes) {
+                    $ConsultationsTimes = ['online' => $ConsultationsTimes['online']];
+                }
             }
 
             $ConsultationsTimes = view(

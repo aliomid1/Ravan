@@ -18,17 +18,9 @@
         <div class="page-header">
             <div>
                 <h3>گفتگو ها</h3>
-                {{-- <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">داشبورد</a></li>
-                        <li class="breadcrumb-item"><a href="#">اپ ها</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">گفتگو</li>
-                    </ol>
-                </nav> --}}
+
             </div>
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#createEventModal">
-                <i class="ti-plus m-l-5"></i> گفتگوی جدید
-            </button>
+
         </div>
         <!-- end::page header -->
 

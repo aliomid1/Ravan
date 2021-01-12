@@ -6,7 +6,7 @@
     if (!is_array($Services) && !is_object($Services)) {
     $Services = [];
     }
-    $Conversations = \App\Models\Conversation::where('user_id',Auth::guard('web')->user()->id)->get();
+    $Conversations = \App\Models\Conversation::where('user_id',Auth::guard('web')->user()->id)->paginate(5);
     $Wallet = \App\Models\Wallet::where('user_id',Auth::guard('web')->user()->id)->get();
     @endphp
 @section('style')
@@ -23,6 +23,14 @@
             width: 5px;
             border-radius: 0 11px 11px 0;
             background-color: #56d4a5;
+        }
+
+        .pagination .page-item.active .page-link {
+            color: #fff!important;
+        }
+
+        .page-link {
+            color: #3f51b5 !important;
         }
 
         .display-4 {
@@ -42,7 +50,9 @@
                             <div class="card m-b-30 bg-dark-gradient">
                                 <div class="card-body text-white">
                                     <div class="text-center">
-                                        <div class="display-4 font-weight-800 p-t-20">{{$Conversations->where('status','done')->sum('time')}} دقیقه</div>
+                                        <div class="display-4 font-weight-800 p-t-20">
+                                            {{ $Conversations->where('status', 'done')->sum('time') }} دقیقه
+                                        </div>
                                         <p class="opacity-7 p-t-10">
                                             تعداد مشاوره های انجام شده
                                         </p>
@@ -54,7 +64,9 @@
                             <div class="card m-b-30 bg-dark-gradient">
                                 <div class="card-body text-white">
                                     <div class="text-center">
-                                        <div class="display-4 font-weight-800 p-t-20">{{$Conversations->where('status','to_do')->sum('time')}} دقیقه</div>
+                                        <div class="display-4 font-weight-800 p-t-20">
+                                            {{ $Conversations->where('status', 'to_do')->sum('time') }} دقیقه
+                                        </div>
                                         <p class="opacity-7 p-t-10">
                                             مشاوره های رزرو شده
                                         </p>
@@ -66,7 +78,9 @@
                             <div class="card m-b-30 bg-dark-gradient">
                                 <div class="card-body text-white">
                                     <div class="text-center">
-                                        <div class="display-4 font-weight-800 p-t-20">{{number_format($Wallet->sum('amount'))}} تومان</div>
+                                        <div class="display-4 font-weight-800 p-t-20">
+                                            {{ number_format($Wallet->sum('amount')) }} تومان
+                                        </div>
                                         <p class="opacity-7 p-t-10">
                                             کیف پول شما
                                         </p>
@@ -83,6 +97,7 @@
                             <thead>
                                 <tr>
                                     <th>نام مشاور</th>
+                                    <th>نوع مشاوره</th>
                                     <th>موضوع مشاوره</th>
                                     <th>تاریخ</th>
                                     <th>دقیقه</th>
@@ -101,24 +116,44 @@
                                     case 'to_do':
                                     $status='هنوز انجام نشده';
                                     break;
+                                    case 'doing':
+                                    $status='درحال انجام';
+                                    break;
+                                    }
+                                    $type = '';
+                                    switch ($item->type) {
+                                    case 'out':
+                                    $type='حضوری';
+                                    break;
+                                    case 'chat':
+                                    $type='در لحظه';
+                                    break;
+                                    case 'online':
+                                    $type='انلاین';
+                                    break;
+                                    case 'in':
+                                    $type='تلفنی';
+                                    break;
                                     }
                                     @endphp
                                     <tr>
                                         <td>{{ $item->Advisor->name }}</td>
-                                        <td>{{$item->subject}}</td>
+                                        <td>{{ $type }}</td>
+                                        <td>{{ $item->subject }}</td>
                                         <td>{{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('d M Y') }}</td>
                                         <td>{{ $item->time }} دقیقه</td>
-                                        <td>{{number_format($item->price)}} تومان</td>
-                                        <td>{{$status}}</td>
+                                        <td>{{ number_format($item->price) }} تومان</td>
+                                        <td>{{ $status }}</td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">هنور موردی ثبت نشده</td>
+                                        <td colspan="7" class="text-center">هنور موردی ثبت نشده</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
+                    {{ $Conversations->links() }}
                 </div>
             </div>
         </div>
