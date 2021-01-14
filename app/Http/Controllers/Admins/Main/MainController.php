@@ -107,6 +107,12 @@ class MainController extends Controller
     }
 
 
+    public function AdvicedHistory()
+    {
+        return view('Admins.AdvicedHistory.index');
+    }
+
+
     public function Subjects()
     {
         return view('Admins.Subject.index');

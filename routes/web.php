@@ -164,6 +164,10 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::post('/SupportMessageDelete', 'Support\SupportController@DeleteMessage')->name('SupportMessageDelete');
 
 
+        //AdvicedHistory
+        Route::get('AvicedHistory', 'Main\MainController@AdvicedHistory')->name('AdvicedHistory');
+
+
         // Questions
         Route::post('/AddQuestionHow', 'Main\QuestionController@AddHow')->name('AddQuestionHow');
         Route::get('/DeleteQuestionHow/{id}', 'Main\QuestionController@destroyHow')->name('DeleteQuestionHow');
