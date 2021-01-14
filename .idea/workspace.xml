@@ -2,25 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4a6b44-a342-42f6-bf50-a68af801bb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Advisors/AdvisorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Advisors/AdvisorsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Payment/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_25_103120_create_chats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_25_103120_create_chats_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Question/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Question/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/FuturistAdvice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/FuturistAdvice.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/ajax/delete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/ajax/delete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_01_21_12_46_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_01_21_12_46__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Main/UnfinishedConsultationsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Admins/Unfinished/UnfinishedConsultations.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/_Mr_roknipour.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/_Mr_roknipour.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/_Vazir-Font.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/_Vazir-Font.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/_color-palette.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/_color-palette.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/_components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/_components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/dist/_Mr_roknipour.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/dist/_Mr_roknipour.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/dist/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/dist/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Web/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Web/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/lib/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/lib/ajax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/lib/jquery.countdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/lib/jquery.countdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/lib/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/lib/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-aviny.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-aviny.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-dastnevis.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-dastnevis.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-droid-naskh.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-droid-naskh.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-dubai.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-dubai.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-helvetica-neue.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-helvetica-neue.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-iran-sans.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-iran-sans.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-lalezar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-lalezar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-myriad.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-myriad.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-neirizi.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-neirizi.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-palatino-sans.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-palatino-sans.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-sahel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-sahel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-shabnam.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-shabnam.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-vazir.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-vazir.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-yekan-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-yekan-2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/primary-yekan.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/primary-yekan.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-aviny.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-aviny.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-dastnevis.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-dastnevis.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-droid-naskh.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-droid-naskh.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-dubai.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-dubai.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-helvetica-neue.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-helvetica-neue.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-iran-sans.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-iran-sans.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-lalezar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-lalezar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-myriad.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-myriad.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-neirizi.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-neirizi.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-palatino-sans.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-palatino-sans.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-sahel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-sahel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-shabnam.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-shabnam.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-vazir.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-vazir.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-yekan-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-yekan-2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/css/font/secondary-yekan.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/css/font/secondary-yekan.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/charts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/ckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/ckeditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/clockpicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/clockpicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/colorpicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/colorpicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/datatable.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/datatable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/datepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/datepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/dropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/dropzone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/form-wizard.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/form-wizard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/fullcalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/fullcalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/input-mask.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/input-mask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/lightbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/lightbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/range-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/range-slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/select2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/select2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/sweet-alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/sweet-alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/swiper.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/swiper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/tagsinput.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/tagsinput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/toast.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/toast.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/tour.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/tour.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/js/examples/treeview.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/js/examples/treeview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610352995683</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="22-10">
+      <created>1610615854118</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610615854118</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

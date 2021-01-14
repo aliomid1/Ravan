@@ -22,7 +22,7 @@ $('.sendcode').click(function () {
             if (res == true) {
                 item.html('ارسال کد تایید');
                 item.removeAttr('disabled', 'disabled');
-                $('.sendcode').text('ارسال مجدد کد ');
+                $('.sendcode').hide();
                 $('.verify').fadeIn();
                 $('.checkcode').fadeIn();
 
