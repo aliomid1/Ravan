@@ -93,29 +93,14 @@ class LoginController extends Controller
                 ]);
             }
             $code = rand(00000, 99999);
-            if ($test) {
-                $code = 12345;
-                Session::put('usernw', $user->id);
-                Session::put('codesms', $code);
+            $message = 'کد ورود شما به ' . $settings->title . ':' . $code;
+            Session::put('usernw', $user->id);
+            Session::put('codesms', $code);
+            $sendsms = $this->SMS($mobile, $message);
+            if ($sendsms) {
                 return true;
-            }
-            try {
-                $username = env('MELIPAYAMAKUSERNAME');
-                $password = env('MELIPAYAMAKPASSWORD');
-                $api = new MelipayamakApi($username, $password);
-                $sms = $api->sms();
-                $to = $request->mobile;
-                $from = env('NUMBERSMS');
-                $text = 'کد ورود شما به ' . $settings->title . ':' . $code;
-                $response = $sms->send($to, $from, $text);
-                $json = json_decode($response);
-                if ($json->Value > 12 || $json->Value == 1) {
-                    return true;
-                } else {
-                    return 'کد برای شما ارسال نشد لطفا مجددا تلاش کنید';
-                }
-            } catch (Exception $e) {
-                return $e->getMessage();
+            } else {
+                return true;
             }
         } else {
             return 'شماره تلفن خود را وارد کنید';

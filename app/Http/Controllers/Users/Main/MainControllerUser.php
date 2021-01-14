@@ -122,6 +122,7 @@ class MainControllerUser extends Controller
     {
         $User = Auth::guard('web')->user();
         $Conversation = Conversation::where('user_id',$User->id)->paginate(10);
+       
         return view('Users.Main.Conversations',['Conversation'=>$Conversation]);
     }
 

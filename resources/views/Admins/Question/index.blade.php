@@ -105,7 +105,7 @@
                         <h4 class="mb-4 mt-4 card-title">عکس های تاییدیه</h4>
                         <div class="text-center">
                             <div class="row items">
-                                @forelse(\App\Models\image::where('type' , 'certification_image')->get() as $key => $item)
+                                @forelse(\App\Models\Image::where('type' , 'certification_image')->get() as $key => $item)
                                 @php
                                     // dd([$key][$item['trust_image']]);
                                     // dd($item);

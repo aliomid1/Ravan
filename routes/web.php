@@ -87,6 +87,8 @@ Route::namespace('Web')->name('Web.')->group(function () {
     Route::get('StartChat/{id}', 'Chat\ChatController@StartChat')->name('STARTChat');
     Route::get('CheckChatData/{id}/{sender}', 'Chat\ChatController@CheckChatData')->name('CheckChatData');
     Route::get('CheckPaymentChat/{id}/{typepay}', 'Chat\ChatController@CheckPaymentChat')->name('CheckPaymentChat');
+    Route::get('CheckEndChat/{id}/{time}/{type}', 'Chat\ChatController@CheckEndChat')->name('CheckEndChat');
+
 });
 
 
@@ -144,6 +146,8 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::get('DepositToAdvisorsAccount', 'Main\DepositToAdvisorsAccountController@index')->name('DepositToAdvisorsAccount');
         Route::post('DepositToAdvisorsAccount', 'Main\DepositToAdvisorsAccountController@status')->name('DepositToAdvisorsAccount.status');
 
+        //UnfinishedConsultations
+        Route::get('UnfinishedConsultations', 'Main\UnfinishedConsultationsController@index')->name('UnfinishedConsultations');
 
 
         // Support
@@ -155,8 +159,12 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
 
 
         // Questions
-        Route::get('/DeleteQuestion/{id}', 'Main\QuestionController@destroy')->name('DeleteQuestion');
-        Route::post('/AddQuestion', 'Main\QuestionController@Add')->name('AddQuestion');
+        Route::post('/AddQuestionHow', 'Main\QuestionController@AddHow')->name('AddQuestionHow');
+        Route::get('/DeleteQuestionHow/{id}', 'Main\QuestionController@destroyHow')->name('DeleteQuestionHow');
+        Route::post('/AddQuestionWhy', 'Main\QuestionController@AddWhy')->name('AddQuestionWhy');
+        Route::get('/DeleteQuestionWhy/{id}', 'Main\QuestionController@destroyWhy')->name('DeleteQuestionWhy');
+        Route::post('/AddImageWhy', 'Main\QuestionController@AddImageWhy')->name('AddImageWhy');
+        Route::get('/DeleteImageWhy/{id}', 'Main\QuestionController@destroyImageWhy')->name('DeleteImageWhy');
         Route::get('Questions', 'Main\MainController@Questions')->name('Questions');
 
 
@@ -226,7 +234,10 @@ Route::prefix('Advisors')->name('Advisors.')->group(function () {
             Route::get('Transaction', 'Main\MainController@Transactions')->name('Transactions');
             Route::get('BuyPlans', 'Main\MainController@BuyPlan')->name('BuyPlan');
             Route::get('BuyPlan/{id}', 'Plans\PlanController@Buy')->name('BuyPlanc');
-
+            Route::get('StartReserve/{id}', 'Main\MainController@StartReserve')->name('StartReserve');
+           
+           
+            
             Route::get('Support', 'Main\MainController@Support')->name('Support');
             Route::get('SetAdvisesTime', 'Main\MainController@SetAdvisesTime')->name('SetAdvisesTime');
             Route::post('SetAdvisesTime/create', 'Main\MainController@SetAdvisesTime_create')->name('SetAdvisesTime.create');
@@ -258,7 +269,6 @@ Route::prefix('Users')->name('Users.')->middleware('MustBeUser')->group(function
         Route::post('Share', 'Main\MainControllerUser@Share')->name('Share');
         Route::get('NowAdviced', 'Main\MainControllerUser@NowAdviced')->name('NowAdviced');
         Route::get('FuturistAdvice', 'Main\MainControllerUser@FuturistAdvice')->name('FuturistAdvice');
-        Route::get('Conversations', 'Main\MainControllerUser@Conversations')->name('Conversations');
         Route::get('Transactions', 'Main\MainControllerUser@Transactions')->name('Transactions');
         Route::get('Support', 'Main\MainControllerUser@Support')->name('Support');
         Route::get('Assist', 'Main\MainControllerUser@Assist')->name('Assist');

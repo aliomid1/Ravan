@@ -1,19 +1,27 @@
 @extends('layout.Advisors.template')
-@section('title', 'داشبورد')
-
-@section('style')
-@endsection
-
-@php
-$Persent = \App\Models\Settings::first()->persent;
-$Advisor = Auth::guard('advisor')->User();
-$AdvisorPayment = $Advisor->Payment();
-$AdvisorPaymentP = $Advisor->Payment()->paginate(10);
-$trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'true'])
-->where('type','!=','plan')
-->get();
-
-@endphp
+@section('title', 'اطلاعات مالی')
+    @php
+    $Persent = \App\Models\Settings::first()->persent;
+    $Advisor = Auth::guard('advisor')->User();
+    $AdvisorPayment = $Advisor->Payment();
+    $AdvisorPaymentP = $Advisor->Payment()->paginate(10);
+    $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'true'])
+    ->where('type','!=','plan')
+    ->get();
+    $trxsblock=0;
+    if($trxs){
+        foreach($trxs as $tx){
+              
+            if($tx->Conversation){
+                if($tx->Conversation->status!='done'){
+                 
+                   $trxsblock+=$tx->price;
+                }
+            }
+        }
+    }
+  
+    @endphp
 
 @section('content')
     <div class="container-fluid">
@@ -79,7 +87,8 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                 <tr class="bg-dark text-white">
                                     <th>#</th>
                                     <th>تاریخ</th>
-                                    <th class="">توضیحات</th>
+                                    <th class="">نوع مشاوره</th>
+                                    <th class="">موضوع</th>
                                     <th class="">مقدار مشاوره به دقیقه</th>
                                     <th class="">درآمد </th>
                                 </tr>
@@ -92,25 +101,27 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                             {{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('Y/m/d') }}
                                         </td>
                                         @php
+                                        $chat =$item->Conversation;
+                                        
                                         $typess='';
                                         $time = 0;
+                                        $subject='';
                                         switch ($item->type) {
                                         case 'chat':
-                                        $typess='چت انلاین';
-                                        $chat = \App\Models\Chat::find($item->chat_id);
+                                        $typess='در لحظه';
                                         if ($chat) {
-                                        $time=$chat->expiretime/60;
+                                        $time=$chat->time;
+                                        $subject=$chat->subject;
                                         }else{
                                         $time='نامشخص';
                                         }
-
                                         break;
 
-                                        case 'on':
+                                        case 'online':
                                         $typess='گفتگو رزرو شده انلاین';
-                                        $chat = \App\Models\Conversation::find($item->chat_id);
                                         if ($chat) {
                                         $time=$chat->time;
+                                        $subject=$chat->subject;
                                         }else{
                                         $time='نامشخص';
                                         }
@@ -118,9 +129,9 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
 
                                         case 'out':
                                         $typess='گفتگو رزرو شده حضوری';
-                                        $chat = \App\Models\Conversation::find($item->chat_id);
                                         if ($chat) {
                                         $time=$chat->time;
+                                        $subject=$chat->subject;
                                         }else{
                                         $time='نامشخص';
                                         }
@@ -128,8 +139,9 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                         }
                                         @endphp
                                         <td class="">{{ $typess }}</td>
+                                        <td class="">{{ $subject }}</td>
                                         <td class="">{{ $time }} </td>
-                                        <td class="">{{number_format( $item->price )}} تومان</td>
+                                        <td class="">{{ number_format($item->price) }} تومان</td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
@@ -143,24 +155,15 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th>{{number_format( $trxs->sum('price') )}} تومان
+                                    <th>{{ number_format($trxs->sum('price')) }} تومان
                                     </th>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                     <nav class="m-t-30 d-flex justify-content-center">
-                        {{-- <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">بعدی</a>
-                            </li>
-                        </ul> --}}
+
+
 
                     </nav>
                     <div class="table-responsive" tabindex="1" style=" outline: none;">
@@ -179,7 +182,7 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                                 @forelse($AdvisorPaymentP as $item)
                                     <tr class="">
                                         <td class="">{{ $loop->iteration }}</td>
-                                        <td class="">{{ $item->status=="done"?"واریز شد":"درحال برسی" }}</td>
+                                        <td class="">{{ $item->status == 'done' ? 'واریز شد' : 'درحال برسی' }}</td>
                                         <td class="">
                                             {{ $item->updated_at ? \Morilog\Jalali\Jalalian::forge($item->updated_at)->format('Y/m/d') : '-' }}
                                         </td>
@@ -195,7 +198,7 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                             <tfoot class="text-center">
                                 <tr class="text-success ">
                                     <th colspan="4" class="text-right">مجموع وجوه برداشت شده از حساب شما :</th>
-                                    <th >{{ number_format($AdvisorPayment->sum('amount')) }} تومان
+                                    <th>{{ number_format($AdvisorPayment->sum('amount')) }} تومان
                                     </th>
                                 </tr>
                             </tfoot>
@@ -217,17 +220,18 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
                     </nav>
                     <div class="text-right">
                         <p>جمع درآمد : {{ number_format($trxs->sum('price')) }} تومان</p>
-                        <p>مجموع وجوه برداشت شده از حساب شما: <span class="text-danger">{{ number_format($AdvisorPayment->sum('amount')) }} - تومان</span>
+                        <p>مجموع وجوه برداشت شده از حساب شما: <span
+                                class="text-danger">{{ number_format($AdvisorPayment->sum('amount')) }} تومان</span>
                         </p>
                         <h4 class="font-weight-800 primary-font text-success">مبلغ قابل برداشت از حساب شما:
-                            {{ number_format($trxs->sum('price') - $AdvisorPayment->sum('amount')) }}
+                            {{ number_format($trxs->sum('price') - $AdvisorPayment->sum('amount')-$trxsblock)  }}
                             تومان
                         </h4>
                     </div>
                 </div>
                 <div class=" d-print-none">
                     <hr class="m-t-b-50">
-                    <form action="{{route('Advisors.RequestWithdraw')}}" method="post">
+                    <form action="{{ route('Advisors.RequestWithdraw') }}" method="post">
                         @csrf
                         <div class="row justify-content-between align-items-end">
                             <div class="col-lg-5">
@@ -256,10 +260,4 @@ $trxs = \App\Models\Transaction::where(['advisor_id'=>$Advisor->id,'status'=>'tr
         </div>
 
     </div>
-@endsection
-
-
-
-@section('js')
-
 @endsection

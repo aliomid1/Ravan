@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Advisors\Main;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Advisor\Main\SetAdvisesTime\DateAndTimesRequest;
 use App\lib\Messages\FlashMessage;
+use App\Models\Advisors;
+use App\Models\Chat;
 use App\Models\Conversation;
 use App\Models\Image;
-use App\Models\Plan;
+use App\User;
 use App\Models\PlansAdvisor;
 use App\Models\Settings;
 use App\Models\Transaction;
@@ -121,6 +123,7 @@ class MainController extends Controller
             $TimeOfOneCosultatio = Auth::guard('advisor')->user()->time_of_one_consultation;
         }
         $Consultations = json_decode($Advisor->consultations_times, true);
+        $Consultations = $this->ExpirationTime($Consultations);
         $ConsultationsTimes = [];
         if ($Consultations) {
             foreach ($Consultations as $key => $v) {
@@ -269,7 +272,54 @@ class MainController extends Controller
             return back();
         }
     }
+    public function StartReserve(Request $request)
+    {
+        $Conversation = Conversation::find($request->id);
 
+        if ($Conversation) {
+            if ($Conversation->start_at <= Carbon::now()) {
+                switch ($Conversation->type) {
+                    case "online":
+                        $chat = Chat::where('conversation_id', $Conversation->id)->first();
+                        if ($chat) {
+                            $Conversation->update(['status' => 'doing']);
+                            $chat->update([ 'status' => true, 'used' => true]);
+                            return redirect(route('Web.STARTChat', $chat->id));
+                        } else {
+                            $user = User::find($Conversation->user_id);
+                            $advisor = Advisors::find($Conversation->advisor_id);
+                            $data = [
+                                'user' => $user,
+                                'advisor' => $advisor,
+                                'conversation' => $Conversation
+                            ];
+                            $chat = $this->NewChat($data);
+                            $chat->update([ 'status' => true, 'used' => true]);
+                            $Conversation->update(['status' => 'doing']);
+                            return redirect(route('Web.STARTChat', $chat->id));
+                        }
+
+                        break;
+                    case "in":
+                        $Conversation->update(['status' => 'doing']);
+                        FlashMessage::set('success', 'مشاوره شروع شد');
+                        return back();
+                        break;
+                    case "out":
+                        $Conversation->update(['status' => 'doing']);
+                        FlashMessage::set('success', 'مشاوره شروع شد');
+                        return back();
+                        break;
+                }
+            } else {
+                FlashMessage::set('error', 'مشاوره هنوز شروع نشده');
+                return back();
+            }
+        } else {
+            FlashMessage::set('error', 'مشکلی پیش امده');
+            return back();
+        }
+    }
     public function Transactions()
     {
         return view('Advisors.Main.Transactions');

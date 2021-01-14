@@ -17,6 +17,7 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->boolean('status');
             $table->boolean('used');
+            $table->text('conversation_id');
             $table->text('user_id');
             $table->integer('expiretime');
             $table->text('expert_id');

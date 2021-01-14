@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\lib\Messages\FlashMessage;
-use App\Models\Transaction;
+use App\Models\Chat;
+use App\Models\Settings;
+use Exception;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Session;
-use Larabookir\Gateway\Exceptions\RetryException;
-use Larabookir\Gateway\Gateway;
+use Melipayamak\MelipayamakApi;
+use Morilog\Jalali\Jalalian;
 
 class Controller extends BaseController
 {
@@ -24,7 +25,28 @@ class Controller extends BaseController
 
         return redirect(route('Web.index'));
     }
+    public function SMS($mobile, $message)
+    {
 
+        try {
+            $username = env('MELIPAYAMAKUSERNAME');
+            $password = env('MELIPAYAMAKPASSWORD');
+            $api = new MelipayamakApi($username, $password);
+            $sms = $api->sms();
+            $to = $mobile;
+            $from = env('NUMBERSMS');
+            $text = $message;
+            $response = $sms->send($to, $from, $text);
+            $json = json_decode($response);
+            if ($json->Value > 12 || $json->Value == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
     public function CKEDITOR(Request $request)
     {
         if ($request->hasFile('upload')) {
@@ -55,6 +77,68 @@ class Controller extends BaseController
             "{$key}={$value}",
             file_get_contents($path)
         ));
+    }
+
+    public function ExpirationTime($ConsultationsTimes)
+    {
+        $NewConsultationsTimes = [];
+        $now = Jalalian::now();
+        if ($ConsultationsTimes) {
+            foreach ($ConsultationsTimes as $key => $v) {
+                foreach ($v['Sliced'] as $d => $t) {
+                    if ($now->format('Y/m/d') > $d) {
+                        unset($ConsultationsTimes[$key]['Sliced'], $d);
+                        unset($ConsultationsTimes[$key]['NotSliced'], $d);
+                    } else {
+                        foreach ($t as $i => $s) {
+                            if ($s['Time'] < $now->format('H:i')) {
+                                $ConsultationsTimes[$key]['Sliced'][$d][$i]['Status'] = "0";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $NewConsultationsTimes = $ConsultationsTimes;
+
+        return $NewConsultationsTimes;
+    }
+
+    public function NewChat($data)
+    {
+        $user = $data['user'];
+        $advisor = $data['advisor'];
+        $conversation = $data['conversation'];
+        $encrypteddata = (new Encrypter(env('APP_CIPHER_SERVERKEY')))->encryptString(json_encode([
+            'user_id' => $user->id,
+            'expert_id' => $advisor->id,
+            'starter' => 'user'
+        ]));
+        $settings = Settings::find(1);
+        $profileAdvisor = $advisor->Profile ? $advisor->Profile->url : '';
+        $profileUser = $user->Image ? $user->Image->url : '';
+        $time = $advisor->time_of_one_consultation ? $advisor->time_of_one_consultation : $settings->time_default;
+        $price = $advisor->price ? $advisor->price : $settings->price_default;
+        $price = ($time * $price);
+        $price = $price + (($price * $settings->percent) / 100);
+        $time = (60 * $time);
+        $chat = Chat::create([
+            'status' => false,
+            'used' => false,
+            'user_id' => $user->id,
+            'conversation_id' => $conversation->id,
+            'expiretime' => $time,
+            'expert_id' => $advisor->id,
+            'user_name' => $user->fullname,
+            'expert_name' =>  $advisor->name,
+            'user_profile' => $profileUser,
+            'advisor_profile' => $profileAdvisor,
+            'HasVoiceCall' => true,
+            'HasVideoCall' => true,
+            'encrypt' => $encrypteddata
+        ]);
+
+        return $chat;
     }
 
     public function CkeckTimeSet($OldConsultationsTimes, $request)

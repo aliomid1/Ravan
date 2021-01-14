@@ -26,7 +26,7 @@ class CreateAdminsTable extends Migration
             [
                 'username'=>'09150726835',
                 'profile'=>'uploads/Admin//1609865703beiheng-guo-IAVVv6z3D6g-unsplash.jpg',
-                'password'=>'$2y$10$$2y$10$eytUKB6NtwcuvsFpUVRjXup80YuOk9X1JWs9fp8HUbYxjBZ5itry2',
+                'password'=>'e10adc3949ba59abbe56e057f20f883e',
             ]
         );
     }

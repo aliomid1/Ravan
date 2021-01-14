@@ -29,13 +29,6 @@ class ReservationController extends Controller
             $price = ($time * $price);
             $price = $price + (($price * $settings->percent) / 100);
             $code = rand(00000, 99999);
-            $trx =  Transaction::create([
-                'user_id' => $user->id,
-                'advisor_id' => $advisor->id,
-                'price' => $price,
-                'type' => $request->type,
-                'status' => 'false'
-            ]);
             $con = Conversation::create([
                 'user_id' => $user->id,
                 'advisor_id' => $request->id,
@@ -47,7 +40,16 @@ class ReservationController extends Controller
                 'subject' => $request->subject,
                 'start_at' => $request->date
             ]);
-            if($request->payment=='true'){
+            $trx =  Transaction::create([
+                'chat_id' => $con->id,
+                'user_id' => $user->id,
+                'advisor_id' => $advisor->id,
+                'price' => $price,
+                'type' => $request->type,
+                'status' => 'false'
+            ]);
+
+            if ($request->payment == 'true') {
                 $trx->update([
                     'status' => 'true',
                 ]);
@@ -55,8 +57,8 @@ class ReservationController extends Controller
                     $con->update(['status' => 'to_do']);
                 }
                 FlashMessage::set('success', 'مشاور شما رزرو شد');
-                return redirect(route('Users.Conversations'));
-            }else{
+                return redirect(route('Users.FuturistAdvice'));
+            } else {
 
                 Session::put('conid', $con->id);
                 Session::put('paytransid', $trx->id);
@@ -113,7 +115,6 @@ class ReservationController extends Controller
                     }
                 }
             }
-
         } else {
             return redirect(route('Web.ConsultantList'));
         }
@@ -145,7 +146,7 @@ class ReservationController extends Controller
             }
 
             FlashMessage::set('success', 'مشاور شما رزرو شد');
-            return redirect(route('Users.Conversations'));
+            return redirect(route('Users.FuturistAdvice'));
         } catch (RetryException $e) {
             if (is_object($con)) {
                 $con->delete();
@@ -210,7 +211,7 @@ class ReservationController extends Controller
                         'trackingcode' => $result['track_id']
                     ]);
                     FlashMessage::set('success', 'مشاور شما رزرو شد');
-                    return redirect(route('Users.Conversations'));
+                    return redirect(route('Users.FuturistAdvice'));
                 } else {
                     $datarev = Session::get('convvtt');
                     if ($datarev) {

@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4a6b44-a342-42f6-bf50-a68af801bb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/Advisors/AdvisorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/Advisors/AdvisorsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Main/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Advisors/Payment/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/Main/MainControllerUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Chat/ChatController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/MainController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/Main/ReservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Advisors/AdvisorsList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Advisors/AdvisorsList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Chats.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Chats.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Conversations.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Conversations.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Users/Main/Conversations.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Users/Main/Conversations.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Users/Main/Dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Users/Main/Dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/Users/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/Users/template.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063202_create_admins_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_063431_create_settings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_25_103120_create_chats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_25_103120_create_chats_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Admins/Question/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admins/Question/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/FuturistAdvice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/FuturistAdvice.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Advisors/Main/Transactions.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/ajax/delete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/ajax/delete.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,6 +200,7 @@
       <workItem from="1609923695586" duration="10214000" />
       <workItem from="1610352953046" duration="661000" />
       <workItem from="1610456128851" duration="599000" />
+      <workItem from="1610554739808" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="check">
       <created>1609911447336</created>

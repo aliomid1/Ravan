@@ -26,8 +26,7 @@
                     dangerMode: true
                 })
                 .then(function(willDelete) {
-                    if (willDelete) {
-                        alert('hi')
+                    if (willDelete) {          
                         $.ajax({
                             type: typesend,
                             url: url,

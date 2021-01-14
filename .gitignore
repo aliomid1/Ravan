@@ -20,4 +20,4 @@ yarn-error.log
 /tests
 .editorconfig
 .env.example
-
+/.idea

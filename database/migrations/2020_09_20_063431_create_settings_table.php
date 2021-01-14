@@ -49,6 +49,9 @@ class CreateSettingsTable extends Migration
                 'type_signUp_users' => 'on',
                 'verify_email' => 'on',
                 'textmessage' => '',
+                'textmessagesignup' => '',
+                'timeleftadvisor' => '10',
+                'timeleftuser' => '5',
                 'url_chat' => '192.168.1.100',
             ],
         ]);

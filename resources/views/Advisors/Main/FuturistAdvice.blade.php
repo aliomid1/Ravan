@@ -66,7 +66,8 @@
                                                         <p>مشاوره درحال انجام است</p>
                                                     @endif
                                                     @if ($item->status == 'to_do')
-                                                        <a href="" class="btn btn-primary text-white">شروع مشاوره</a>
+                                                        <a href="{{ route('Advisors.StartReserve', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary text-white">شروع مشاوره</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -127,11 +128,12 @@
                                                 <td>
                                                     @if ($item->status == 'doing')
                                                         <a href="#" data-toggle="modal" data-target="#exampleModal"
-                                                             data-id="{{ $item->id }}"
+                                                            data-id="{{ $item->id }}"
                                                             class="endReserve btn btn-warning text-white">اتمام مشاوره</a>
                                                     @endif
                                                     @if ($item->status == 'to_do')
-                                                        <a href="" class="btn btn-primary text-white">شروع مشاوره</a>
+                                                        <a href="{{ route('Advisors.StartReserve', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary text-white">شروع مشاوره</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -192,11 +194,12 @@
                                                 <td>
                                                     @if ($item->status == 'doing')
                                                         <a href="#" data-toggle="modal" data-target="#exampleModal"
-                                                             data-id="{{ $item->id }}"
+                                                            data-id="{{ $item->id }}"
                                                             class="endReserve btn btn-warning text-white">اتمام مشاوره</a>
                                                     @endif
                                                     @if ($item->status == 'to_do')
-                                                        <a href="" class="btn btn-primary text-white">شروع مشاوره</a>
+                                                        <a href="{{ route('Advisors.StartReserve', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary text-white">شروع مشاوره</a>
                                                     @endif
                                                 </td>
 
@@ -223,7 +226,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{route('Advisors.EndReserve')}}" method="POST">
+            <form action="{{ route('Advisors.EndReserve') }}" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">ایا مشاوره تمام شد ؟</h5>
@@ -263,8 +266,8 @@
             });
         });
         $('.endReserve').click(function() {
-              var id = $(this).data('id');
-              $('#idd').val(id);
+            var id = $(this).data('id');
+            $('#idd').val(id);
         });
 
     </script>

@@ -112,7 +112,12 @@ class MainController extends Controller
 
     public function Blog($id)
     {
-        $RandomBlogs = Blog::all()->random(4);
+        $CountBlogs = Blog::count();
+        if($CountBlogs>4){
+            $RandomBlogs = Blog::all()->random(4);
+        }else{
+            $RandomBlogs = Blog::all()->random($CountBlogs);
+        }
         $Blog = Blog::find($id);
         $SelectedCat = explode(',', $Blog->categories);
         $Keywords = explode(',', $Blog->keywords);
@@ -245,6 +250,7 @@ class MainController extends Controller
                 $TimeOfOneCosultatio =  $advisor->time_of_one_consultation;
             }
             $Consultations = json_decode($advisor->consultations_times, true);
+            $Consultations = $this->ExpirationTime($Consultations);
             $ConsultationsTimes = [];
             if ($Consultations) {
                 foreach ($Consultations as $key => $v) {

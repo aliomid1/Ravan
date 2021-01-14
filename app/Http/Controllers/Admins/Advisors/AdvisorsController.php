@@ -9,6 +9,7 @@ use App\lib\File\BaseUploader;
 use App\lib\Messages\FlashMessage;
 use App\Models\Advisors;
 use App\Models\Image;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -40,7 +41,13 @@ class AdvisorsController extends Controller
             'networks' => $networks,
             'password' => Hash::make($request->password),
         ]);
-        Advisors::create($request->only(['name', 'mobile', 'email', 'tel', 'address', 'username', 'password' , 'networks',]));
+        $settings = Settings::first();
+        $advisor = Advisors::create($request->only(['name', 'mobile', 'email', 'tel', 'address', 'username', 'password', 'networks',]));
+        $message = $settings->textmessagesignup . "\n" .
+            ' لینک ورود ' . route('Advisors.auth.Login') . "\n" .
+            'نام کاربری' . $advisor->username . "\n" .
+            'کلمه عبور' . $request->password;
+        $this->SMS($advisor->mobile, $message);
         FlashMessage::set('success', 'اطلاعات با موفقيت ويرايش شد');
         return back();
     }
@@ -60,7 +67,7 @@ class AdvisorsController extends Controller
 
 
 
-    public function update(UpdateRequest $request , $id)
+    public function update(UpdateRequest $request, $id)
     {
         // dd('hi');
         $Advisor = Advisors::find($id);
@@ -72,7 +79,7 @@ class AdvisorsController extends Controller
             ]);
             $Advisor->update($request->only(['password']));
         }
-      
+
         $networks = array();
         if ($request->telegram) {
             $networks['telegram'] = $request->telegram;
@@ -102,13 +109,14 @@ class AdvisorsController extends Controller
     }
 
 
-    
-    public function destroy(Request $request) {
-  
+
+    public function destroy(Request $request)
+    {
+
         if ($request->id) {
             $advisor = Advisors::find($request->id);
             if ($advisor) {
-                $image = Image::where('item_id', $advisor->id)->where('type','profile_advisor')->first();
+                $image = Image::where('item_id', $advisor->id)->where('type', 'profile_advisor')->first();
                 if ($image) {
                     BaseUploader::delete($image->url);
                     $image->delete();

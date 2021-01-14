@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Web\Chat;
 
 use App\Http\Controllers\Controller;
+use App\lib\Messages\FlashMessage;
 use App\Models\Advisors;
 use App\Models\Chat;
 use App\Models\Conversation;
 use App\Models\Settings;
 use App\Models\Transaction;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,21 +23,14 @@ class ChatController extends Controller
         if ($id) {
             $advisor = Advisors::find($id);
             $user = Auth::guard('web')->user();
-
-            $encrypteddata = (new Encrypter(env('APP_CIPHER_SERVERKEY')))->encryptString(json_encode([
-                'user_id' => $user->id,
-                'expert_id' => $advisor->id,
-                'starter' => 'user'
-            ]));
-            $settings = Settings::find(1);
             $code = rand(00000, 99999);
-            $profileAdvisor = $advisor->Profile ? $advisor->Profile->url : '';
-            $profileUser = $user->Image ? $user->Image->url : '';
+            $settings = Settings::find(1);
             $time = $advisor->time_of_one_consultation ? $advisor->time_of_one_consultation : $settings->time_default;
             $price = $advisor->price ? $advisor->price : $settings->price_default;
             $price = ($time * $price);
             $price = $price + (($price * $settings->percent) / 100);
-            Conversation::create([
+            $time = (60 * $time);
+            $conversation = Conversation::create([
                 'user_id' => $user->id,
                 'advisor_id' => $advisor->id,
                 'type' => 'chat',
@@ -46,22 +41,12 @@ class ChatController extends Controller
                 'code' => $code,
                 'start_at' => Carbon::now()
             ]);
-            $time = (60 * $time);
-            $chat = Chat::create([
-                'status' => false,
-                'used' => false,
-                'user_id' => $user->id,
-                'expiretime' => $time,
-                'expert_id' => $advisor->id,
-                'user_name' => $user->fullname,
-                'expert_name' =>  $advisor->name,
-                'user_profile' => $profileUser,
-                'advisor_profile' => $profileAdvisor,
-                'HasVoiceCall' => true,
-                'HasVideoCall' => true,
-                'encrypt' => $encrypteddata
-            ]);
-
+            $data = [
+                'user' => $user,
+                'advisor' => $advisor,
+                'conversation' => $conversation
+            ];
+            $chat = $this->NewChat($data);
             if ($payment == 'true') {
                 $transaction = Transaction::create([
                     'chat_id' => $chat->id,
@@ -102,6 +87,7 @@ class ChatController extends Controller
                 $USerR = $advisor;
                 $typesender = 'advisor';
             } else {
+                FlashMessage::set('error', 'درخواست کامل نیست');
                 return redirect(route('Web.index'));
             }
         } else {
@@ -111,14 +97,19 @@ class ChatController extends Controller
 
         if ($chat && $USerR) {
             if ($USerR->id == $chat->user_id || $USerR->id == $chat->expert_id) {
+                try {
+                    return redirect($settings->url_chat . '/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
+                } catch (Exception $e) {
+                    FlashMessage::set('error', $e->getMessage());
+                    return redirect(route('Web.index'));
+                }
+            } else {
 
-                return redirect('http://192.168.1.7:81'.'/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
-            }else{
-
+                FlashMessage::set('error', 'درخواست کامل نیست');
                 return redirect(route('Web.index'));
             }
-
         } else {
+            FlashMessage::set('error', 'درخواست کامل نیست');
             return redirect(route('Web.index'));
         }
     }
@@ -131,6 +122,7 @@ class ChatController extends Controller
             return response([
                 'status' => $chat->status,
                 'user_id' => $chat->user_id,
+                'conversation_id' => $chat->conversation_id,
                 'sender' => $sender,
                 'expiretime' => $chat->expiretime,
                 'expert_id' => $chat->expert_id,
@@ -147,11 +139,32 @@ class ChatController extends Controller
             ]);
         }
     }
-
+    public function CheckEndChat($id, $time, $type)
+    {
+        $settings = Settings::find(1);
+        $conversation = Conversation::find($id);
+        $timeac = 0;
+        if ($type == 'user') {
+            $timeac = $conversation->time - $settings->timeleftuser;
+        } else {
+            $timeac = $conversation->time - $settings->timeleftadvisor;
+        }
+        $time = $time / 60;
+        if ($time <= $timeac) {
+            $conversation->update(['status' => 'not' . $type == 'user' ? "advisor" : "user"]);
+            return response([
+                'status' => 200
+            ]);
+        } else {
+            return response([
+                'status' => 0
+            ]);
+        }
+    }
     public function CheckPaymentChat($id, $typepay)
     {
         $transaction = Transaction::find($id);
-
+        dd($transaction);
         if ($transaction) {
             if ($transaction->status == 'true') {
                 $chat = Chat::find($transaction->chat_id);
