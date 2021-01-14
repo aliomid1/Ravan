@@ -164,7 +164,7 @@ class ChatController extends Controller
     public function CheckPaymentChat($id, $typepay)
     {
         $transaction = Transaction::find($id);
-        dd($transaction);
+
         if ($transaction) {
             if ($transaction->status == 'true') {
                 $chat = Chat::find($transaction->chat_id);
