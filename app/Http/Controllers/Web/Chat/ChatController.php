@@ -29,7 +29,7 @@ class ChatController extends Controller
             $price = $advisor->price ? $advisor->price : $settings->price_default;
             $price = ($time * $price);
             $price = $price + (($price * $settings->percent) / 100);
-            $time = (60 * $time);
+
             $conversation = Conversation::create([
                 'user_id' => $user->id,
                 'advisor_id' => $advisor->id,
@@ -94,9 +94,11 @@ class ChatController extends Controller
             $USerR = $user;
             $typesender = 'user';
         }
-
+        
         if ($chat && $USerR) {
+
             if ($USerR->id == $chat->user_id || $USerR->id == $chat->expert_id) {
+
                 try {
                     return redirect($settings->url_chat . '/chat/start/' . $chat->id . '/' . $typesender . '/' . $chat->encrypt);
                 } catch (Exception $e) {

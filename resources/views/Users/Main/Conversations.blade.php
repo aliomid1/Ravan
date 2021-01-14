@@ -22,7 +22,7 @@
                                 <div class="list-group-item list-group-item-action d-flex">
                                     <div>
                                         <figure class="avatar avatar-sm">
-                                            <img src="{{ $item->User ? asset($item->User->Image->url) : asset('assets/avatar.jpg') }}"
+                                            <img src="{{ $item->Advisor ? $item->Advisor->Profile?asset($item->Advisor->Profile->url) :asset('assets/avatar.jpg') : asset('assets/avatar.jpg') }}"
                                                 class="rounded-circle">
                                         </figure>
                                     </div>
@@ -33,7 +33,7 @@
                                         <p class="m-0 small">{{ \Morilog\Jalali\Jalalian::forge($item->created_at)->ago() }}
                                             گفتگو ایجاد شده</p>
                                     </div>
-                                    <a class=" mr-auto btn btn-success" href="{{ route('Web.STARTChat', $item->id) }}">رفتن به
+                                    <a class=" mr-auto btn btn-success" href="{{ route('Web.STARTChat', $item->Chat->id) }}">رفتن به
                                         گفتگو</a>
                                 </div>
                             @empty

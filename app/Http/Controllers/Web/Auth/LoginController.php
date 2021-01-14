@@ -37,7 +37,6 @@ class LoginController extends Controller
     {
         $user = User::where('mobile', $request->mobile)->first();
         if ($user) {
-
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
                 if (!empty(auth()->user()->password)) {
@@ -95,9 +94,9 @@ class LoginController extends Controller
             $code = rand(00000, 99999);
             $message = 'کد ورود شما به ' . $settings->title . ':' . $code;
             Session::put('usernw', $user->id);
-            Session::put('codesms', $code);
-            $sendsms = $this->SMS($mobile, $message);
-            if ($sendsms) {
+            Session::put('codesms', 12345);
+//            $sendsms = $this->SMS($mobile, $message);
+            if ($code) {
                 return true;
             } else {
                 return true;
