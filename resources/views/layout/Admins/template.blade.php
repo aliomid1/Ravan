@@ -109,6 +109,8 @@ $settings = \App\Models\Settings::first();
                 </li>
                 <li><a href="{{ route('Admins.Support') }}"><i class="icon ti-comment"></i> <span>پشتیبانی </span> </a>
                 </li>
+                <li><a href="{{ route('Admins.AdvicedHistory') }}"><i class="icon ti-comment"></i> <span>آرشیو مشاوره های به اتمام رسیده</span> </a>
+                </li>
                 <li><a href="#"><i class="icon ti-layers"></i> <span>صفحات</span> </a>
                     <ul>
                         <li><a href="{{ route('Admins.PagesManager') }}">مدیریت صفحات</a></li>
