@@ -123,7 +123,7 @@
                     </div>
                 </form>
                 <div class="table-responsive" tabindex="1" style=" outline: none;">
-                    <h4 class="my-5">ليست کامنت های این موضوع</h4>
+                    <h4 class="my-5">ليست نظرات این موضوع</h4>
 
                     <table id="example1" class="subject-comment-table table table-striped table-bordered text-center">
                         <thead>

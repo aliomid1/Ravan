@@ -22,10 +22,39 @@
             <p>{!! $Blog->description !!}</p>
         </div>
         <div class="comment-single-page">
-            <h3>پاسخی بگذارید</h3>
-            <h6>با عنوان test وارد شده اید ایا خارج می شوید.</h6>
-            <textarea class="form-control" placeholder="متن دیدگاه..." name="" id="" cols="30" rows="10"></textarea>
-            <a class="btn btn-success mt-3" href="#">ثبت دیدگاه</a>
+                @forelse($Blog->ConfirmedComments as $item)
+                    <div class="item bg-white shadow-sm mb-4 rounded-lg part-padding-sm ">
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="
+                            @if ($item->User->Image)
+                            {{ asset($item->User->Image->url) }}
+                            @else
+                            {{ asset('assets/Web/images/useravatar.svg') }}
+                            @endif " alt="pik" class="ml-2" style="border-radius: 50%; width:42px; height:42px; ">
+                            <p class=" font-light">
+                                {{ $item->User ? $item->User->fullname : 'کاربر ناشناس' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p>{{ $item->text }}</p>
+                        </div>
+                        <div>
+                            <p class="text-left font-sm">
+                                {{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('Y/m/d') }}
+                            </p>
+                        </div>
+                    </div>
+                @empty
+                    <h4></h4>
+                @endforelse
+            <h3 class="mt-5">پاسخی بگذارید</h3>
+            <h6>جهت ثبت نظر باید وارد حساب کاربری شوید یا ثبت نام کنید.</h6>
+            <form action="{{ route('Web.AddBlogComment', $Blog->id) }}" method="POST">
+                @csrf
+                <textarea class="form-control"  placeholder="متن دیدگاه..." name="text" id="" cols="30" rows="10"></textarea>
+                <button type="submit" class="btn btn-success mt-3">ثبت نظر</button>
+            </form>
+
         </div>
     </div>
 

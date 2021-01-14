@@ -34,6 +34,7 @@ Route::namespace('Web')->name('Web.')->group(function () {
     Route::get('/Blogs/{title?}', 'Main\MainController@Blogs')->name('Blogs');
     Route::get('/Blogs/Category/{slog}', 'Main\MainController@CategoryBlogs')->name('Category.Blogs');
     Route::get('/Blog/{slog}', 'Main\MainController@Blog')->name('Blog');
+    Route::post('/Blog/{slog}', 'Main\MainController@AddBlogComment')->name('AddBlogComment');
     Route::post('/Blog', 'Main\MainController@BlogSearch')->name('BlogSearch');
 
     // Category
@@ -138,6 +139,11 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::resource('Blogs', 'Main\BlogsController');
         Route::get('BlogsCategory', 'Main\MainController@BlogsCategory')->name('BlogsCategory');
         Route::resource('BlogsCategories', 'Main\BlogsCategoryController');
+
+
+        // Blog Comments
+        Route::delete('BlogsComment', 'Main\BlogsCommentsController@destroy')->name('BlogsComments.delete');
+        Route::post('BlogsComment', 'Main\BlogsCommentsController@publication')->name('BlogsComments.publication');
 
 
         // Financial pages
@@ -259,6 +265,8 @@ Route::prefix('Users')->name('Users.')->middleware('MustBeUser')->group(function
         Route::get('NowAdviced', 'Main\MainControllerUser@NowAdviced')->name('NowAdviced');
         Route::get('FuturistAdvice', 'Main\MainControllerUser@FuturistAdvice')->name('FuturistAdvice');
         Route::get('Conversations', 'Main\MainControllerUser@Conversations')->name('Conversations');
+        Route::get('NoCommentedConversation/{ConversationId}', 'Main\MainControllerUser@NoCommentedConversation')->name('NoCommentedConversation');
+        Route::post('AddCommentedConversation', 'Main\MainControllerUser@AddCommentedConversation')->name('AddCommentedConversation');
         Route::get('Transactions', 'Main\MainControllerUser@Transactions')->name('Transactions');
         Route::get('Support', 'Main\MainControllerUser@Support')->name('Support');
         Route::get('Assist', 'Main\MainControllerUser@Assist')->name('Assist');
@@ -271,6 +279,7 @@ Route::prefix('Users')->name('Users.')->middleware('MustBeUser')->group(function
         // Profile
         Route::get('Profile', 'Main\MainControllerUser@Profile')->name('Profile');
         Route::put('Profile', 'Main\ProfileController@Update')->name('Profile.Update');
+        Route::post('ImageProfile', 'Main\ProfileController@ImageUpdate')->name('ProfileImage.Update');
         Route::post('VerifyEmail', 'Main\ProfileController@VerifyEmail')->name('VerifyEmail');
         Route::post('SendCodeEmail', 'Main\ProfileController@SendCodeEmail')->name('SendCodeEmail');
     });

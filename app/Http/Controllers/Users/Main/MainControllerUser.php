@@ -4,6 +4,7 @@ namespace app\Http\Controllers\Users\Main;
 
 use App\Http\Controllers\Controller;
 use App\lib\Messages\FlashMessage;
+use App\Models\Comment;
 use App\Models\Conversation;
 use App\Models\Settings;
 use App\User;
@@ -18,7 +19,35 @@ class MainControllerUser extends Controller
 
     public function Dashboard()
     {
-        return view('Users.Main.Dashboard');
+        $CurrentUser = Auth::user();
+        $NotCommented = Conversation::where('user_id' , $CurrentUser->id)->where('status', 'done')->where('comment_status' , null)->first();
+        return view('Users.Main.Dashboard', compact('NotCommented'));
+    }
+
+
+    public function NoCommentedConversation($ConversationId)
+    {
+        Conversation::find($ConversationId)->update(['comment_status' => 'off']);
+        return redirect(route('Users.Dashboard'));
+    }
+
+
+    public function AddCommentedConversation(Request $request)
+    {
+        $ConversationId = $request->NotCommentedId;
+        $Conversation = Conversation::find($ConversationId)->update(['comment_status' => 'on']);
+        $rating = $request->rating;
+        $text = $request->text;
+
+        Comment::create([
+            'user_id' => Conversation::find($ConversationId)->User,
+            'advisor_id' => Conversation::find($ConversationId)->Advisor,
+            'score' => $rating,
+            'text' => $text,
+            'status' => 'off',
+            'publication' => 'off',
+        ]);
+        return redirect(route('Users.Dashboard'));
     }
 
 

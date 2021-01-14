@@ -83,7 +83,7 @@
                 <ul>
                     <li><a href="{{ route('Admins.SubjectCategory') }}">لیست دسته بندی</a></li>
                     <li><a href="{{ route('Admins.SubjectCategories.create') }}">ایجاد دسته بندی</a></li>
-                    <li><a href="{{ route('Admins.Subjects') }}">موضوع ها</a></li>
+                    <li><a href="{{ route('Admins.Subjects') }}">لیست موضوعات و نظرات</a></li>
                     <li><a href="{{ route('Admins.Subject.create') }}">ایجاد موضوع</a></li>
 
                 </ul>
@@ -91,7 +91,7 @@
             <li><a><i class="icon ti-agenda"></i>
                     <span>مقالات</span></a>
                 <ul>
-                    <li><a href="{{ route('Admins.Blogs.index') }}">لیست مقالات</a></li>
+                    <li><a href="{{ route('Admins.Blogs.index') }}">لیست مقالات و نظرات</a></li>
                     <li><a href="{{ route('Admins.Blogs.create') }}">ایجاد مقاله</a></li>
                     <li><a href="{{ route('Admins.BlogsCategory') }}">لیست دسته بندی</a></li>
                     <li><a href="{{ route('Admins.BlogsCategories.create') }}">ایجاد دسته بندی</a></li>
