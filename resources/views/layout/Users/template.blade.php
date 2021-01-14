@@ -218,9 +218,7 @@ $settings = \App\Models\Settings::first();
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown">
                             <figure class="avatar avatar-sm avatar-state-success">
-                                <img class="rounded-circle"
-                                    src="{{ asset(Auth::guard('web')->user()->Image ? Auth::guard('web')->user()->Image->url : 'assets/avatar.jpg') }}"
-                                    alt="...">
+                                <img class="rounded-circle advisor_profile" src="{{ asset(Auth::guard('web')->user()->Image?Auth::guard('web')->user()->Image->url:'assets/avatar.jpg') }}" alt="...">
 
                             </figure>
                         </a>

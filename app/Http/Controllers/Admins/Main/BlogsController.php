@@ -9,6 +9,7 @@ use App\lib\File\ImageUploader;
 use App\lib\Messages\FlashMessage;
 use App\Models\Blog;
 use App\Models\BlogsCategory;
+use App\Models\BlogsComment;
 use App\Models\Image;
 
 class BlogsController extends Controller
@@ -16,7 +17,8 @@ class BlogsController extends Controller
 
     public function index()
     {
-        return view('Admins.Blogs.index');
+        $WaitingComments = BlogsComment::where('publication' , null)->paginate();
+        return view('Admins.Blogs.index' , compact('WaitingComments'));
     }
 
 

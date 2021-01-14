@@ -11,7 +11,7 @@
 
     @php
     $User_id = Auth::user()->id;
-    $Conversations = App\Models\Conversation::where('user_id' , $User_id)->where('status' , 'to_do')->paginate(15);
+    $Conversations = App\Models\Conversation::where('user_id' , $User_id)->where('status' , 'to_do')->where('status', 'doing')->paginate(15);
     @endphp
 
 

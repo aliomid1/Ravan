@@ -38,9 +38,62 @@
         }
 
     </style>
+    <link rel="stylesheet" type="text/css" href="{{ url('assets/lib/rating/starability-minified/starability-all.min.css') }}"/>
 @endsection
 
 @section('content')
+    @if ($NotCommented)
+        <div class="modal fade not_commented" id="not_commented" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                     <form action="{{ route('Users.AddCommentedConversation') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="NotCommentedId" value="{{ $NotCommented->id }}">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ثبت نظر</h5>
+                            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button> --}}
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group d-flex flex-column align-items-center">
+                                <img class="rounded-circle mb-2" src="{{ url($NotCommented->Advisor && $NotCommented->Advisor->Profile  ? $NotCommented->Advisor->Profile->url : '') }}" alt="مشکلی پیش آمده" style="width: 166px; height:166px;">
+                                <h5 class="text-center mb-2">{{ $NotCommented->Advisor->name }}</h5>
+                                <p class="text-center mb-3">لطفا نظر خود را در مورد مشاوره ی خود با ایشان بیان کنید.</p>
+                                    <!-- Change starability-basic to different class to see animations. -->
+                                    <fieldset class="starability-basic form-group">
+                                    <h5 class="text-center">میزان رضایت شما</h5>
+
+                                    <input type="radio" id="rate1" name="rating" value="1"/>
+                                    <label for="rate1">1 star.</label>
+
+                                    <input type="radio" id="rate2" name="rating" value="2" />
+                                    <label for="rate2">2 stars.</label>
+
+                                    <input type="radio" id="rate3" name="rating" value="3"  />
+                                    <label for="rate3">3 stars.</label>
+
+                                    <input type="radio" id="rate4" name="rating" value="4" />
+                                    <label for="rate4">4 stars.</label>
+
+                                    <input type="radio" id="rate5" name="rating" value="5" required checked/>
+                                    <label for="rate5">5 stars.</label>
+                                    <span class="starability-focus-ring"></span>
+                                    </fieldset>
+                                    <!-- guided by https://github.com/LunarLogic/starability/blob/f3b34818d6b704465278f69dde506c78a6a6f444/README.md#how-to-use -->
+                                    <textarea class="form-control" name="text" cols="30" rows="5" placeholder="متن نظر شما در مورد مشاور (اختیاری)"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ route('Users.NoCommentedConversation' , $NotCommented->id) }}" class="btn btn-secondary">تمایلی به ثبت نظر ندارم.</a>
+                            <button type="submit" class="btn btn-primary">ثبت نظر</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container-fluid pt-5">
         <div class="row">
             <div class="col-md-12 mt-5" style="display: flex;flex-direction: column;">
@@ -203,5 +256,9 @@
 
 
 @section('js')
-
+    @if ($NotCommented)
+        <script>
+            $('#not_commented').modal('show');
+        </script>
+    @endif
 @endsection

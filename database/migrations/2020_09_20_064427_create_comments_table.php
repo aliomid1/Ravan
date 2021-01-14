@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->text('advisor_id');
             $table->text('score');
             $table->text('text');
-            $table->text('status');
-            $table->text('publication');
+            $table->text('status')->default('off');
+            $table->text('publication')->default('off');
             $table->timestamps();
         });
         DB::table('comments')->insert([

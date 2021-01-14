@@ -22,22 +22,29 @@
             </div>
         </div>
         @if (auth()->User()->verify_email != 'ok')
-            <div class="row form-group mt-3 code verify" @if (auth()->User()->verify_email == null) style="display: none"
-        @endif>
-        <div class="col-6 col-sm-4 text-muted">کد تایید دریافت شده را وارد کنید<span class="text-danger">*</span></div>
-        <div class="col-6 col-sm-8">
-        <input type="number" class="form-control codevv">
+        <div class="row form-group mt-3 code verify" 
+        @if (auth()->User()->verify_email == null) style="display: none"
+        @endif >
+            <div class="col-6 col-sm-4 text-muted">کد تایید دریافت شده را وارد کنید<span class="text-danger">*</span></div>
+            <div class="col-6 col-sm-8">
+                <input type="number" class="form-control codevv">
         </div>
     </div>
-    <div class="col-12 text-center " @if (auth()->User()->verify_email != null)
-        style="display: none" @endif>
-        <button class="btn btn-success sendcode" data-url="{{ route('Users.SendCodeEmail') }}">ارسال کد
-            تایید</button>
-    </div>
     <div class="col-12 text-center ">
-        <button class="btn btn-success checkcode " data-url="{{ route('Users.VerifyEmail') }}" @if (auth()->User()->verify_email == null) style="display: none" @endif
-            >برسی</button>
+        <button class="btn btn-success checkcode m-2 " data-url="{{ route('Users.VerifyEmail') }}" @if (auth()->User()->verify_email == null) style="display: none" @endif
+        >برسی</button>
     </div>
+        <div class="col-12 text-center " 
+            >
+            <button class="btn btn-success m-2 sendcode" data-url="{{ route('Users.SendCodeEmail') }}">
+                @if (auth()->User()->verify_email != null)
+                     ارسال مجدد کد 
+                @else 
+                    ارسال کد        
+                    تایید
+                @endif
+            </button>
+        </div>
     @endif
 </div>
 </div>

@@ -59,11 +59,85 @@
                     </div>
                 </div>
             </div>
+            @if ($WaitingComments)
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" tabindex="1" style=" outline: none;">
+                        <h4 class="my-5">ليست نظرات در انتظار تایید</h4>
+
+                        <table id="example1" class="subject-comment-table table table-striped table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p>عنوان وبلاگ</p>
+                                    </th>
+                                    <th>
+                                        <p>نام کاربر</p>
+                                    </th>
+                                    <th>
+                                        <p>متن</p>
+                                    </th>
+                                    <th>
+                                        <p>تغييرات</p>
+                                    </th>
+                                    <th>
+                                        <p>حذف</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($WaitingComments as $item)
+                                    <tr>
+                                        <td>
+                                            <p>{{ $item->Blog ? $item->Blog->title : '-'}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ $item->User ? $item->User->fullname : 'کاربر ناشناس'}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ $item->text }}</p>
+                                        </td>
+                                        <td>
+                                            <p data-id="{{ $item->id }}" data-url="{{ route('Admins.BlogsComments.publication') }}"
+                                                class="publication d-inline-block my-1 btn {{ $item->publication == 'off' || $item->publication == null ? 'btn-secondary' : 'btn-success' }}">
+                                                @if ($item->publication == null )
+                                                    در انتظار تاييد
+                                                @endif
+                                                @if ($item->publication == 'on' )
+                                                    تایید شده
+                                                @endif
+                                                @if ($item->publication == 'off' )
+                                                    تایید نشده
+                                                @endif
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void()" class="delete btn btn-danger"
+                                                data-url="{{ route('Admins.BlogsComments.delete','Delete') }}"
+                                                data-type="table" data-item="کامنت" data-id="{{ $item->id }}">
+                                                <i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">موردی ثبت نشده است</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $WaitingComments->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>
 
 @endsection
 @section('js')
+<script src="{{ asset('assets/Web/js/custom.js') }}"></script>
 @include('components.ajax.delete')
 @endsection

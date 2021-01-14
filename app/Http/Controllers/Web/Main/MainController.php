@@ -124,6 +124,27 @@ class MainController extends Controller
         return view('Web.Main.Blog', compact(['Blog', 'RandomBlogs', 'SelectedCat', 'Keywords']));
     }
 
+    
+
+    public function AddBlogComment(Request $request, $id)
+    {
+        if ($request->text) {
+            if (Auth::check() && Auth::user()->id) {
+                $UserId = Auth::user()->id;
+            } else {
+                FlashMessage::set('warning', 'جهت ثبت نظر، لطفا وارد حساب کاربری خود شده یا ثبت نام بفرمایید.');
+                return back();
+            }
+            SubjectComments::create(['user_id' => $UserId, 'subject_id' => $id, 'text' => $request->text]);
+            FlashMessage::set('success', 'نظر شما با موفقیت ثبت و پس از تایید منتشر خواهد شد.');
+            return back();
+        }
+        FlashMessage::set('warning', 'مشکلی پیش آمده است.');
+        return back();
+    }
+
+
+
     public function CategoryBlogs($title)
     {
         $Category = new Category();
@@ -219,10 +240,11 @@ class MainController extends Controller
     public function AddSubjectOfCategoryComment(Request $request, $id)
     {
         if ($request->text) {
-            if (Auth::user()->id) {
+            if (Auth::check() && Auth::user()->id) {
                 $UserId = Auth::user()->id;
             } else {
-                $UserId = null;
+                FlashMessage::set('warning', 'جهت ثبت نظر، لطفا وارد حساب کاربری خود شده یا ثبت نام بفرمایید.');
+                return back();
             }
             SubjectComments::create(['user_id' => $UserId, 'subject_id' => $id, 'text' => $request->text]);
             FlashMessage::set('success', 'نظر شما با موفقیت ثبت و پس از تایید منتشر خواهد شد.');

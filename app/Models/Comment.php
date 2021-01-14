@@ -12,4 +12,9 @@ class Comment extends Model
     {
         return $this->hasOne(User::class , 'id' , 'user_id');
     }
+
+    public function Advisor()
+    {
+        return $this->hasOne(Advisors::class , 'id' , 'advisor_id');
+    }
 }

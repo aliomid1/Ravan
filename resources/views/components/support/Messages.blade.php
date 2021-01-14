@@ -31,7 +31,7 @@
         <input type="text" class="form-control text-messagesuppo" name="text" placeholder="پیام ...">
         <div class="d-flex">
             <a  class="mr-3 btn btn-primary btn-floating " id="sendmessageg"  data-id="{{ $support->id }}" data-url="{{route('SendMessageSupport')}}">
-                <i class="fa fa-send"></i>
+                <i class="fa fa-send text-white"></i>
             </a>
 
         </div>

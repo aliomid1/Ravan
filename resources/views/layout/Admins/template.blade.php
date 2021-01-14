@@ -27,11 +27,11 @@ $settings = \App\Models\Settings::first();
     <!-- end::custom styles -->
 
     <!-- begin::favicon -->
-    <link rel="shortcut icon" href="{{ asset($settings->logo) }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset($settings->logo)}}" type="image/x-icon">
     <!-- end::favicon -->
-    @yield('style')
-    <!-- begin::theme color -->
-    <meta name="theme-color" content="#ff7300" />
+@yield('style')
+<!-- begin::theme color -->
+    <meta name="theme-color" content="#ff7300"/>
     <!-- end::theme color -->
 
 </head>
@@ -51,53 +51,53 @@ $settings = \App\Models\Settings::first();
 </style>
 
 <body>
-    <div class="page-loader">
-        <div class="spinner-border"></div>
-        <span>در حال بارگذاری ...</span>
-    </div>
-    @include('components.messages.Alert')
+<div class="page-loader">
+    <div class="spinner-border"></div>
+    <span>در حال بارگذاری ...</span>
+</div>
+@include('components.messages.Alert')
 
 
 
-    <!-- begin::side menu -->
-    <div class="side-menu">
-        <div class="side-menu-body">
-            <ul>
-                <li class="side-menu-divider">فهرست</li>
-                <li><a href="{{ route('Admins.Dashboard') }}"><i class="icon ti-home"></i> <span>داشبورد</span> </a>
-                </li>
-                <li><a href="{{ route('Admins.UsersList') }}"><i class="icon ti-user"></i> <span>لیست
+<!-- begin::side menu -->
+<div class="side-menu">
+    <div class="side-menu-body">
+        <ul>
+            <li class="side-menu-divider">فهرست</li>
+            <li><a href="{{ route('Admins.Dashboard') }}"><i class="icon ti-home"></i> <span>داشبورد</span> </a>
+            </li>
+            <li><a href="{{ route('Admins.UsersList') }}"><i class="icon ti-user"></i> <span>لیست
                             کاربران</span>
-                    </a></li>
-                <li><a><i class="icon ti-user"></i> <span>
+                </a></li>
+            <li><a><i class="icon ti-user"></i> <span>
                             مشاورین</span></a>
-                    <ul>
-                        <li><a href="{{ route('Admins.AdvisorsList') }}">لیست</a></li>
-                        <li><a href="{{ route('Admins.AddAdvisor') }}">ایجاد</a></li>
-                        <li><a href="{{ route('Admins.AdvisorsRequestList') }}">فرم های همکاری</a></li>
+                <ul>
+                    <li><a href="{{ route('Admins.AdvisorsList') }}">لیست</a></li>
+                    <li><a href="{{ route('Admins.AddAdvisor') }}">ایجاد</a></li>
+                    <li><a href="{{ route('Admins.AdvisorsRequestList') }}">فرم های همکاری</a></li>
 
-                    </ul>
-                </li>
-                <li><a><i class="icon ti-list"></i>
-                        <span>موضوع ها</span></a>
-                    <ul>
-                        <li><a href="{{ route('Admins.SubjectCategory') }}">لیست دسته بندی</a></li>
-                        <li><a href="{{ route('Admins.SubjectCategories.create') }}">ایجاد دسته بندی</a></li>
-                        <li><a href="{{ route('Admins.Subjects') }}">موضوع ها</a></li>
-                        <li><a href="{{ route('Admins.Subject.create') }}">ایجاد موضوع</a></li>
+                </ul>
+            </li>
+            <li><a><i class="icon ti-list"></i>
+                    <span>موضوع ها</span></a>
+                <ul>
+                    <li><a href="{{ route('Admins.SubjectCategory') }}">لیست دسته بندی</a></li>
+                    <li><a href="{{ route('Admins.SubjectCategories.create') }}">ایجاد دسته بندی</a></li>
+                    <li><a href="{{ route('Admins.Subjects') }}">لیست موضوعات و نظرات</a></li>
+                    <li><a href="{{ route('Admins.Subject.create') }}">ایجاد موضوع</a></li>
 
-                    </ul>
-                </li>
-                <li><a><i class="icon ti-agenda"></i>
-                        <span>مقالات</span></a>
-                    <ul>
-                        <li><a href="{{ route('Admins.Blogs.index') }}">لیست مقالات</a></li>
-                        <li><a href="{{ route('Admins.Blogs.create') }}">ایجاد مقاله</a></li>
-                        <li><a href="{{ route('Admins.BlogsCategory') }}">لیست دسته بندی</a></li>
-                        <li><a href="{{ route('Admins.BlogsCategories.create') }}">ایجاد دسته بندی</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{ route('Admins.DepositToAdvisorsAccount') }}"><i class="icon ti-wallet"></i> <span>واریزی
+                </ul>
+            </li>
+            <li><a><i class="icon ti-agenda"></i>
+                    <span>مقالات</span></a>
+                <ul>
+                    <li><a href="{{ route('Admins.Blogs.index') }}">لیست مقالات و نظرات</a></li>
+                    <li><a href="{{ route('Admins.Blogs.create') }}">ایجاد مقاله</a></li>
+                    <li><a href="{{ route('Admins.BlogsCategory') }}">لیست دسته بندی</a></li>
+                    <li><a href="{{ route('Admins.BlogsCategories.create') }}">ایجاد دسته بندی</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ route('Admins.DepositToAdvisorsAccount') }}"><i class="icon ti-wallet"></i> <span>واریزی
                             ها برای مشاوران</span> </a>
                 </li>
                 <li><a href="{{ route('Admins.UnfinishedConsultations') }}"><i class="icon ti-close"></i> <span>مشاوره

@@ -12,6 +12,7 @@ class Subject extends Model
 
     public function Image()
     {
+        
         $All = $this->hasOne(Image::class, 'item_id' , 'id' );
         return $All->where('type' , 'subject');
     }
