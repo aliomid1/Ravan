@@ -30,6 +30,9 @@ class CreateSettingsTable extends Migration
             $table->text('type_signUp_users');
             $table->text('verify_email');
             $table->text('textmessage');
+            $table->text('textmessagesignup');
+            $table->text('timeleftadvisor');
+            $table->text('timeleftuser');
             $table->text('url_chat');
             $table->timestamps();
         });
