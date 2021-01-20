@@ -19,6 +19,8 @@ class CreateHomePagesTable extends Migration
             $table->text('services')->nullable();
             $table->text('guidences')->nullable();
             $table->text('footer')->nullable();
+            $table->text('popup_content')->nullable();
+            $table->text('popup_sleep')->nullable();
             $table->timestamps();
         });
         DB::table('home_pages')->insert([

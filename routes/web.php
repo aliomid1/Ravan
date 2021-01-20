@@ -196,6 +196,11 @@ Route::namespace('Admins')->prefix('Admins')->name('Admins.')->group(function ()
         Route::post('HomePage.publication', 'Main\HomePageController@publication')->name('HomePage.publication');
 
 
+        // Popup Edition
+        Route::get('Popup', 'Main\HomePageController@PopupIndex')->name('Popup.index');
+        Route::post('Popup', 'Main\HomePageController@PopupUpdate')->name('Popup.post');
+
+
         // Settings
         Route::get('Settings/General', 'Main\MainController@SettingGeneral')->name('Settings.General');
         Route::post('Settings/Generalpost', 'Main\SettingsController@General')->name('Settings.General.post');

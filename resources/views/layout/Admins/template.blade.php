@@ -117,6 +117,7 @@ $settings = \App\Models\Settings::first();
                         <li><a href="{{ route('Admins.HomePage.edit') }}">ویرایش صفحه ی اصلی</a></li>
                         <li><a href="{{ route('Admins.AboutUs.edit') }}">ویرایش درباره ما</a></li>
                         <li><a href="{{ route('Admins.ContactUs.edit') }}">ویرایش تماس با ما</a></li>
+                        <li><a href="{{ route('Admins.Popup.index') }}">ویرایش پاپ آپ در صفحات</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="icon ti-settings"></i> <span>تنظیمات</span> </a>

@@ -5,7 +5,6 @@ $settings = \App\Models\Settings::first();
 @endphp
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="@yield('keywords')">
@@ -17,7 +16,6 @@ $settings = \App\Models\Settings::first();
     <link rel="stylesheet" href="{{ asset('assets/Web/lib/owlcarousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/Web/lib/owlcarousel/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets\Web\fonts\fontawesome-pro\css\all.min.css') }}">
-
     @yield('style')
     <style>
         #toast-container>.toast-warning {
@@ -37,12 +35,10 @@ $settings = \App\Models\Settings::first();
             height: 100%;
             z-index: 1;
         }
-
     </style>
     <link rel="stylesheet" href="{{ asset('assets/Web/lib/bootstrap_4.5/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/Web/css/style.css') }}">
     <link rel="shortcut icon" href="{{ asset($settings->logo) }}" type="image/x-icon">
-
 </head>
 
 
@@ -58,10 +54,35 @@ $Footer['trust'] = [];
 if (!isset($Footer['social_media'])) {
 $Footer['social_media'] = [];
 }
+
+$Home = \App\Models\HomePage::first();
+
 @endphp
 
 
 <body>
+    @if ($Home->popup_content)
+        <div class="modal popup_modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header pr-0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            @csrf
+                            <input type="hidden" name="id" id="idd">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {!!$Home->popup_content!!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     @include('components.messages.Alert')
     <!-- Navigation -->
     <header class="top-header shadow-sm" style="background:{{ $settings->colorPrimary }}!important;">
@@ -261,7 +282,16 @@ $Footer['social_media'] = [];
         });
 
     </script>
-
+    @if ($Home->popup_sleep)
+        <script>    
+            $(document).ready(function () {
+                
+                setTimeout(function(){
+                    $('.popup_modal').modal('show');
+                }, {{ $Home->popup_sleep * 1000 }});
+            });
+        </script>
+    @endif
     @yield('js')
 </body>
 

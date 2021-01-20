@@ -158,4 +158,37 @@ class HomePageController extends Controller
             return true;
         }
     }
+
+
+
+    public function PopupIndex()
+    {
+        $page = HomePage::first();
+        return view('Admins.Pages.Popup.edit', compact('page'));
+    }
+
+
+
+    public function PopupUpdate(Request $request)
+    {
+        $Home = HomePage::first();
+        if ($request->popup_content) {
+            if ($request->popup_sleep) {
+                $Home->update([
+                    'popup_content' => $request->popup_content,
+                    'popup_sleep' => $request->popup_sleep,
+                 ]);
+            } else{
+                FlashMessage::set('error', 'لطفا زمان تاخیر اجرا شدن را وارد نمایید.');
+                return redirect()->back();
+            }
+        } else{
+            $Home->update([
+                'popup_content' =>null,
+                'popup_sleep' => null,
+            ]);
+        }
+        FlashMessage::set('success', 'عملیات با موفقیت انجام شد.');
+        return redirect()->back();
+    }
 }
