@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('Logout', 'Controller@Logout')->name('Logout');
 Route::post('CKEDITOR', 'Controller@CKEDITOR')->name('CKEDITOR');
-Route::get('/Chat', function () {
-    return view('users.messages.Chat');
-});
+// Route::get('/Chat', function () {
+//     return view('users.messages.Chat');
+// });
 Route::post('/SendMessageSupport', 'Support\SupportController@sendmessage')->name('SendMessageSupport');
 
 
@@ -89,7 +89,9 @@ Route::namespace('Web')->name('Web.')->group(function () {
     Route::get('CheckChatData/{id}/{sender}', 'Chat\ChatController@CheckChatData')->name('CheckChatData');
     Route::get('CheckPaymentChat/{id}/{typepay}', 'Chat\ChatController@CheckPaymentChat')->name('CheckPaymentChat');
     Route::get('CheckEndChat/{id}/{time}/{type}', 'Chat\ChatController@CheckEndChat')->name('CheckEndChat');
+    Route::get('UpdateChatStatus/{id}/{ecrypt}', 'Chat\ChatController@UpdateChatStatus')->name('UpdateChatStatus');
 
+    
 });
 
 

@@ -26,7 +26,7 @@
                             <td>{{json_decode($item->advisor_form , true)['name'] . ' ' . json_decode($item->advisor_form , true)['famil'] }}</td>
                             <td>{{ \Morilog\Jalali\Jalalian::forge($item->created_at)->format('Y/m/d - H:i:s')   }}</td>
                             <td>
-                                <a href="{{route('Admins.AdvisorRequest','DELETE')}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                <a href="{{route('Admins.AdvisorRequest',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                 <a href="#"
                                 class="delete btn btn-danger"
                                 data-url="{{route('Admins.AdvisorRequestDelete', $item->id)}}"

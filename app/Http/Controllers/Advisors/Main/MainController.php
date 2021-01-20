@@ -32,7 +32,7 @@ class MainController extends Controller
         $Setting = Settings::first();
         $Advisor = Auth::guard('advisor')->User();
         $Advisor_id = Auth::guard('advisor')->User()->id;
-        $Conversation = Conversation::where('status', 'done');
+        $Conversation = Conversation::where('advisor_id', $Advisor_id )->where('status', 'done');
         $Transections = Transaction::where('advisor_id', $Advisor->id)->where('type', '!=', 'plan')->get();
 
         $days2 = [];

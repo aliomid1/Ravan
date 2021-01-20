@@ -11,7 +11,6 @@ $settings = \App\Models\Settings::first();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> {{ env('SiteBrand') }} | پنل ادمين |
         @yield('title')
     </title>
@@ -100,7 +99,7 @@ $settings = \App\Models\Settings::first();
             <li><a href="{{ route('Admins.DepositToAdvisorsAccount') }}"><i class="icon ti-wallet"></i> <span>واریزی
                             ها برای مشاوران</span> </a>
                 </li>
-                <li><a href="{{ route('Admins.UnfinishedConsultations') }}"><i class="icon ti-close"></i> <span>مشاوره
+                <li><a href="{{ route('Admins.AdvicedHistory') }}"><i class="icon ti-close"></i> <span>مشاوره
                             های انجام نشده</span> </a>
                 </li>
                 <li><a href="{{ route('Admins.PlansManager') }}"><i class="icon ti-package"></i> <span>مدیریت پلن

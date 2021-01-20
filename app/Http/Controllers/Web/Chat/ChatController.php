@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Chat;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\lib\Messages\FlashMessage;
 use App\Models\Advisors;
 use App\Models\Chat;
@@ -11,10 +12,6 @@ use App\Models\Settings;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class ChatController extends Controller
 {
@@ -49,7 +46,7 @@ class ChatController extends Controller
             $chat = $this->NewChat($data);
             if ($payment == 'true') {
                 $transaction = Transaction::create([
-                    'chat_id' => $chat->id,
+                    'chat_id' =>  $conversation->id,
                     'user_id' => $user->id,
                     'advisor_id' => $advisor->id,
                     'price' => $price,
@@ -58,7 +55,7 @@ class ChatController extends Controller
                 ]);
             } else {
                 $transaction = Transaction::create([
-                    'chat_id' => $chat->id,
+                    'chat_id' =>  $conversation->id,
                     'user_id' => $user->id,
                     'advisor_id' => $advisor->id,
                     'price' => $price,
@@ -72,7 +69,6 @@ class ChatController extends Controller
             return back();
         }
     }
-
     public function StartChat($id)
     {
 
@@ -94,7 +90,7 @@ class ChatController extends Controller
             $USerR = $user;
             $typesender = 'user';
         }
-        
+
         if ($chat && $USerR) {
 
             if ($USerR->id == $chat->user_id || $USerR->id == $chat->expert_id) {
@@ -115,7 +111,6 @@ class ChatController extends Controller
             return redirect(route('Web.index'));
         }
     }
-
     public function CheckChatData($id, $sender)
     {
 
@@ -132,6 +127,9 @@ class ChatController extends Controller
                 'expert_name' =>  $chat->expert_name,
                 'user_profile' => asset($chat->user_profile),
                 'advisor_profile' => asset($chat->advisor_profile),
+                'RouteAdvisor' => route('Advisors.Chats'),
+                'RouteUser' => route('Users.Chats'),
+                'RouteMain' => route('Web.index'),
                 'HasVoiceCall' => $chat->HasVoiceCall,
                 'HasVideoCall' => $chat->HasVideoCall
             ]);
@@ -161,6 +159,18 @@ class ChatController extends Controller
             return response([
                 'status' => 0
             ]);
+        }
+    }
+    public function UpdateChatStatus($id, $ecrypt)
+    {
+        $chat = Chat::where('encrypt', $ecrypt)->first();
+
+        if ($chat) {
+            $conversation = Conversation::find($id);
+
+            $conversation->update(['status' => 'done']);
+
+            $conversation->Chat->delete();
         }
     }
     public function CheckPaymentChat($id, $typepay)

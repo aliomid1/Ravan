@@ -1,8 +1,5 @@
 @extends('layout.web.template')
 @section('title', 'پروفایل ' . $advisor->name)
-
-
-
 @section('style')
     <style>
         .nav-pills .nav-link,
@@ -33,9 +30,6 @@
     </style>
 
 @endsection
-
-
-
 @section('content')
     <div class="container-fluid">
         <div>

@@ -25,16 +25,15 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="my-input">کلمه عبور ورود</label>
-                            <input id="my-input" class="form-control" type="text"  name="password">
+                            <input id="my-input" class="form-control" type="text" name="password">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="my-input">پرفایل مدیریت</label>
-                            <input id="my-input" class="form-control" type="file"
-                                name="profile">
+                            <input id="my-input" class="form-control" type="file" name="profile">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="my-input">دامنه سیستم چت</label>
-                            <input id="my-input" class="form-control" type="text" value="{{$settings->url_chat}}" required
+                            <input id="my-input" class="form-control" type="text" value="{{ $settings->url_chat }}" required
                                 name="url_chat">
                         </div>
                         <div class="form-group col-md-4">
@@ -61,6 +60,16 @@
                             <label for="my-input">IDPAY_APIKEY</label>
                             <input id="my-input" class="form-control" type="text" value="{{ env('APP_IDPAY') }}" required
                                 name="idpay">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="my-input">متن پیام دعوت از دوستان</label>
+                            <input id="my-input" class="form-control" type="text" value="{{ $settings->textmessage  }}" required
+                                name="textmessage">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="my-input">متن پیام ثبت نام مشاور</label>
+                            <input id="my-input" class="form-control" type="text" value="{{ $settings->textmessagesignup  }}" required
+                                name="textmessagesignup">
                         </div>
                         <div class="form-group col-md-12 text-left">
                             <button type="submit" class="btn btn-warning text-white">ثبت اطلاعات</button>

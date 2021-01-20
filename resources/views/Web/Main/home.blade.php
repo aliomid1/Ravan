@@ -1,5 +1,11 @@
 @extends('layout.web.template')
+@php
+$settings = \App\Models\Settings::first();
+@endphp
+@section('keywords',$settings->keywords)
+@section('description',$settings->description)
 @section('title','صفحه اصلی')
+
 @section('content')
 <div class="topest-gap"></div>
 <section class="landing-section">
@@ -68,6 +74,7 @@
         </header>
         <div class="comments-s owl-carousel owl-theme main-img col-sm-9 mx-auto">
             @forelse ($SelectedComments as $item)
+             @if ($item->User)
                 <div class="item part-padding bg-white shadow-sm">
                     <div class="">
                     </div>
@@ -78,6 +85,7 @@
                     <h6>{{ $item->User->fullname }}</h6>
                     <p class="mb-3">{{ $item->text }}</p>
                 </div>
+             @endif
             @empty
 
             @endforelse

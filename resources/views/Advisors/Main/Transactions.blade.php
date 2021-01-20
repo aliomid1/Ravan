@@ -14,7 +14,7 @@
               
             if($tx->Conversation){
                 if($tx->Conversation->status!='done'){
-                 
+             
                    $trxsblock+=$tx->price;
                 }
             }

@@ -1,18 +1,6 @@
 @extends('layout.web.template')
 @section('title','درباره ما')
-
-
-@section('style')
-
-@endsection
-
-
-
-
 @section('content')
-    <div id="nav-up-contact">
-        iiwfoueheh
-    </div>
     <div id="main-contact" class="row">
         <div class="col-md-4 col-lg-6 col-sm-12 col-xs-12" id="right-contact">
             <div id="mail-contact">
@@ -45,11 +33,5 @@
         </div>
 
     </div>
-
-
-
-
-@section('js')
-
 @endsection
 

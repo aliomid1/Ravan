@@ -113,9 +113,9 @@ class MainController extends Controller
     public function Blog($id)
     {
         $CountBlogs = Blog::count();
-        if($CountBlogs>4){
+        if ($CountBlogs > 4) {
             $RandomBlogs = Blog::all()->random(4);
-        }else{
+        } else {
             $RandomBlogs = Blog::all()->random($CountBlogs);
         }
         $Blog = Blog::find($id);
@@ -124,7 +124,7 @@ class MainController extends Controller
         return view('Web.Main.Blog', compact(['Blog', 'RandomBlogs', 'SelectedCat', 'Keywords']));
     }
 
-    
+
 
     public function AddBlogComment(Request $request, $id)
     {
@@ -198,15 +198,19 @@ class MainController extends Controller
     public function ConsultantListSearch(Request $request)
     {
         $value = $request->value;
-        $advisor = Advisors::where('name', 'like', "%$value%")->get();
-        $Category = Category::where('title', 'like', $value)->get();
+        if ($value == '') {
+            $advisor = Advisors::get();
+        } else {
+            $advisor = Advisors::where('name', 'like', "%$value%")->get();
+            $Category = Category::where('title', 'like', $value)->get();
 
-        if ($Category) {
-            foreach ($Category as $v) {
-                $advs = Advisors::where('category', $v->id)->get();
-                if ($advs) {
-                    foreach ($advs as $vv) {
-                        $advisor[] = $vv;
+            if ($Category) {
+                foreach ($Category as $v) {
+                    $advs = Advisors::where('category', $v->id)->get();
+                    if ($advs) {
+                        foreach ($advs as $vv) {
+                            $advisor[] = $vv;
+                        }
                     }
                 }
             }
@@ -347,7 +351,7 @@ class MainController extends Controller
 
     public function AdvisorRequestPost(Request $request)
     {
-        $result = AdvisorsRequest::create((['advisor_form'=> null]));
+        $result = AdvisorsRequest::create((['advisor_form' => null]));
         $data = $request->all();
         // ImageUploader::upload($request->image, 'Blogs/');
         /**
@@ -355,29 +359,29 @@ class MainController extends Controller
          */
         // dd($request->file('resume'))
         if ($data['resume']) {
-            if(is_array($data['resume'])){
+            if (is_array($data['resume'])) {
                 foreach ($data['resume'] as $key => $image) {
-                    $data['resume'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                    $data['resume'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/' . $result->id);
                 }
-            } else{
+            } else {
                 ImageUploader::upload($data['resume'], 'AdvisorsRequest/' . $result->id);
             }
         }
         if ($data['madrak_tahsili']) {
             if (is_array($data['madrak_tahsili'])) {
                 foreach ($data['madrak_tahsili'] as $key => $image) {
-                    $data['madrak_tahsili'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                    $data['madrak_tahsili'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/' . $result->id);
                 }
-            } else{
+            } else {
                 ImageUploader::upload($data['madrak_tahsili'], 'AdvisorsRequest/' . $result->id);
             }
         }
         if ($data['parvane_eshteghal']) {
             if (is_array($data['parvane_eshteghal'])) {
                 foreach ($data['parvane_eshteghal'] as $key => $image) {
-                    $data['parvane_eshteghal'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/'. $result->id);
+                    $data['parvane_eshteghal'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/' . $result->id);
                 }
-            } else{
+            } else {
                 ImageUploader::upload($data['parvane_eshteghal'], 'AdvisorsRequest/' . $result->id);
             }
         }
@@ -386,17 +390,17 @@ class MainController extends Controller
                 foreach ($data['aks'] as $key => $image) {
                     $data['aks'][$key] = ImageUploader::upload($image, 'AdvisorsRequest/' . $result->id);
                 }
-            } else{
+            } else {
                 ImageUploader::upload($data['aks'], 'AdvisorsRequest/' . $result->id);
             }
         }
 
-        $data = json_encode($data , true);
+        $data = json_encode($data, true);
         $result1 = $result->update(['advisor_form' => $data]);
-       
+
         if ($result1) {
             FlashMessage::set('success', 'درخواست با موفقیت ثبت شد.');
-        } else{
+        } else {
             File::deleteDirectory(public_path('uploads/AdvisorsRequest'));
             AdvisorsRequest::find($result->id)->delete();
             FlashMessage::set('error', 'مشکلی پیش آمده است.');

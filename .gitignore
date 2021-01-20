@@ -28,3 +28,5 @@ public/robots.txt
 /tests
 .editorconfig
 .env.example
+/.idea
+/Removed

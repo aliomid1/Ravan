@@ -1,10 +1,11 @@
 @extends('layout.web.template')
+@section('title',$Blog->title)
+@section('keywords',$Blog->keywords)
+@section('description',$Blog->description_seo)
 @section('content')
 <div class="topest-gap"></div>
 <div class="container">
     <div class="row mt-5">
-
-
         <div class="col-md-8 col-sm-12 col-lg-9 content-single-page">
             <img class="img-top-single-page"
                 src="{{ $Blog->Image ? asset($Blog->Image->url)  : asset('assets/Web/images/coronavirus_1.jpg') }}"
@@ -26,8 +27,9 @@
                     <div class="item bg-white shadow-sm mb-4 rounded-lg part-padding-sm ">
                         <div class="d-flex align-items-center mb-2">
                             <img src="
-                            @if ($item->User->Image)
-                            {{ asset($item->User->Image->url) }}
+                            
+                            @if ($item->User)
+                            {{ asset($item->User->Image?$item->User->Image->url:'assets/Web/images/useravatar.svg') }}
                             @else
                             {{ asset('assets/Web/images/useravatar.svg') }}
                             @endif " alt="pik" class="ml-2" style="border-radius: 50%; width:42px; height:42px; ">

@@ -34,7 +34,6 @@ class MainController extends Controller
                 $Income .= $trx2->where('created_at', '<', Carbon::now())->where('created_at', '>=', $value)->sum('price') . ',';
             } else {
                 $Income .= $trx2->where('created_at', '<', $value)->where('created_at', '>', $days2[$key == 30 ? 30 : $key + 1])->sum('price') . ',';
-
             }
         }
         $settings = Settings::find(1);
@@ -74,15 +73,20 @@ class MainController extends Controller
 
     public function AdvisorRequest($id)
     {
-        $form = json_decode(AdvisorsRequest::find($id)->advisor_form, true);
-        return view('Admins.Advisors.AdvisorRequest', compact('form'));
+        $req = AdvisorsRequest::find($id);
+        if ($req) {
+            $form = json_decode(AdvisorsRequest::find($id)->advisor_form, true);
+            return view('Admins.Advisors.AdvisorRequest', compact('form'));
+        } else {
+            return back();
+        }
     }
 
 
 
     public function AdvisorRequestDelete(Request $request)
     {
-        File::deleteDirectory(public_path('uploads/AdvisorsRequest/'. $request->id));
+        File::deleteDirectory(public_path('uploads/AdvisorsRequest/' . $request->id));
         AdvisorsRequest::find($request->id)->delete();
         return true;
     }

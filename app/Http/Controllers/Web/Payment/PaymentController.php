@@ -31,9 +31,9 @@ class PaymentController extends Controller
             if ($request->type != 'chat') {
                 $ConsultationsTimes = json_decode($advisor->consultations_times, true);
                 if ($advisor->vip == '0') {
-                    $ConsultationsTimes = ['online'=>$ConsultationsTimes['online']];
+                    $ConsultationsTimes = ['online' => $ConsultationsTimes['online']];
                 }
-                if($ConsultationsTimes[$request->type]){
+                if ($ConsultationsTimes[$request->type]) {
                     $date = '';
                     if ($ConsultationsTimes[$request->type]['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] != '1') {
                         FlashMessage::set('warning', 'زمان انتخاب شده صحیح نیست');
@@ -46,7 +46,7 @@ class PaymentController extends Controller
                         $ConsultationsTimes[$request->type]['Sliced'][str_replace('-', '/', $request->date)][$request->key]['Status'] = "0";
                         $advisor->update(['consultations_times' => json_encode($ConsultationsTimes)]);
                     }
-                }else{
+                } else {
                     FlashMessage::set('warning', 'زمان انتخاب شده صحیح نیست');
                     return back();
                 }
@@ -66,6 +66,9 @@ class PaymentController extends Controller
                         'type' => 'withdraw'
                     ]);
                     $payment = 'true';
+                } else {
+                    FlashMessage::set('error', 'موجودی شما کافی نیست');
+                    return back();
                 }
             }
             switch ($request->type) {
@@ -80,19 +83,19 @@ class PaymentController extends Controller
                         ]
                     ));
                     break;
-                    case 'online':
-                        return redirect(route(
-                            'Web.Reservation',
-                            [
-                                'id' => $request->id,
-                                'typepay' => $request->typepayment,
-                                'subject' => $request->subject,
-                                'date' => $date,
-                                'type' => $request->type,
-                                'payment' => $payment
-                            ]
-                        ));
-                        break;
+                case 'online':
+                    return redirect(route(
+                        'Web.Reservation',
+                        [
+                            'id' => $request->id,
+                            'typepay' => $request->typepayment,
+                            'subject' => $request->subject,
+                            'date' => $date,
+                            'type' => $request->type,
+                            'payment' => $payment
+                        ]
+                    ));
+                    break;
                 case 'in':
                     return redirect(route(
                         'Web.Reservation',
